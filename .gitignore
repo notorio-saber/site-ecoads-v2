@@ -1,0 +1,22 @@
+# Dependências
+node_modules/
+
+# Arquivos de Build
+dist/
+
+# Configurações do Editor e IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Logs e Dados do Antigravity/Gemini
+.gemini/
+*.log
+
+# Arquivos do Sistema Operacional
+.DS_Store
+Thumbs.db

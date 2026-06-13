@@ -1,0 +1,40 @@
+/* Design System & Tokens - EcoAds V2 */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Cores - Paleta Deep Tech / Forest Tech */
+  --bg-primary: #030f0a;       /* Verde florestal ultra-escuro */
+  --bg-secondary: #081410;     /* Tom ligeiramente mais claro para cards/seções */
+  --bg-tertiary: #0c1c17;      /* Para hovers e elementos destacados */
+  
+  --color-border: rgba(0, 230, 118, 0.15); /* Borda verde neon sutil */
+  --color-border-glow: rgba(0, 229, 255, 0.25); /* Borda ciano sutil */
+
+  /* Cores de Destaque */
+  --accent-neon: #00e676;      /* Verde neon tecnológico */
+  --accent-cyan: #00e5ff;      /* Azul ciano GIS/dados */
+  --accent-neon-glow: rgba(0, 230, 118, 0.4);
+  --accent-cyan-glow: rgba(0, 229, 255, 0.4);
+
+  /* Texto */
+  --text-primary: #eaf2ef;     /* Branco suave */
+  --text-secondary: #a3b8b0;   /* Cinza esverdeado de dados */
+  --text-muted: #627c73;       /* Cinza escuro para detalhes secundários */
+
+  /* Fontes */
+  --font-title: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Efeitos */
+  --glass-bg: rgba(8, 20, 16, 0.7);
+  --glass-backdrop: blur(12px);
+  
+  /* Transições e Animações */
+  --transition-fast: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout */
+  --max-width: 1280px;
+  --header-height: 80px;
+}

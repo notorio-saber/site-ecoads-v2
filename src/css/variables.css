@@ -21,11 +21,13 @@
   --light-text-muted: #7f968e;      /* Cinza esverdeado claro para detalhes */
   --light-border: rgba(11, 26, 22, 0.08); /* Borda clara sutil */
 
-  /* Cores da Marca & Destaques (Sóbrios) */
-  --brand-green: #1b4332;           /* Verde florestal institucional */
-  --brand-green-accent: #2d6a4f;    /* Verde intermediário de destaque */
-  --brand-blue: #0077b6;            /* Azul corporativo técnico (GIS) */
-  --brand-cyan: #0a9396;            /* Ciano sóbrio para destaques pontuais */
+  /* Cores da Marca & Destaques (Bandeira do Brasil) */
+  --brand-green: #009c3b;           /* Verde oficial da marca e da bandeira */
+  --brand-green-accent: #00c060;    /* Verde mais vibrante para hover/destaques */
+  --brand-yellow: #ffd300;          /* Amarelo oficial da marca e da bandeira */
+  --brand-yellow-accent: #ffdf00;   /* Amarelo mais vibrante */
+  --brand-blue: #002776;            /* Azul oficial da marca e da bandeira */
+  --brand-blue-accent: #0052cc;     /* Azul royal tecnológico */
 
   /* Tipografia */
   --font-title: 'Outfit', sans-serif;

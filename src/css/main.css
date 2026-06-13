@@ -118,13 +118,13 @@ a {
 .btn-primary {
   background-color: var(--brand-green);
   color: #ffffff;
-  box-shadow: 0 2px 8px rgba(27, 67, 50, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 156, 59, 0.15);
 }
 
 .btn-primary:hover {
   background-color: var(--brand-green-accent);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(27, 67, 50, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 156, 59, 0.25);
 }
 
 .btn-secondary {
@@ -134,7 +134,7 @@ a {
 }
 
 .btn-secondary:hover {
-  background-color: rgba(27, 67, 50, 0.05);
+  background-color: rgba(0, 156, 59, 0.05);
   transform: translateY(-1px);
 }
 
@@ -254,7 +254,7 @@ a {
 }
 
 .nav-link:hover, .nav-link.active {
-  color: #0adb98; /* Verde esmeralda brilhante ativo */
+  color: var(--brand-green-accent); /* Verde da bandeira ativo */
 }
 
 /* Botão CTA Integrado (Estilo Pílula) */
@@ -270,18 +270,22 @@ a {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: #ffffff;
-  background: linear-gradient(135deg, #0adb98 0%, #0077b6 100%);
+  background: linear-gradient(135deg, var(--brand-green) 0%, var(--brand-blue-accent) 100%);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 12px rgba(10, 219, 152, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 156, 59, 0.2);
   transition: var(--transition-smooth);
   cursor: pointer;
 }
 
 .header-cta:hover {
-  background: linear-gradient(135deg, #0077b6 0%, #0adb98 100%);
+  background: linear-gradient(135deg, var(--brand-blue-accent) 0%, var(--brand-green) 100%);
   transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 6px 20px rgba(10, 219, 152, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 156, 59, 0.3);
   border-color: rgba(255, 255, 255, 0.25);
+}
+
+.header-cta-mobile {
+  display: none !important; /* Esconder o botão mobile no desktop */
 }
 
 /* Hamburger Menu Icon */
@@ -502,7 +506,7 @@ a {
   }
 
   .nav-link:hover, .nav-link.active {
-    color: #0adb98 !important;
+    color: var(--brand-green-accent) !important;
   }
 
   /* Ocultar o CTA do cabeçalho flutuante no mobile para economizar espaço */

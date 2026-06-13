@@ -12,7 +12,26 @@
   <!-- Iconify Icon CDN -->
   <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 </head>
-<body>
+<body class="overflow-hidden">
+
+  <!-- ==========================================
+       PRELOADER (ORGANIC TECH INTRO)
+       ========================================== -->
+  <div class="preloader-overlay" id="page-preloader">
+    <div class="preloader-canvas-container">
+      <canvas id="preloader-canvas"></canvas>
+    </div>
+    <div class="preloader-content">
+      <img src="/src/assets/logo.png" alt="EcoAds Logo" class="preloader-logo" id="preloader-logo">
+      <div class="preloader-status-container">
+        <span class="preloader-status-dot"></span>
+        <span class="preloader-status-text" id="preloader-text">CONNECTING SYSTEM</span>
+      </div>
+      <div class="preloader-progress-bar">
+        <div class="preloader-progress-fill" id="preloader-bar"></div>
+      </div>
+    </div>
+  </div>
 
   <!-- ==========================================
        BACKGROUND ATMOSPHERE (FEIXES DE LUZ)
@@ -119,25 +138,6 @@
                 <p class="conversion-subheadline">
                   Sites institucionais premium que transmitem autoridade técnica, sistemas e aplicativos sob medida para o seu modelo de negócios, e tráfego pago focado em captação de clientes corporativos (B2B).
                 </p>
-                
-                <!-- Grade de Pilares Corporativos -->
-                <div class="conversion-pillars-grid">
-                  <div class="pillar-item">
-                    <span class="pillar-code">// 01</span>
-                    <h4 class="pillar-title">Web & App Dev</h4>
-                    <p class="pillar-desc">Sites institucionais e sistemas sob medida com design técnico refinado e performance impecável.</p>
-                  </div>
-                  <div class="pillar-item">
-                    <span class="pillar-code">// 02</span>
-                    <h4 class="pillar-title">Produtos SaaS</h4>
-                    <p class="pillar-desc">Aplicativos móveis proprietários (como LeafBook e LeafTag) para otimizar fluxos técnicos.</p>
-                  </div>
-                  <div class="pillar-item">
-                    <span class="pillar-code">// 03</span>
-                    <h4 class="pillar-title">Posicionamento B2B</h4>
-                    <p class="pillar-desc">Gestão de tráfego pago e posicionamento estratégico com foco na captação de clientes corporativos.</p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

@@ -2,7 +2,118 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
+  // 0. PRELOADER INTEGRADO DE ALTAS ESTRUTURAS (ANÉIS DA ESCURIDÃO)
+  // ==========================================
+  const preloaderCanvas = document.getElementById('preloader-canvas');
+  if (preloaderCanvas) {
+    const pCtx = preloaderCanvas.getContext('2d');
+    let pWidth = preloaderCanvas.width = window.innerWidth;
+    let pHeight = preloaderCanvas.height = window.innerHeight;
+    
+    const handlePreloaderResize = () => {
+      if (preloaderCanvas && preloaderCanvas.parentNode) {
+        pWidth = preloaderCanvas.width = window.innerWidth;
+        pHeight = preloaderCanvas.height = window.innerHeight;
+      }
+    };
+    window.addEventListener('resize', handlePreloaderResize);
+
+    let pTime = 0;
+    let pAnimationId;
+
+    const pRender = () => {
+      pTime += 0.02; // Velocidade da expansão e oscilação
+      pCtx.clearRect(0, 0, pWidth, pHeight);
+      
+      const pCenterX = pWidth / 2;
+      const pCenterY = pHeight / 2;
+      
+      const maxRadius = Math.hypot(pCenterX, pCenterY);
+      const ringDist = 22; // Espaçamento entre os anéis de intro
+      const numRings = Math.ceil(maxRadius / ringDist);
+      
+      // Animação contínua dos anéis crescendo para fora a partir do centro
+      const offset = (pTime * 48) % ringDist;
+      
+      // Gradiente radial centrado no logo para apagar suavemente as bordas
+      const radGrad = pCtx.createRadialGradient(pCenterX, pCenterY, 50, pCenterX, pCenterY, Math.min(pWidth, pHeight) * 0.45);
+      radGrad.addColorStop(0, 'rgba(0, 255, 102, 0.45)'); // Verde neon em volta do logo
+      radGrad.addColorStop(0.35, 'rgba(0, 229, 255, 0.15)'); // Azul técnico secundário
+      radGrad.addColorStop(1, 'transparent'); // Sumindo na escuridão periférica
+      
+      pCtx.strokeStyle = radGrad;
+      pCtx.lineWidth = 0.8;
+
+      for (let i = 0; i < numRings; i++) {
+        const r = i * ringDist + offset;
+        if (r > maxRadius) continue;
+        
+        pCtx.beginPath();
+        const steps = 90;
+        for (let j = 0; j <= steps; j++) {
+          const theta = (j / steps) * Math.PI * 2;
+          
+          // Ruído orgânico sutil idêntico ao efeito principal de tronco
+          const wobble = Math.sin(theta * 6 + pTime * 2) * 2.5 + Math.cos(theta * 3 - pTime * 1) * 1.5;
+          const px = pCenterX + Math.cos(theta) * (r + wobble);
+          const py = pCenterY + Math.sin(theta) * (r + wobble);
+          
+          if (j === 0) pCtx.moveTo(px, py);
+          else pCtx.lineTo(px, py);
+        }
+        pCtx.closePath();
+        pCtx.stroke();
+      }
+      
+      pAnimationId = requestAnimationFrame(pRender);
+    };
+    
+    pRender();
+
+    // Simulação do carregamento técnico da barra de progresso
+    const pBar = document.getElementById('preloader-bar');
+    const pText = document.getElementById('preloader-text');
+    const pOverlay = document.getElementById('page-preloader');
+    
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += Math.random() * 12 + 6;
+      if (progress >= 100) {
+        progress = 100;
+        clearInterval(interval);
+        
+        if (pBar) pBar.style.width = '100%';
+        if (pText) pText.textContent = 'SYSTEM CORE READY';
+        
+        setTimeout(() => {
+          if (pOverlay) {
+            pOverlay.classList.add('fade-out');
+            document.body.classList.remove('overflow-hidden');
+            
+            setTimeout(() => {
+              cancelAnimationFrame(pAnimationId);
+              window.removeEventListener('resize', handlePreloaderResize);
+              pOverlay.remove();
+            }, 800);
+          }
+        }, 250);
+      } else {
+        if (pBar) pBar.style.width = `${progress}%`;
+        const statuses = [
+          'LOADING INTERFACE MODULES', 
+          'SCANNING NETWORK MATRIX', 
+          'DECRYPTING BRAND ASSETS', 
+          'OPTIMIZING CANVAS RINGS'
+        ];
+        const statusIdx = Math.floor((progress / 100) * statuses.length);
+        if (pText) pText.textContent = statuses[statusIdx];
+      }
+    }, 70);
+  }
+
+  // ==========================================
   // 1. EFEITO HEADER AO SCROLL
+  // ==========================================
   // ==========================================
   const header = document.querySelector('.main-header');
   

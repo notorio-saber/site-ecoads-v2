@@ -611,7 +611,7 @@ a {
    PAINEL GEOTECNOLÓGICO (INTERACTIVE DASHBOARD)
    ========================================== */
 .dashboard-wrapper {
-  max-w: 6xl;
+  max-width: 1000px;
   margin: 64px auto 0;
   position: relative;
   z-index: 10;

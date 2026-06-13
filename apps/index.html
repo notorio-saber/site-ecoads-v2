@@ -7,25 +7,37 @@
   <link rel="stylesheet" href="/src/css/main.css">
 </head>
 <body>
-  <header class="main-header">
+  <header class="main-header" id="main-header-v2">
     <div class="container header-container">
-      <a href="/" class="logo">
-        <div class="logo-icon">E</div>
-        Eco<span>Ads</span>
+      <a href="/" class="header-logo-link" id="logo-link">
+        <img src="/src/assets/logo.png" alt="EcoAds Logo" class="header-logo-img" id="header-logo-image">
       </a>
-      <button class="menu-toggle" aria-label="Abrir Menu">
+      
+      <!-- Menu de Links -->
+      <nav class="nav-menu" id="navigation-menu-links">
+        <!-- Pílula de foco flutuante (Liquid Glass) -->
+        <div class="nav-hover-pill"></div>
+        
+        <a href="/" class="nav-link" id="menu-home">Home</a>
+        <a href="/servicos/" class="nav-link" id="menu-solucoes">Serviços</a>
+        <a href="/apps/" class="nav-link active" id="menu-apps">Apps</a>
+        <a href="/cursos/" class="nav-link" id="menu-cursos">Cursos</a>
+        <a href="/ferramentas/" class="nav-link" id="menu-ferramentas">Ferramentas</a>
+        <a href="/sobre/" class="nav-link" id="menu-sobre">Sobre</a>
+        
+        <!-- CTA exclusivo para Mobile dentro da gaveta -->
+        <a href="https://wa.me/5547920022746?text=Olá!%20Estava%20navegando%20no%20site%20da%20EcoAds%20e%20quero%20iniciar%20um%20atendimento." class="header-cta header-cta-mobile" id="cta-mobile-nav" target="_blank">Atendimento</a>
+      </nav>
+
+      <!-- Botão CTA Integrado para Desktop -->
+      <a href="https://wa.me/5547920022746?text=Olá!%20Estava%20navegando%20no%20site%20da%20EcoAds%20e%20quero%20iniciar%20um%20atendimento." class="header-cta" id="cta-desktop-nav" target="_blank">Atendimento</a>
+      
+      <!-- Hamburguer para Mobile -->
+      <button class="menu-toggle" id="menu-toggle-btn" aria-label="Abrir Menu">
         <span></span>
         <span></span>
         <span></span>
       </button>
-      <nav class="nav-menu">
-        <a href="/" class="nav-link">Home</a>
-        <a href="/servicos/" class="nav-link">Soluções</a>
-        <a href="/apps/" class="nav-link active">Apps</a>
-        <a href="/cursos/" class="nav-link">Cursos</a>
-        <a href="/ferramentas/" class="nav-link">Ferramentas</a>
-        <a href="/sobre/" class="nav-link">Sobre</a>
-      </nav>
     </div>
   </header>
 

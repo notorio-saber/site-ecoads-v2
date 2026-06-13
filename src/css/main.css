@@ -149,38 +149,50 @@ a {
 }
 
 /* ==========================================
-   HEADER (MENU) REFINADO E SÓBRIO
+   HEADER (MENU) LIQUID GLASS FLUTUANTE
    ========================================== */
 .main-header {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: var(--header-height);
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: var(--max-width);
+  height: 68px;
   z-index: 1000;
-  background: transparent;
-  border-bottom: 1px solid transparent;
+  background: rgba(13, 27, 24, 0.72); /* Grafite florestal escuro */
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.25), 
+    0 5px 15px rgba(0, 0, 0, 0.15),
+    inset 0 1.5px 0.5px rgba(255, 255, 255, 0.2), /* Reflexo superior de vidro */
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
   transition: var(--transition-smooth);
+  display: flex;
+  align-items: center;
 }
 
 .main-header.scrolled {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--light-border);
-  box-shadow: var(--shadow-light);
-}
-
-/* Efeito do Header scrollado em páginas escuras */
-.main-header.scrolled.on-dark {
-  background: rgba(7, 21, 17, 0.95);
-  border-bottom: 1px solid var(--dark-border);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  top: 10px;
+  height: 60px;
+  background: rgba(13, 27, 24, 0.85);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 15px 30px rgba(0, 0, 0, 0.35), 
+    0 4px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1.5px 0.5px rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
 }
 
 .header-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  padding: 0 24px;
   height: 100%;
 }
 
@@ -188,11 +200,15 @@ a {
 .header-logo-link {
   display: flex;
   align-items: center;
-  height: 100%;
+  transition: var(--transition-fast);
+}
+
+.header-logo-link:hover {
+  transform: scale(0.98);
 }
 
 .header-logo-img {
-  height: 38px; /* Tamanho discreto e elegante */
+  height: 28px; /* Alinhado e contido na cápsula */
   width: auto;
   display: block;
   object-fit: contain;
@@ -202,63 +218,99 @@ a {
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 8px; /* Reduzido o gap pois agora os links têm padding horizontal */
+  position: relative; /* Necessário para posicionar a pílula deslizante */
+}
+
+/* Pílula de Foco Deslizante (Liquid Hover Effect) */
+.nav-hover-pill {
+  position: absolute;
+  height: 34px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 30px;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: 
+    left 0.35s cubic-bezier(0.25, 1, 0.5, 1), 
+    width 0.35s cubic-bezier(0.25, 1, 0.5, 1), 
+    opacity 0.25s ease;
+  backdrop-filter: blur(4px);
 }
 
 .nav-link {
   font-family: var(--font-title);
   font-weight: 500;
-  font-size: 0.95rem;
-  color: var(--light-text-secondary);
-  padding: 8px 0;
+  font-size: 0.82rem; /* Mais leve e elegante */
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(244, 248, 246, 0.65); /* Texto claro sobre o vidro escuro */
+  padding: 8px 16px; /* Para acomodar a pílula de foco deslizante */
+  border-radius: 30px;
+  transition: var(--transition-fast);
+  display: inline-block;
   position: relative;
 }
 
 .nav-link:hover, .nav-link.active {
-  color: var(--brand-green);
+  color: #0adb98; /* Verde esmeralda brilhante ativo */
 }
 
-/* Ajustes do Menu no Header transparente inicial (sobre o Hero escuro) */
-.main-header:not(.scrolled) .nav-link {
-  color: var(--dark-text-secondary);
+/* Botão CTA Integrado (Estilo Pílula) */
+.header-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  border-radius: 50px; /* Formato pílula */
+  font-family: var(--font-title);
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  background: linear-gradient(135deg, #0adb98 0%, #0077b6 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(10, 219, 152, 0.2);
+  transition: var(--transition-smooth);
+  cursor: pointer;
 }
 
-.main-header:not(.scrolled) .nav-link:hover,
-.main-header:not(.scrolled) .nav-link.active {
-  color: var(--dark-text-primary);
+.header-cta:hover {
+  background: linear-gradient(135deg, #0077b6 0%, #0adb98 100%);
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(10, 219, 152, 0.4);
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
 /* Hamburger Menu Icon */
 .menu-toggle {
   display: none;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   background: none;
   border: none;
   cursor: pointer;
   z-index: 1100;
-  padding: 4px;
+  padding: 6px;
 }
 
 .menu-toggle span {
   display: block;
-  width: 22px;
+  width: 20px;
   height: 2px;
-  background-color: var(--light-text-primary);
+  background-color: rgba(244, 248, 246, 0.8);
   transition: var(--transition-smooth);
 }
 
-.main-header:not(.scrolled) .menu-toggle span {
-  background-color: var(--dark-text-primary);
-}
-
 .menu-toggle.active span {
-  background-color: var(--brand-green);
+  background-color: #ffffff;
 }
 
 /* Hamburger Active States */
 .menu-toggle.active span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
+  transform: translateY(7px) rotate(45deg);
 }
 
 .menu-toggle.active span:nth-child(2) {
@@ -266,7 +318,7 @@ a {
 }
 
 .menu-toggle.active span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ==========================================
@@ -398,44 +450,71 @@ a {
 
 @media (max-width: 768px) {
   :root {
-    --header-height: 70px;
+    --header-height: 64px;
+  }
+
+  .main-header {
+    top: 10px;
+    height: var(--header-height);
+    width: calc(100% - 24px);
   }
 
   .menu-toggle {
     display: flex;
   }
 
+  /* Ocultar pílula de hover em telas de toque */
+  .nav-hover-pill {
+    display: none;
+  }
+
+  /* Menu hambúrguer móvel escuro com glassmorphism */
   .nav-menu {
     position: fixed;
-    top: var(--header-height);
+    top: calc(var(--header-height) + 15px);
     right: -100%;
-    width: 80%;
+    width: 85%;
     max-width: 280px;
-    height: calc(100vh - var(--header-height));
-    background: #ffffff;
-    border-left: 1px solid var(--light-border);
+    height: calc(100vh - var(--header-height) - 40px);
+    background: rgba(13, 27, 24, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 30px 24px;
+    align-items: stretch;
+    padding: 32px 24px;
     gap: 16px;
     transition: var(--transition-smooth);
-    box-shadow: -4px 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.5);
   }
 
   .nav-menu.active {
-    right: 0;
+    right: 12px;
   }
 
   .nav-link {
     width: 100%;
-    font-size: 1.05rem;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--light-border);
-    color: var(--light-text-secondary) !important;
+    font-size: 0.9rem;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: rgba(244, 248, 246, 0.7) !important;
   }
 
   .nav-link:hover, .nav-link.active {
-    color: var(--brand-green) !important;
+    color: #0adb98 !important;
+  }
+
+  /* Ocultar o CTA do cabeçalho flutuante no mobile para economizar espaço */
+  .main-header .header-cta {
+    display: none;
+  }
+
+  /* Mostrar o CTA como link normal no menu móvel */
+  .nav-menu .header-cta-mobile {
+    display: inline-flex !important;
+    margin-top: 10px;
+    text-align: center;
   }
 
   .footer-grid {
@@ -450,5 +529,6 @@ a {
   .footer-bottom {
     flex-direction: column;
     text-align: center;
+    align-items: center;
   }
 }

@@ -53,4 +53,62 @@ document.addEventListener('DOMContentLoaded', () => {
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
   }
+
+  // 4. Efeito Pílula Deslizante Interativa (Liquid Hover)
+  const navMenuElement = document.querySelector('.nav-menu');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const hoverPill = document.querySelector('.nav-hover-pill');
+  
+  if (navMenuElement && hoverPill && navLinks.length > 0) {
+    // Função para mover a pílula de hover
+    const movePill = (link) => {
+      if (!link) {
+        hoverPill.style.opacity = '0';
+        return;
+      }
+      hoverPill.style.left = `${link.offsetLeft}px`;
+      hoverPill.style.width = `${link.offsetWidth}px`;
+      hoverPill.style.opacity = '1';
+    };
+
+    const activeLink = document.querySelector('.nav-link.active');
+
+    // Inicialização da posição (com delay para renderização de fontes)
+    const initPillPosition = () => {
+      if (window.innerWidth > 768 && activeLink) {
+        setTimeout(() => {
+          movePill(activeLink);
+        }, 100);
+      } else {
+        hoverPill.style.opacity = '0';
+      }
+    };
+
+    initPillPosition();
+
+    // Eventos de entrada do cursor nos itens
+    navLinks.forEach(link => {
+      link.addEventListener('mouseenter', () => {
+        if (window.innerWidth > 768) {
+          movePill(link);
+        }
+      });
+    });
+
+    // Retorno ao link ativo quando o cursor sai do menu
+    navMenuElement.addEventListener('mouseleave', () => {
+      if (window.innerWidth > 768) {
+        if (activeLink) {
+          movePill(activeLink);
+        } else {
+          hoverPill.style.opacity = '0';
+        }
+      }
+    });
+
+    // Ajustar posicionamento no resize
+    window.addEventListener('resize', () => {
+      initPillPosition();
+    });
+  }
 });

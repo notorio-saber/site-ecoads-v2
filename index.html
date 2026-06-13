@@ -74,6 +74,43 @@
       pointer-events: none;
     }
 
+    /* Animações e Efeitos do Mockup Aura */
+    @keyframes subtle-pulse {
+      0%, 100% { opacity: 0.4; transform: scale(1) translate(-50%, -20%); }
+      50% { opacity: 0.6; transform: scale(1.05) translate(-50%, -18%); }
+    }
+    @keyframes slow-rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .hero-light-beam {
+      position: absolute;
+      width: 120vw;
+      height: 80vh;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.03) 0%, transparent 60%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+      animation: subtle-pulse 10s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    .hero-interference-pattern {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(0, 156, 59, 0.012) 60deg, transparent 120deg);
+      opacity: 0.4;
+      pointer-events: none;
+      animation: slow-rotate 140s linear infinite;
+      z-index: 0;
+    }
+
     .hero-content {
       max-width: 850px;
       margin: 0 auto;
@@ -570,6 +607,8 @@
     <section class="hero-section" id="hero-dobra-escura">
       <!-- Elementos de Background Interativos (Spotlight e Grid) -->
       <div class="hero-glow-orb"></div>
+      <div class="hero-light-beam"></div>
+      <div class="hero-interference-pattern"></div>
       <div class="hero-tech-grid"></div>
       <div class="hero-spotlight" id="hero-interactive-spotlight"></div>
       

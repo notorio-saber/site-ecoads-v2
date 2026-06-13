@@ -129,33 +129,48 @@ document.addEventListener('DOMContentLoaded', () => {
     let mouse = { x: width * 0.5, y: height * 0.45, active: false };
     let time = 0;
     
-    // Configurações dos anéis
-    const numRings = 24;
-    const ringSpacing = 16;
-    const rings = [];
+    // Centro do tronco (ligeiramente deslocado para assimetria natural)
+    let centerX = width * 0.35;
+    let centerY = height * 0.55;
     
-    // Centro do tronco (deslocado para a esquerda/baixo para maior assimetria estética)
-    const centerX = width * 0.35;
-    const centerY = height * 0.55;
+    const ringSpacing = 10; // Espaçamento menor para anéis mais densos (estilo digital/fibra)
+    let rings = [];
 
-    // Gerar deformação orgânica de anéis
-    for (let i = 1; i <= numRings; i++) {
-      rings.push({
-        baseRadius: i * ringSpacing,
-        // Fases de wobble para deformação
-        phase1: Math.random() * Math.PI * 2,
-        phase2: Math.random() * Math.PI * 2,
-        amplitude1: 3 + Math.random() * 4,
-        amplitude2: 1 + Math.random() * 3,
-      });
-    }
+    // Função para gerar os anéis concêntricos que cobrem a tela
+    const generateRings = () => {
+      centerX = width * 0.35;
+      centerY = height * 0.55;
+      
+      // Encontrar a distância máxima até os cantos para cobrir 100% da dobra
+      const distToTopLeft = Math.hypot(centerX, centerY);
+      const distToTopRight = Math.hypot(width - centerX, centerY);
+      const distToBottomLeft = Math.hypot(centerX, height - centerY);
+      const distToBottomRight = Math.hypot(width - centerX, height - centerY);
+      const maxRadius = Math.max(distToTopLeft, distToTopRight, distToBottomLeft, distToBottomRight) * 1.1;
+      
+      const numRings = Math.ceil(maxRadius / ringSpacing);
+      rings.length = 0; // Limpar array
+      
+      for (let i = 1; i <= numRings; i++) {
+        rings.push({
+          baseRadius: i * ringSpacing,
+          // Propriedades individuais sutis de ruído para dar variação orgânica
+          noiseScale: 0.15 + (i / numRings) * 0.85, // anéis externos têm variações ligeiramente maiores
+          speedMultiplier: 0.8 + Math.sin(i * 0.15) * 0.2
+        });
+      }
+    };
 
-    // Adaptar tamanho da tela
+    // Adaptar tamanho da tela e recalcular anéis
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
+      generateRings();
     };
     window.addEventListener('resize', handleResize);
+    
+    // Inicializar os anéis
+    generateRings();
 
     // Trackear coordenadas do mouse na hero
     const heroSection = document.getElementById('hero-dobra-escura');
@@ -169,80 +184,69 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroSection) {
       heroSection.addEventListener('mousemove', trackMouse);
       heroSection.addEventListener('mouseleave', () => {
-        // Retorna devagar para o centro
         mouse.active = false;
       });
     }
 
     // Loop de Animação e Renderização
     const render = () => {
-      time += 0.005;
+      time += 0.003; // Movimento suave lento
       ctx.clearRect(0, 0, width, height);
 
       // Suavizar o retorno do cursor ao centro do layout quando inativo
       if (!mouse.active) {
         const targetX = width * 0.35;
         const targetY = height * 0.55;
-        mouse.x += (targetX - mouse.x) * 0.08;
-        mouse.y += (targetY - mouse.y) * 0.08;
+        mouse.x += (targetX - mouse.x) * 0.06;
+        mouse.y += (targetY - mouse.y) * 0.06;
       }
 
-      // 1. Desenhar anéis de fundo em tom extremamente escuro/sutil
+      // Função para renderizar um conjunto de anéis com determinado estilo
+      const drawRingsPattern = () => {
+        rings.forEach(ring => {
+          ctx.beginPath();
+          const steps = 140; // Passos suficientes para curvas lisas
+          for (let j = 0; j <= steps; j++) {
+            const theta = (j / steps) * Math.PI * 2;
+            
+            // RUÍDO COERENTE PARALELO: Os anéis compartilham as fases de onda
+            // Isso faz as deformações ficarem perfeitamente alinhadas, imitando madeira ou digitais
+            const wave1 = Math.sin(theta * 4 + time * 0.2) * 3.5;
+            const wave2 = Math.cos(theta * 7 - time * 0.1) * 1.5;
+            const wave3 = Math.sin(theta * 2 + time * 0.05) * 2.0;
+            
+            // Somar as ondas e multiplicar pelo fator individual do anel
+            const wobble = (wave1 + wave2 + wave3) * ring.noiseScale;
+            
+            const r = ring.baseRadius + wobble;
+            const px = centerX + Math.cos(theta) * r;
+            const py = centerY + Math.sin(theta) * r;
+            
+            if (j === 0) ctx.moveTo(px, py);
+            else ctx.lineTo(px, py);
+          }
+          ctx.closePath();
+          ctx.stroke();
+        });
+      };
+
+      // 1. Desenhar anéis de fundo em tom de verde florestal sutil e muito escuro
       ctx.lineWidth = 0.5;
-      ctx.strokeStyle = 'rgba(0, 156, 59, 0.025)'; // Verde florestal bem sutil
-      
-      rings.forEach(ring => {
-        ctx.beginPath();
-        const steps = 180;
-        for (let j = 0; j <= steps; j++) {
-          const theta = (j / steps) * Math.PI * 2;
-          
-          // Equação para deformação WOOD GRAIN (ruído orgânico baseado em senos)
-          const wobble = Math.sin(theta * 3 + ring.phase1 + time * 0.5) * ring.amplitude1 +
-                         Math.cos(theta * 5 + ring.phase2 - time * 0.2) * ring.amplitude2;
-          
-          const r = ring.baseRadius + wobble;
-          const px = centerX + Math.cos(theta) * r;
-          const py = centerY + Math.sin(theta) * r;
-          
-          if (j === 0) ctx.moveTo(px, py);
-          else ctx.lineTo(px, py);
-        }
-        ctx.closePath();
-        ctx.stroke();
-      });
+      ctx.strokeStyle = 'rgba(0, 156, 59, 0.022)'; // Linhas finas de fundo sutil
+      drawRingsPattern();
 
       // 2. Criar máscara de iluminação (Spotlight) baseada em gradiente radial no cursor
-      const radiusGlow = 220;
+      const radiusGlow = 240; // Raio ampliado para melhor alcance visual
       const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, radiusGlow);
-      gradient.addColorStop(0, 'rgba(0, 255, 102, 0.65)'); // Verde neon central
-      gradient.addColorStop(0.3, 'rgba(0, 229, 255, 0.45)'); // Azul tecnológico
-      gradient.addColorStop(0.65, 'rgba(255, 211, 0, 0.15)'); // Amarelo ouro sutil
+      gradient.addColorStop(0, 'rgba(0, 255, 102, 0.65)'); // Verde neon
+      gradient.addColorStop(0.35, 'rgba(0, 229, 255, 0.4)'); // Azul royal tecnológico
+      gradient.addColorStop(0.7, 'rgba(255, 211, 0, 0.12)'); // Amarelo ouro
       gradient.addColorStop(1, 'transparent');
 
-      // 3. Desenhar os mesmos anéis com a cor do spotlight
+      // 3. Desenhar os mesmos anéis com a cor do spotlight acesa
       ctx.strokeStyle = gradient;
-      ctx.lineWidth = 1;
-      
-      rings.forEach(ring => {
-        ctx.beginPath();
-        const steps = 180;
-        for (let j = 0; j <= steps; j++) {
-          const theta = (j / steps) * Math.PI * 2;
-          
-          const wobble = Math.sin(theta * 3 + ring.phase1 + time * 0.5) * ring.amplitude1 +
-                         Math.cos(theta * 5 + ring.phase2 - time * 0.2) * ring.amplitude2;
-          
-          const r = ring.baseRadius + wobble;
-          const px = centerX + Math.cos(theta) * r;
-          const py = centerY + Math.sin(theta) * r;
-          
-          if (j === 0) ctx.moveTo(px, py);
-          else ctx.lineTo(px, py);
-        }
-        ctx.closePath();
-        ctx.stroke();
-      });
+      ctx.lineWidth = 1.0;
+      drawRingsPattern();
 
       // 4. Desenhar elementos de interface técnica (linhas de retícula e dados)
       if (mouse.active || Math.abs(mouse.x - width * 0.35) > 1) {
@@ -270,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.lineTo(mouse.x, mouse.y);
         ctx.stroke();
 
-        // Parâmetros florestais em formato de código de dados
+        // Parâmetros florestais sob a mira do cursor
         ctx.fillStyle = 'rgba(0, 255, 102, 0.7)';
         ctx.font = '9px monospace';
         

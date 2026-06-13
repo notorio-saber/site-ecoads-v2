@@ -545,73 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 6. DASHBOARD INTERATIVO (ABAS)
-  // ==========================================
-  const sidebarItems = document.querySelectorAll('.sidebar-item');
-  const chartTitle = document.getElementById('chart-title');
-  const chartSubtitle = document.getElementById('chart-subtitle');
-  const polyline = document.querySelector('.chart-svg polyline');
-  const polygon = document.querySelector('.chart-svg polygon');
-  
-  // Dados simulados para interatividade do painel geotecnológico
-  const tabData = {
-    inventarios: {
-      title: 'Inventário Florestal Dinâmico',
-      subtitle: 'Processamento em lote via LeafBook e LeafTag',
-      metric1: '15.420',
-      metric2: '24.8 cm',
-      metric3: '99.4%',
-      points: '0,40 10,38 20,42 30,30 40,35 50,20 60,25 70,15 80,18 90,10 100,5'
-    },
-    gis: {
-      title: 'Monitoramento Territorial & GIS',
-      subtitle: 'Processamento de ortofotos e índices de vegetação',
-      metric1: '42.850 ha',
-      metric2: '0.78 NDVI',
-      metric3: '99.9%',
-      points: '0,45 10,42 20,35 30,38 40,25 50,28 60,18 70,20 80,12 90,15 100,8'
-    },
-    monitoramento: {
-      title: 'Detecção de Desmatamento',
-      subtitle: 'Satélites Sentinel-2 e Planet Labs integrados',
-      metric1: '12 Alertas',
-      metric2: '0.45 ha',
-      metric3: '100.0%',
-      points: '0,48 10,46 20,47 30,44 40,40 50,35 60,22 70,25 80,15 90,10 100,2'
-    }
-  };
-
-  if (sidebarItems.length > 0 && polyline && polygon) {
-    sidebarItems.forEach(item => {
-      item.addEventListener('click', () => {
-        sidebarItems.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-        
-        const tab = item.getAttribute('data-tab');
-        const data = tabData[tab];
-        
-        if (data) {
-          // Atualizar textos e métricas do painel
-          if (chartTitle) chartTitle.textContent = data.title;
-          if (chartSubtitle) chartSubtitle.textContent = data.subtitle;
-          
-          document.getElementById('metric-val-1').textContent = data.metric1;
-          document.getElementById('metric-val-2').textContent = data.metric2;
-          document.getElementById('metric-val-3').textContent = data.metric3;
-          
-          // Atualizar pontos do gráfico simulado com animação
-          polyline.setAttribute('points', data.points);
-          
-          // Recriar o polígono de preenchimento do gradiente
-          const polygonPoints = `${data.points} 100,50 0,50`;
-          polygon.setAttribute('points', polygonPoints);
-        }
-      });
-    });
-  }
-
-  // ==========================================
-  // 7. PREÇOS: SWITCHER DINÂMICO (MENSAL VS ANUAL)
+  // 6. PREÇOS: SWITCHER DINÂMICO (MENSAL VS ANUAL)
   // ==========================================
   const billingToggle = document.getElementById('billingToggle');
   const priceElements = document.querySelectorAll('[data-annual]');

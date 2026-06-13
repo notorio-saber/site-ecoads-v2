@@ -505,13 +505,52 @@ a {
    ========================================== */
 .hero-section {
   position: relative;
-  min-height: 95vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding-top: 100px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Container do hero centralizado com compensação do header fixo */
+.hero-center-container {
+  padding-top: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Scroll Hint — banner que espia da base para convidar à rolagem */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 0 24px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(100%);
+  animation: heroScrollPeek 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 2.5s;
+}
+
+.hero-scroll-hint .conversion-banner-wrapper {
+  margin: 0 auto;
+  pointer-events: none;
+}
+
+@keyframes heroScrollPeek {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 0.92;
+    transform: translateY(56%);
+  }
 }
 
 #hero-growth-rings-canvas {
@@ -951,8 +990,8 @@ a {
    ========================================== */
 .integrations-grid {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 40px;
+  grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+  gap: 32px 40px;
   align-items: center;
   justify-items: center;
   padding: 24px 0;
@@ -1040,6 +1079,45 @@ a {
 .user-role {
   font-size: 0.7rem;
   color: rgba(255, 255, 255, 0.4);
+}
+
+/* ==========================================
+   TESTEMUNHOS — TEMA CLARO
+   ========================================== */
+#testimonials-section {
+  background-color: #f6f8f6;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 5;
+}
+
+#testimonials-section .section-subtitle { color: #009c3b; }
+#testimonials-section .section-title { color: #050505; }
+#testimonials-section .section-desc { color: #555555; }
+
+#testimonials-section .testimonial-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+}
+
+#testimonials-section .testimonial-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 156, 59, 0.2);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.08);
+}
+
+#testimonials-section .testimonial-quote-icon { color: rgba(0, 0, 0, 0.12); }
+#testimonials-section .testimonial-text { color: #444444; }
+#testimonials-section .user-name { color: #111111; }
+#testimonials-section .user-role { color: #777777; }
+
+#testimonials-section .user-avatar-initials {
+  background: rgba(0, 156, 59, 0.08);
+  border: 1px solid rgba(0, 156, 59, 0.15);
+  color: #009c3b;
+  font-weight: 600;
 }
 
 /* ==========================================
@@ -1426,7 +1504,7 @@ a {
   .services-grid { grid-template-columns: 1fr; }
   .apps-container { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-  .integrations-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .integrations-grid { grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: 24px 20px; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
   .footer-grid > div:last-child { grid-column: span 1; }
   .footer-bottom { flex-direction: column; text-align: center; }

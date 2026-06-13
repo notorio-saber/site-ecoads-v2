@@ -106,46 +106,60 @@ a {
   align-items: center;
   justify-content: center;
   padding: 12px 28px;
-  border-radius: 6px;
+  border-radius: 12px; /* Cantos arredondados de 12px (mockup Aura) */
   font-family: var(--font-title);
-  font-weight: 500;
-  font-size: 0.95rem;
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   cursor: pointer;
-  transition: var(--transition-fast);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   border: 1px solid transparent;
 }
 
 .btn-primary {
-  background-color: var(--brand-green);
-  color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 156, 59, 0.15);
+  background-color: var(--brand-yellow);
+  color: #030303 !important; /* Texto escuro de alto contraste */
+  background: linear-gradient(180deg, var(--brand-yellow-accent) 0%, var(--brand-yellow) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 25px rgba(255, 211, 0, 0.22); /* Sombra neon amarela */
 }
 
 .btn-primary:hover {
-  background-color: var(--brand-green-accent);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 156, 59, 0.25);
+  background: linear-gradient(180deg, #ffffff 0%, var(--brand-yellow-accent) 100%);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(255, 211, 0, 0.35);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .btn-secondary {
   background-color: transparent;
-  border-color: var(--brand-green);
-  color: var(--brand-green);
+  border-radius: 50px; /* Estilo pílula para botão secundário */
 }
 
-.btn-secondary:hover {
-  background-color: rgba(0, 156, 59, 0.05);
-  transform: translateY(-1px);
-}
-
-/* Ajuste de Botões em Dobras Escuras */
+/* Ajustes de cores para botões secundários conforme a dobra */
 .dobra-escura .btn-secondary, .dobra-escura-alt .btn-secondary {
-  border-color: var(--dark-text-primary);
-  color: var(--dark-text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .dobra-escura .btn-secondary:hover, .dobra-escura-alt .btn-secondary:hover {
-  background-color: rgba(244, 248, 246, 0.08);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+.dobra-clara .btn-secondary, .dobra-clara-alt .btn-secondary {
+  border: 1px solid rgba(0, 156, 59, 0.2);
+  color: var(--brand-green);
+}
+
+.dobra-clara .btn-secondary:hover, .dobra-clara-alt .btn-secondary:hover {
+  border-color: var(--brand-green-accent);
+  color: var(--brand-green-accent);
+  background-color: rgba(0, 156, 59, 0.05);
+  transform: translateY(-2px);
 }
 
 /* ==========================================
@@ -262,26 +276,26 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 24px;
+  padding: 8px 20px;
   border-radius: 50px; /* Formato pílula */
   font-family: var(--font-title);
   font-weight: 600;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #ffffff;
-  background: linear-gradient(135deg, var(--brand-green) 0%, var(--brand-blue-accent) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 12px rgba(0, 156, 59, 0.2);
+  color: #030303 !important; /* Texto escuro de alto contraste */
+  background: linear-gradient(180deg, var(--brand-yellow-accent) 0%, var(--brand-yellow) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 5px 15px rgba(255, 211, 0, 0.2);
   transition: var(--transition-smooth);
   cursor: pointer;
 }
 
 .header-cta:hover {
-  background: linear-gradient(135deg, var(--brand-blue-accent) 0%, var(--brand-green) 100%);
+  background: linear-gradient(180deg, #ffffff 0%, var(--brand-yellow-accent) 100%);
   transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 6px 20px rgba(0, 156, 59, 0.3);
-  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 20px rgba(255, 211, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .header-cta-mobile {

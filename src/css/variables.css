@@ -3,14 +3,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Cores - Tema Escuro (Dobras Escuras) */
-  --dark-bg-primary: #071511;       /* Verde florestal ultra-escuro sóbrio */
-  --dark-bg-secondary: #0d1f1a;     /* Tom médio para painéis e cards escuros */
-  --dark-bg-tertiary: #142a24;      /* Tom de realce escuro */
-  --dark-text-primary: #f4f8f6;     /* Branco suave com leve tom esverdeado */
-  --dark-text-secondary: #9cb1a9;   /* Cinza esverdeado claro */
-  --dark-text-muted: #5e766e;       /* Cinza escuro para detalhes sutil */
-  --dark-border: rgba(244, 248, 246, 0.08); /* Borda escura sutil */
+  /* Cores - Tema Escuro (Dobras Escuras de Alta Precisão) */
+  --dark-bg-primary: #030806;       /* Quase preto com leve tom de verde florestal escuro */
+  --dark-bg-secondary: #080f0c;     /* Tom de fundo para cards e painéis */
+  --dark-bg-tertiary: #0e1713;      /* Tom de realce escuro */
+  --dark-text-primary: #ffffff;     /* Branco puro para nitidez de precisão */
+  --dark-text-secondary: #a0b2aa;   /* Cinza esverdeado claro para subtítulos */
+  --dark-text-muted: #5c6f67;       /* Cinza escuro para detalhes sutil */
+  --dark-border: rgba(255, 255, 255, 0.05); /* Borda ultrafina de precisão */
 
   /* Cores - Tema Claro (Dobras Claras) */
   --light-bg-primary: #ffffff;      /* Branco puro */

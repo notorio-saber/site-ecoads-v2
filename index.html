@@ -194,20 +194,22 @@
 
     .service-card {
       padding: 40px;
-      background-color: var(--light-bg-primary);
-      border: 1px solid var(--light-border);
-      border-radius: 8px;
-      transition: var(--transition-smooth);
-      box-shadow: var(--shadow-light);
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 156, 59, 0.08); /* Linha fina de precisão */
+      border-radius: 16px; /* Cantos de 16px */
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 10px 30px rgba(0, 156, 59, 0.02);
       display: flex;
       flex-direction: column;
       gap: 16px;
     }
 
     .service-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-medium);
-      border-color: var(--light-text-muted);
+      transform: translateY(-4px); /* Elevação suave */
+      box-shadow: 0 15px 35px rgba(0, 156, 59, 0.08); /* Sombra verde sutil */
+      border-color: rgba(0, 156, 59, 0.2);
     }
 
     .service-icon-wrapper {
@@ -243,17 +245,22 @@
 
     .app-card {
       padding: 50px 40px;
-      background-color: var(--dark-bg-secondary);
-      border: 1px solid var(--dark-border);
-      border-radius: 8px;
+      background: rgba(8, 15, 12, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.06); /* Linha fina de precisão */
+      border-radius: 16px; /* Cantos de 16px */
       display: flex;
       flex-direction: column;
       gap: 24px;
-      transition: var(--transition-smooth);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
     }
 
     .app-card:hover {
-      border-color: var(--dark-text-muted);
+      border-color: rgba(0, 192, 96, 0.2); /* Acende em verde no hover */
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
     }
 
     .app-status-badge {
@@ -369,14 +376,16 @@
     }
 
     .course-visual-side {
-      background: var(--light-bg-secondary);
-      border: 1px solid var(--light-border);
-      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 156, 59, 0.08);
+      border-radius: 16px;
       padding: 50px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: var(--shadow-light);
+      box-shadow: 0 10px 30px rgba(0, 156, 59, 0.02);
     }
 
     /* 6. SOBRE / JONATHAN COSTA */
@@ -390,13 +399,16 @@
     .about-visual-frame {
       width: 100%;
       height: 380px;
-      background-color: var(--dark-bg-secondary);
-      border: 1px solid var(--dark-border);
-      border-radius: 8px;
+      background-color: rgba(8, 15, 12, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 4rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
     }
 
     .about-text-side {
@@ -425,19 +437,22 @@
 
     .tool-card {
       padding: 40px;
-      background: var(--light-bg-primary);
-      border: 1px solid var(--light-border);
-      border-radius: 8px;
-      box-shadow: var(--shadow-light);
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 156, 59, 0.08);
+      border-radius: 16px;
       display: flex;
       flex-direction: column;
       gap: 16px;
-      transition: var(--transition-fast);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 10px 30px rgba(0, 156, 59, 0.02);
     }
 
     .tool-card:hover {
-      border-color: var(--brand-green-accent);
-      box-shadow: var(--shadow-medium);
+      border-color: rgba(0, 156, 59, 0.2);
+      box-shadow: 0 15px 35px rgba(0, 156, 59, 0.08);
+      transform: translateY(-4px);
     }
 
     .tool-title {
@@ -459,10 +474,12 @@
       margin: 0 auto;
       padding: 50px 40px;
       text-align: center;
-      background: var(--light-bg-primary);
-      border: 1px solid var(--light-border);
-      border-radius: 8px;
-      box-shadow: var(--shadow-medium);
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 156, 59, 0.08);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 156, 59, 0.02);
       display: flex;
       flex-direction: column;
       gap: 24px;

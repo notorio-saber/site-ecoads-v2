@@ -16,19 +16,70 @@
       position: relative;
       padding: 200px 0 120px;
       background-image: 
-        linear-gradient(rgba(7, 21, 17, 0.88), rgba(7, 21, 17, 0.95)),
+        linear-gradient(rgba(5, 20, 16, 0.9), rgba(5, 20, 16, 0.96)),
         url('/src/assets/hero-bg.png');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
       display: flex;
       align-items: center;
+      overflow: hidden;
+    }
+
+    /* Grid Tecnológico */
+    .hero-tech-grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(0, 156, 59, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 156, 59, 0.04) 1px, transparent 1px);
+      background-size: 50px 50px;
+      background-position: center;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Spotlight Interativo (Iluminação pelo Mouse) */
+    .hero-spotlight {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 30%),
+        rgba(0, 192, 96, 0.15) 0%,      /* Verde */
+        rgba(0, 82, 204, 0.1) 40%,      /* Azul */
+        rgba(255, 223, 0, 0.03) 70%,    /* Amarelo sutil */
+        transparent 100%
+      );
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Orbe de Brilho de Fundo sutil */
+    .hero-glow-orb {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 82, 204, 0.12) 0%, transparent 70%);
+      top: 10%;
+      left: 15%;
+      filter: blur(100px);
+      z-index: 0;
+      pointer-events: none;
     }
 
     .hero-content {
-      max-width: 800px;
+      max-width: 850px;
       margin: 0 auto;
       text-align: center;
+      position: relative;
+      z-index: 10;
     }
 
     .hero-title {
@@ -500,13 +551,18 @@
     
     <!-- 1. HERO SECTION (Dobra Escura) -->
     <section class="hero-section" id="hero-dobra-escura">
+      <!-- Elementos de Background Interativos (Spotlight e Grid) -->
+      <div class="hero-glow-orb"></div>
+      <div class="hero-tech-grid"></div>
+      <div class="hero-spotlight" id="hero-interactive-spotlight"></div>
+      
       <div class="container">
         <div class="hero-content">
           <h1 class="hero-title" id="home-hero-title">
-            Agência de Marketing Digital Especializada no <span>Setor Ambiental e Florestal</span>
+            Tecnologia especializada para o <span>setor ambiental e florestal</span>.
           </h1>
           <p class="hero-subtitle" id="home-hero-subtitle">
-            Transformamos empresas e profissionais do meio ambiente em autoridades digitais. Combinamos expertise técnica florestal com estratégias de marketing digital de alta performance que realmente funcionam para o seu nicho.
+            Desenvolvemos Sites, plataformas, apps e sistemas, estruturas digitais e soluções proprietárias para empresas que atuam com florestas, meio ambiente, geotecnologias e gestão territorial.
           </p>
           <div class="hero-actions">
             <a href="/servicos/" class="btn btn-primary" id="btn-hero-more">Nossos Serviços</a>

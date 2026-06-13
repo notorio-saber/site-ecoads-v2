@@ -1,45 +1,50 @@
-/* Design System & Tokens - EcoAds V2 (Versão Corporativa) */
+/* Design System & Tokens - EcoAds V2 (Versão Corporativa Premium) */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Cores - Tema Escuro (Dobras Escuras de Alta Precisão) */
-  --dark-bg-primary: #030806;       /* Quase preto com leve tom de verde florestal escuro */
-  --dark-bg-secondary: #080f0c;     /* Tom de fundo para cards e painéis */
-  --dark-bg-tertiary: #0e1713;      /* Tom de realce escuro */
+  /* Cores - Tema Escuro Tecnológico de Alta Performance */
+  --dark-bg-primary: #030303;       /* Preto absoluto para dar foco aos feixes de luz */
+  --dark-bg-secondary: #0a0a0a;     /* Tom de fundo para cards e painéis */
+  --dark-bg-tertiary: #141414;      /* Tom de realce escuro */
   --dark-text-primary: #ffffff;     /* Branco puro para nitidez de precisão */
-  --dark-text-secondary: #a0b2aa;   /* Cinza esverdeado claro para subtítulos */
-  --dark-text-muted: #5c6f67;       /* Cinza escuro para detalhes sutil */
+  --dark-text-secondary: #9e9e9e;   /* Cinza neutro para descrições */
+  --dark-text-muted: #525252;       /* Cinza escuro para detalhes sutis */
   --dark-border: rgba(255, 255, 255, 0.05); /* Borda ultrafina de precisão */
 
-  /* Cores - Tema Claro (Dobras Claras) */
-  --light-bg-primary: #ffffff;      /* Branco puro */
-  --light-bg-secondary: #f3f7f5;    /* Cinza esverdeado bem claro e fresco */
-  --light-bg-tertiary: #e6ede9;     /* Tom de realce claro */
-  --light-text-primary: #0b1a16;    /* Verde florestal quase preto */
-  --light-text-secondary: #475a53;  /* Cinza esverdeado médio */
-  --light-text-muted: #7f968e;      /* Cinza esverdeado claro para detalhes */
-  --light-border: rgba(11, 26, 22, 0.08); /* Borda clara sutil */
+  /* Cores - Tema Claro (Preservados para compatibilidade, mas estilizados sobriedade) */
+  --light-bg-primary: #030303;      /* Forçado para Tema Escuro em todo o site */
+  --light-bg-secondary: #0a0a0a;
+  --light-bg-tertiary: #141414;
+  --light-text-primary: #ffffff;
+  --light-text-secondary: #a3a3a3;
+  --light-text-muted: #525252;
+  --light-border: rgba(255, 255, 255, 0.05);
 
-  /* Cores da Marca & Destaques (Bandeira do Brasil) */
-  --brand-green: #009c3b;           /* Verde oficial da marca e da bandeira */
-  --brand-green-accent: #00c060;    /* Verde mais vibrante para hover/destaques */
-  --brand-yellow: #ffd300;          /* Amarelo oficial da marca e da bandeira */
-  --brand-yellow-accent: #ffdf00;   /* Amarelo mais vibrante */
-  --brand-blue: #002776;            /* Azul oficial da marca e da bandeira */
-  --brand-blue-accent: #0052cc;     /* Azul royal tecnológico */
+  /* Cores da Marca & Destaques Tecnológicos (Bandeira do Brasil) */
+  --brand-green: #009c3b;           /* Verde bandeira oficial */
+  --brand-green-accent: #00ff66;    /* Verde neon de alta visibilidade e tecnologia */
+  --brand-yellow: #ffd300;          /* Amarelo ouro oficial */
+  --brand-yellow-accent: #ffea00;   /* Amarelo brilhante para destaques sutis */
+  --brand-blue: #002776;            /* Azul bandeira oficial */
+  --brand-blue-accent: #00e5ff;     /* Azul/Ciano tecnológico vibrante */
 
+  /* Glow e Sombras Neon */
+  --glow-green: rgba(0, 255, 102, 0.15);
+  --glow-blue: rgba(0, 229, 255, 0.12);
+  --glow-yellow: rgba(255, 211, 0, 0.1);
+  
   /* Tipografia */
   --font-title: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
 
-  /* Efeitos */
-  --shadow-light: 0 4px 20px rgba(11, 26, 22, 0.04);
-  --shadow-medium: 0 10px 30px rgba(11, 26, 22, 0.06);
-  --shadow-dark: 0 15px 45px rgba(0, 0, 0, 0.35);
+  /* Efeitos de Sombras e Transições */
+  --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.7);
+  --shadow-dark: 0 20px 50px rgba(0, 0, 0, 0.9);
   
   --transition-fast: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Layout */
   --max-width: 1200px;

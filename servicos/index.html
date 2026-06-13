@@ -3,10 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soluções - EcoAds</title>
+  <title>Serviços - EcoAds</title>
   <link rel="stylesheet" href="/src/css/main.css">
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 </head>
 <body>
+
+  <!-- ==========================================
+       BACKGROUND ATMOSPHERE
+       ========================================== -->
+  <div class="bg-atmosphere">
+    <div class="glow-top-beam"></div>
+    <div class="interference-conic"></div>
+    <div class="vignette-overlay"></div>
+  </div>
+
+  <!-- ==========================================
+       HEADER (MENU LIQUID GLASS)
+       ========================================== -->
   <header class="main-header" id="main-header-v2">
     <div class="container header-container">
       <a href="/" class="header-logo-link" id="logo-link">
@@ -15,9 +29,7 @@
       
       <!-- Menu de Links -->
       <nav class="nav-menu" id="navigation-menu-links">
-        <!-- Pílula de foco flutuante (Liquid Glass) -->
         <div class="nav-hover-pill"></div>
-        
         <a href="/" class="nav-link" id="menu-home">Home</a>
         <a href="/servicos/" class="nav-link active" id="menu-solucoes">Serviços</a>
         <a href="/apps/" class="nav-link" id="menu-apps">Apps</a>
@@ -25,14 +37,14 @@
         <a href="/ferramentas/" class="nav-link" id="menu-ferramentas">Ferramentas</a>
         <a href="/sobre/" class="nav-link" id="menu-sobre">Sobre</a>
         
-        <!-- CTA exclusivo para Mobile dentro da gaveta -->
+        <!-- CTA Mobile -->
         <a href="https://wa.me/5547920022746?text=Olá!%20Estava%20navegando%20no%20site%20da%20EcoAds%20e%20quero%20iniciar%20um%20atendimento." class="header-cta header-cta-mobile" id="cta-mobile-nav" target="_blank">Atendimento</a>
       </nav>
 
-      <!-- Botão CTA Integrado para Desktop -->
+      <!-- Botão CTA Desktop -->
       <a href="https://wa.me/5547920022746?text=Olá!%20Estava%20navegando%20no%20site%20da%20EcoAds%20e%20quero%20iniciar%20um%20atendimento." class="header-cta" id="cta-desktop-nav" target="_blank">Atendimento</a>
       
-      <!-- Hamburguer para Mobile -->
+      <!-- Hambúrguer Mobile -->
       <button class="menu-toggle" id="menu-toggle-btn" aria-label="Abrir Menu">
         <span></span>
         <span></span>
@@ -41,16 +53,88 @@
     </div>
   </header>
 
-  <main style="padding: 140px 0 80px;">
+  <!-- ==========================================
+       CONTEÚDO PRINCIPAL
+       ========================================== -->
+  <main style="padding: 160px 0 100px;">
     <div class="container">
-      <h1 style="font-size: 2.5rem; margin-bottom: 20px;">Soluções e Serviços</h1>
-      <p style="color: var(--text-secondary); max-width: 600px;">Página de soluções tecnológicas de GIS, Sensoriamento Remoto, Inteligência Artificial e Desenvolvimento Florestal.</p>
+      <div style="background: rgba(10, 10, 10, 0.7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.05); padding: 48px; border-radius: 20px; max-width: 800px; margin: 0 auto; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+        <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--brand-green-accent); font-weight: 500; margin-bottom: 12px; display: block;">Nossas Soluções</span>
+        <h1 style="font-size: 2.5rem; margin-bottom: 24px; font-weight: 500; letter-spacing: -0.02em;">Soluções e Serviços</h1>
+        <p style="color: var(--dark-text-secondary); line-height: 1.7; margin-bottom: 16px;">
+          Oferecemos soluções de desenvolvimento tecnológico e marketing especializado que integram inteligência analítica com as principais necessidades das empresas de engenharia florestal, licenciamento e gestão ambiental do Brasil.
+        </p>
+        
+        <div class="services-grid" style="grid-template-columns: 1fr; gap: 20px; margin-top: 32px;">
+          <!-- Item 1 -->
+          <div style="padding: 24px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); border-radius: 12px;">
+            <h3 style="font-size: 1.1rem; color: #ffffff; margin-bottom: 8px;">Desenvolvimento de Plataformas & Portais GIS</h3>
+            <p style="font-size: 0.88rem; color: var(--dark-text-secondary);">Estruturação de bancos de dados geográficos, mapas interativos e painéis analíticos sob demanda para facilitar tomadas de decisão territoriais.</p>
+          </div>
+          <!-- Item 2 -->
+          <div style="padding: 24px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); border-radius: 12px;">
+            <h3 style="font-size: 1.1rem; color: #ffffff; margin-bottom: 8px;">Tráfego Pago & Captação de Leads Florestais</h3>
+            <p style="font-size: 0.88rem; color: var(--dark-text-secondary);">Campanhas focadas em atrair empresas do agronegócio, indústrias e proprietários rurais que necessitam de serviços de licenciamento, inventários e manejo.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 
-  <footer class="main-footer">
-    <div class="container footer-bottom">
-      <p>&copy; <span id="current-year"></span> EcoAds. Todos os direitos reservados.</p>
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="main-footer" id="main-footer-v2">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div class="footer-brand">
+          <img src="/src/assets/logo.png" alt="EcoAds Logo" class="footer-logo-img">
+          <p>
+            A única agência digital do Brasil especializada exclusivamente no desenvolvimento e posicionamento do setor ambiental e florestal.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Navegação</h4>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/servicos/">Serviços</a></li>
+            <li><a href="/apps/">Apps</a></li>
+            <li><a href="/cursos/">Cursos</a></li>
+            <li><a href="/sobre/">Sobre</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Ferramentas</h4>
+          <ul class="footer-links">
+            <li><a href="/ferramentas/">Hub de Conversores</a></li>
+            <li><a href="/ferramentas/coordenadas.html">Conversor de Coordenadas</a></li>
+            <li><a href="/ferramentas/unidades.html">Conversor de Unidades</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Contato</h4>
+          <ul class="footer-contact-info">
+            <li>
+              <iconify-icon icon="solar:map-point-linear" width="16" style="margin-top: 3px; color: var(--brand-green-accent);"></iconify-icon>
+              <span>Irati — Paraná, Brasil</span>
+            </li>
+            <li>
+              <iconify-icon icon="solar:letter-linear" width="16" style="margin-top: 3px; color: var(--brand-green-accent);"></iconify-icon>
+              <span>contato@ecoadsbr.com</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="current-year"></span> EcoAds. Todos os direitos reservados.</p>
+        <p>CNPJ: 50.123.456/0001-01</p>
+      </div>
     </div>
   </footer>
 

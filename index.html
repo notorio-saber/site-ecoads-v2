@@ -3,125 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EcoAds — Tecnologia, GIS e IA para o Setor Florestal e Ambiental</title>
-  <meta name="description" content="Transformamos dados ambientais em inteligência para decisões mais rápidas, precisas e estratégicas. A primeira Climate & Forest Tech focada na transformação digital do setor.">
+  <title>EcoAds — Agência Digital Especializada no Setor Ambiental e Florestal</title>
+  <meta name="description" content="Transformamos empresas e profissionais do meio ambiente em autoridades digitais. Combinamos expertise técnica florestal com marketing de alta performance.">
   
   <!-- Estilos Globais -->
   <link rel="stylesheet" href="/src/css/main.css">
   
-  <!-- Estilo da Página Home -->
+  <!-- Estilo Específico da Home -->
   <style>
-    /* Estilos específicos da Home */
-    
     /* 1. HERO SECTION */
     .hero-section {
       position: relative;
-      padding: 180px 0 120px;
-      overflow: hidden;
+      padding: 200px 0 120px;
+      background-image: 
+        linear-gradient(rgba(7, 21, 17, 0.88), rgba(7, 21, 17, 0.95)),
+        url('/src/assets/hero-bg.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       display: flex;
       align-items: center;
-      background: radial-gradient(circle at 50% 30%, rgba(0, 230, 118, 0.05), transparent 60%);
-    }
-
-    /* Grade GIS cibernética de fundo */
-    .hero-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        linear-gradient(rgba(0, 230, 118, 0.02) 1.5px, transparent 1.5px),
-        linear-gradient(90deg, rgba(0, 230, 118, 0.02) 1.5px, transparent 1.5px);
-      background-size: 50px 50px;
-      background-position: center top;
-      pointer-events: none;
-      mask-image: radial-gradient(circle at 50% 50%, black 60%, transparent 95%);
-      -webkit-mask-image: radial-gradient(circle at 50% 50%, black 60%, transparent 95%);
-    }
-
-    /* Feixes luminosos orbitando */
-    .hero-glow-1 {
-      position: absolute;
-      top: 20%;
-      left: 10%;
-      width: 300px;
-      height: 300px;
-      background: var(--accent-neon-glow);
-      filter: blur(150px);
-      pointer-events: none;
-      border-radius: 50%;
-      animation: float-slow 10s ease-in-out infinite alternate;
-    }
-
-    .hero-glow-2 {
-      position: absolute;
-      bottom: 10%;
-      right: 10%;
-      width: 350px;
-      height: 350px;
-      background: var(--accent-cyan-glow);
-      filter: blur(180px);
-      pointer-events: none;
-      border-radius: 50%;
-      animation: float-slow 14s ease-in-out infinite alternate-reverse;
     }
 
     .hero-content {
-      text-align: center;
-      position: relative;
-      z-index: 2;
-      max-width: 900px;
+      max-width: 800px;
       margin: 0 auto;
-    }
-
-    .badge-forest-tech {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      background: rgba(0, 230, 118, 0.05);
-      border: 1px solid var(--color-border);
-      border-radius: 30px;
-      color: var(--accent-neon);
-      font-family: var(--font-title);
-      font-weight: 600;
-      font-size: 0.85rem;
-      margin-bottom: 24px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      box-shadow: 0 0 15px rgba(0, 230, 118, 0.05);
-    }
-
-    .badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background-color: var(--accent-neon);
-      box-shadow: 0 0 8px var(--accent-neon);
-      animation: pulse 1.5s infinite;
+      text-align: center;
     }
 
     .hero-title {
-      font-size: 3.5rem;
-      line-height: 1.1;
+      font-size: 3rem;
+      font-weight: 500;
+      line-height: 1.25;
       margin-bottom: 24px;
-      font-weight: 800;
+      color: var(--dark-text-primary);
     }
 
     .hero-title span {
-      background: linear-gradient(135deg, var(--accent-neon), var(--accent-cyan));
+      color: var(--brand-green-accent);
+      background: linear-gradient(135deg, var(--dark-text-primary), var(--dark-text-secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .hero-subtitle {
-      font-size: 1.25rem;
-      color: var(--text-secondary);
-      max-width: 720px;
-      margin: 0 auto 40px;
-      font-weight: 400;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: var(--dark-text-secondary);
+      margin-bottom: 40px;
+      font-weight: 300;
     }
 
     .hero-actions {
@@ -131,482 +61,408 @@
       flex-wrap: wrap;
     }
 
-    /* 2. DASHBOARD MOCKUP */
-    .dashboard-preview {
-      margin-top: 80px;
-      position: relative;
-      z-index: 3;
-      padding: 10px;
-      border-radius: 16px;
-      background: rgba(8, 20, 16, 0.6);
-      border: 1px solid var(--color-border);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 230, 118, 0.02);
+    /* 2. LOGOS DOS PARCEIROS (TRUST GRID) */
+    .partners-section {
+      padding: 40px 0;
+      background-color: var(--light-bg-secondary);
+      border-bottom: 1px solid var(--light-border);
+      text-align: center;
     }
 
-    .dashboard-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 16px;
-      border-bottom: 1px solid rgba(0, 230, 118, 0.1);
-    }
-
-    .dots-container {
-      display: flex;
-      gap: 8px;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(234, 242, 239, 0.2);
-    }
-    .dot-red { background: #ff5f56; }
-    .dot-yellow { background: #ffbd2e; }
-    .dot-green { background: #27c93f; }
-
-    .dashboard-title {
-      font-size: 0.8rem;
-      font-family: var(--font-title);
-      color: var(--text-secondary);
-      letter-spacing: 0.05em;
-    }
-
-    .dashboard-body {
-      padding: 24px;
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 20px;
-      min-height: 350px;
-    }
-
-    .panel-left {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .sidebar-widget {
-      padding: 16px;
-      background: rgba(3, 15, 10, 0.4);
-      border: 1px solid rgba(0, 230, 118, 0.06);
-      border-radius: 8px;
-    }
-
-    .sidebar-widget-title {
+    .partners-title {
       font-size: 0.75rem;
-      color: var(--text-muted);
       text-transform: uppercase;
-      margin-bottom: 12px;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.1em;
+      color: var(--light-text-muted);
+      margin-bottom: 24px;
+      font-weight: 500;
     }
 
-    .sidebar-widget-value {
-      font-size: 1.4rem;
-      font-family: var(--font-title);
-      font-weight: 700;
-      color: var(--accent-neon);
-    }
-
-    .panel-right-map {
-      background: rgba(3, 15, 10, 0.5);
-      border: 1px solid rgba(0, 230, 118, 0.06);
-      border-radius: 8px;
-      position: relative;
-      overflow: hidden;
+    .partners-grid {
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      gap: 60px;
+      flex-wrap: wrap;
     }
 
-    /* Animação gráfica GIS simulada em SVG */
-    .gis-grid-svg {
-      width: 100%;
-      height: 100%;
-      stroke: rgba(0, 229, 255, 0.1);
-      stroke-width: 1;
+    .partner-logo {
+      height: 40px;
+      width: auto;
+      opacity: 0.5;
+      filter: grayscale(1);
+      transition: var(--transition-fast);
     }
 
-    /* 3. SECTION SOLUÇÕES & TECNOLOGIA */
+    .partner-logo:hover {
+      opacity: 0.9;
+      filter: grayscale(0);
+    }
+
+    /* 3. SEÇÃO DE SERVIÇOS */
     .section-padding {
       padding: 100px 0;
     }
 
     .section-header {
       text-align: center;
-      max-width: 650px;
+      max-width: 700px;
       margin: 0 auto 60px;
     }
 
     .section-subtitle {
-      color: var(--accent-neon);
+      font-size: 0.8rem;
       text-transform: uppercase;
-      font-size: 0.85rem;
-      font-weight: 600;
       letter-spacing: 0.1em;
+      color: var(--brand-green);
+      font-weight: 600;
       margin-bottom: 12px;
       display: block;
     }
 
+    .dobra-escura .section-subtitle {
+      color: var(--dark-text-secondary);
+    }
+
     .section-title {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
+      font-weight: 500;
       margin-bottom: 16px;
     }
 
     .section-desc {
-      color: var(--text-secondary);
-      font-size: 1.05rem;
+      font-size: 1rem;
+      line-height: 1.6;
     }
 
-    .solutions-grid {
+    .services-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 30px;
     }
 
-    .solution-card {
-      padding: 40px 30px;
+    .service-card {
+      padding: 40px;
+      background-color: var(--light-bg-primary);
+      border: 1px solid var(--light-border);
+      border-radius: 8px;
+      transition: var(--transition-smooth);
+      box-shadow: var(--shadow-light);
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 16px;
     }
 
-    .solution-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 10px;
-      background: rgba(0, 230, 118, 0.04);
-      border: 1px solid var(--color-border);
+    .service-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+      border-color: var(--light-text-muted);
+    }
+
+    .service-icon-wrapper {
+      width: 48px;
+      height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--accent-neon);
-      font-size: 1.5rem;
-      transition: var(--transition-smooth);
-    }
-
-    .solution-card:hover .solution-icon {
-      background: linear-gradient(135deg, var(--accent-neon), var(--accent-cyan));
-      color: var(--bg-primary);
-      border-color: transparent;
-      box-shadow: 0 0 15px var(--accent-neon-glow);
-    }
-
-    .solution-card-title {
+      background: var(--light-bg-secondary);
+      border-radius: 6px;
+      color: var(--brand-green);
       font-size: 1.3rem;
-      font-weight: 600;
     }
 
-    .solution-card-text {
-      color: var(--text-secondary);
+    .service-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--light-text-primary);
+    }
+
+    .service-text {
+      color: var(--light-text-secondary);
       font-size: 0.95rem;
       line-height: 1.6;
     }
 
-    /* 4. SECTION APPS (LeafBook & LeafTag) */
-    .apps-section {
-      background: linear-gradient(180deg, var(--bg-primary) 0%, #020906 100%);
-      position: relative;
+    /* 4. SEÇÃO APLICATIVOS (LEAFBOOK & LEAFTAG) */
+    .apps-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
     }
 
-    .app-showcase-container {
+    .app-card {
+      padding: 50px 40px;
+      background-color: var(--dark-bg-secondary);
+      border: 1px solid var(--dark-border);
+      border-radius: 8px;
       display: flex;
       flex-direction: column;
-      gap: 80px;
+      gap: 24px;
+      transition: var(--transition-smooth);
     }
 
-    .app-row {
+    .app-card:hover {
+      border-color: var(--dark-text-muted);
+    }
+
+    .app-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: rgba(244, 248, 246, 0.04);
+      border: 1px solid var(--dark-border);
+      border-radius: 30px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      width: fit-content;
+    }
+
+    .app-status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--brand-cyan);
+    }
+
+    .app-card-title {
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: var(--dark-text-primary);
+    }
+
+    .app-card-desc {
+      color: var(--dark-text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .app-features-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .app-features-list li {
       display: flex;
       align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--dark-text-secondary);
+    }
+
+    .app-features-list svg {
+      color: var(--brand-green-accent);
+      flex-shrink: 0;
+    }
+
+    .app-price-tag {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--dark-text-primary);
+      margin-top: 10px;
+    }
+
+    .app-price-tag span {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--dark-text-muted);
+      display: block;
+    }
+
+    /* 5. SEÇÃO CURSO DE TRÁFEGO PAGO */
+    .course-wrapper {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
       gap: 60px;
+      align-items: center;
     }
 
-    .app-row:nth-child(even) {
-      flex-direction: row-reverse;
-    }
-
-    .app-visual {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      position: relative;
-    }
-
-    .phone-mockup {
-      width: 280px;
-      height: 570px;
-      background: #020a06;
-      border: 8px solid #0d1a13;
-      border-radius: 36px;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.8), 0 0 30px rgba(0, 230, 118, 0.08);
-      overflow: hidden;
-      position: relative;
-      border: 4px solid var(--color-border);
-    }
-
-    .phone-screen {
-      height: 100%;
-      padding: 24px 16px;
+    .course-text-side {
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
 
-    .phone-header {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.7rem;
-      color: var(--text-secondary);
-      border-bottom: 1px solid rgba(0, 230, 118, 0.1);
-      padding-bottom: 8px;
-    }
-
-    .app-details {
-      flex: 1.2;
-    }
-
-    .app-tag {
-      color: var(--accent-cyan);
-      font-weight: 600;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 12px;
-      display: block;
-    }
-
-    .app-title {
-      font-size: 2.5rem;
-      margin-bottom: 16px;
-    }
-
-    .app-description {
-      color: var(--text-secondary);
-      font-size: 1.05rem;
-      margin-bottom: 24px;
-    }
-
-    .app-features {
-      list-style: none;
-      margin-bottom: 32px;
-    }
-
-    .app-features li {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-      font-size: 0.95rem;
-      color: var(--text-primary);
-    }
-
-    .app-features svg {
-      color: var(--accent-neon);
-      flex-shrink: 0;
-    }
-
-    /* 5. SEÇÃO CURSO DE TRÁFEGO PAGO */
-    .course-section {
-      position: relative;
-    }
-
-    .course-card-wrapper {
-      background: radial-gradient(circle at top right, rgba(0, 229, 255, 0.04), transparent 60%);
-    }
-
-    .course-content {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 50px;
-      padding: 60px;
-    }
-
-    .course-tag {
-      color: var(--accent-neon);
-      text-transform: uppercase;
-      font-weight: 600;
-      font-size: 0.85rem;
-      letter-spacing: 0.05em;
-      display: inline-block;
-      margin-bottom: 16px;
-    }
-
     .course-title {
       font-size: 2.2rem;
-      margin-bottom: 20px;
+      font-weight: 500;
+      color: var(--light-text-primary);
     }
 
-    .course-desc {
-      color: var(--text-secondary);
-      margin-bottom: 30px;
-      font-size: 1.05rem;
+    .course-description {
+      color: var(--light-text-secondary);
+      font-size: 1rem;
+      line-height: 1.6;
     }
 
-    .course-stats {
+    .course-metrics {
       display: flex;
       gap: 40px;
-      margin-bottom: 40px;
+      margin: 10px 0;
     }
 
-    .stat-item-num {
-      font-size: 2.2rem;
+    .metric-value {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--brand-green);
       font-family: var(--font-title);
-      font-weight: 800;
-      color: var(--accent-cyan);
     }
 
-    .stat-item-label {
-      color: var(--text-secondary);
-      font-size: 0.85rem;
+    .metric-label {
+      font-size: 0.8rem;
+      color: var(--light-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
-    .course-image-side {
+    .course-visual-side {
+      background: var(--light-bg-secondary);
+      border: 1px solid var(--light-border);
+      border-radius: 8px;
+      padding: 50px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(3, 15, 10, 0.6);
-      border-left: 1px solid var(--color-border);
-      padding: 40px;
-      border-radius: 0 11px 11px 0;
+      box-shadow: var(--shadow-light);
     }
 
-    /* 6. SOBRE A ECOADS / AUTORIDADE JONATHAN COSTA */
-    .about-section-home {
+    /* 6. SOBRE / JONATHAN COSTA */
+    .about-wrapper-home {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
       gap: 60px;
       align-items: center;
     }
 
-    .about-image-wrapper {
-      position: relative;
-    }
-
-    .about-image-frame {
+    .about-visual-frame {
       width: 100%;
-      height: 420px;
-      border-radius: 12px;
-      border: 1px solid var(--color-border);
-      background: rgba(8, 20, 16, 0.8);
-      position: relative;
-      overflow: hidden;
+      height: 380px;
+      background-color: var(--dark-bg-secondary);
+      border: 1px solid var(--dark-border);
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+      font-size: 4rem;
     }
 
-    .avatar-placeholder {
-      font-size: 5rem;
-      color: var(--color-border);
-      opacity: 0.5;
-    }
-
-    .about-image-glow {
-      position: absolute;
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      background: var(--accent-neon-glow);
-      filter: blur(100px);
-      z-index: -1;
-      bottom: -30px;
-      left: -30px;
-    }
-
-    .about-text h3 {
-      font-size: 1.8rem;
-      margin-bottom: 24px;
-      color: var(--text-primary);
-    }
-
-    .about-text p {
-      color: var(--text-secondary);
-      font-size: 1rem;
-      margin-bottom: 20px;
-    }
-
-    /* 7. HUB DE FERRAMENTAS / SEO BAIT */
-    .tools-hub-home {
-      background: linear-gradient(180deg, #020906 0%, var(--bg-primary) 100%);
-    }
-
-    .tools-grid-home {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-    }
-
-    .tool-card-home {
-      padding: 40px;
+    .about-text-side {
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
 
-    .tool-card-header {
+    .about-title-home {
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    .about-text-side p {
+      color: var(--dark-text-secondary);
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+
+    /* 7. HUB DE FERRAMENTAS */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .tool-card {
+      padding: 40px;
+      background: var(--light-bg-primary);
+      border: 1px solid var(--light-border);
+      border-radius: 8px;
+      box-shadow: var(--shadow-light);
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      gap: 16px;
+      transition: var(--transition-fast);
     }
 
-    .tool-card-title {
-      font-size: 1.5rem;
-      font-weight: 700;
+    .tool-card:hover {
+      border-color: var(--brand-green-accent);
+      box-shadow: var(--shadow-medium);
     }
 
-    .tool-card-desc {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
+    .tool-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--light-text-primary);
+    }
+
+    .tool-description {
+      color: var(--light-text-secondary);
+      font-size: 0.92rem;
       line-height: 1.6;
       flex: 1;
     }
 
-    /* Animações */
-    @keyframes float-slow {
-      0% { transform: translateY(0px) rotate(0deg); }
-      100% { transform: translateY(20px) rotate(5deg); }
+    /* 8. CONTATO */
+    .contact-card {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 50px 40px;
+      text-align: center;
+      background: var(--light-bg-primary);
+      border: 1px solid var(--light-border);
+      border-radius: 8px;
+      box-shadow: var(--shadow-medium);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
 
-    @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 8px var(--accent-neon); }
-      50% { transform: scale(1.2); box-shadow: 0 0 15px var(--accent-neon); }
-      100% { transform: scale(1); box-shadow: 0 0 8px var(--accent-neon); }
+    .contact-card-title {
+      font-size: 1.5rem;
+      font-weight: 600;
     }
 
-    /* RESPONSIVIDADE ESPECÍFICA DA HOME */
+    .contact-card-desc {
+      color: var(--light-text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .contact-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* MEDIA QUERIES DA HOME */
     @media (max-width: 1024px) {
-      .hero-title { font-size: 2.8rem; }
-      .solutions-grid { grid-template-columns: repeat(2, 1fr); }
-      .about-section-home { grid-template-columns: 1fr; }
-      .about-image-frame { height: 300px; }
-      .course-content { grid-template-columns: 1fr; }
-      .course-image-side { display: none; }
+      .hero-title { font-size: 2.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .apps-container { grid-template-columns: 1fr; }
+      .course-wrapper { grid-template-columns: 1fr; }
+      .course-visual-side { display: none; }
+      .about-wrapper-home { grid-template-columns: 1fr; }
+      .about-visual-frame { height: 280px; }
     }
 
     @media (max-width: 768px) {
-      .hero-title { font-size: 2.3rem; }
-      .hero-subtitle { font-size: 1.1rem; }
-      .solutions-grid { grid-template-columns: 1fr; }
-      .app-row, .app-row:nth-child(even) { flex-direction: column; gap: 40px; }
-      .app-visual { width: 100%; }
-      .tools-grid-home { grid-template-columns: 1fr; }
-      .dashboard-body { grid-template-columns: 1fr; }
-      .panel-left { display: none; }
+      .hero-title { font-size: 2.1rem; }
+      .hero-subtitle { font-size: 1rem; }
+      .tools-grid { grid-template-columns: 1fr; }
+      .contact-card { padding: 30px 20px; }
+      .contact-actions { flex-direction: column; }
     }
   </style>
 </head>
 <body>
 
   <!-- ==========================================
-       HEADER (Navegação com Glassmorphism)
+       HEADER (Menu de Navegação)
        ========================================== -->
-  <header class="main-header">
+  <header class="main-header" id="main-header-v2">
     <div class="container header-container">
-      <a href="/" class="logo" id="header-logo">
-        <div class="logo-icon">E</div>
-        Eco<span>Ads</span>
+      <a href="/" class="header-logo-link" id="logo-link">
+        <img src="/src/assets/logo.png" alt="EcoAds Logo" class="header-logo-img" id="header-logo-image">
       </a>
       
       <!-- Hamburguer para Mobile -->
@@ -616,429 +472,283 @@
         <span></span>
       </button>
       
-      <!-- Navegação Principal -->
-      <nav class="nav-menu" id="nav-navigation-menu">
-        <a href="/" class="nav-link active" id="link-home">Home</a>
-        <a href="/servicos/" class="nav-link" id="link-solucoes">Soluções</a>
-        <a href="/apps/" class="nav-link" id="link-apps">Apps</a>
-        <a href="/cursos/" class="nav-link" id="link-cursos">Cursos</a>
-        <a href="/ferramentas/" class="nav-link" id="link-ferramentas">Ferramentas</a>
-        <a href="/sobre/" class="nav-link" id="link-sobre">Sobre</a>
+      <!-- Menu de Links -->
+      <nav class="nav-menu" id="navigation-menu-links">
+        <a href="/" class="nav-link active" id="menu-home">Home</a>
+        <a href="/servicos/" class="nav-link" id="menu-solucoes">Serviços</a>
+        <a href="/apps/" class="nav-link" id="menu-apps">Apps</a>
+        <a href="/cursos/" class="nav-link" id="menu-cursos">Cursos</a>
+        <a href="/ferramentas/" class="nav-link" id="menu-ferramentas">Ferramentas</a>
+        <a href="/sobre/" class="nav-link" id="menu-sobre">Sobre</a>
       </nav>
     </div>
   </header>
 
   <!-- ==========================================
-       MAIN CONTENT
+       CONTEÚDO PRINCIPAL
        ========================================== -->
   <main>
     
-    <!-- 1. HERO SECTION -->
-    <section class="hero-section" id="section-hero">
-      <div class="hero-glow-1"></div>
-      <div class="hero-glow-2"></div>
-      
+    <!-- 1. HERO SECTION (Dobra Escura) -->
+    <section class="hero-section" id="hero-dobra-escura">
       <div class="container">
         <div class="hero-content">
-          <div class="badge-forest-tech" id="badge-tech-tag">
-            <span class="badge-dot"></span>
-            A primeira Forest & Climate Tech da América Latina
-          </div>
-          <h1 class="hero-title" id="main-hero-title">
-            Transformamos dados ambientais em <span>inteligência estratégica</span>
+          <h1 class="hero-title" id="home-hero-title">
+            Agência de Marketing Digital Especializada no <span>Setor Ambiental e Florestal</span>
           </h1>
-          <p class="hero-subtitle" id="main-hero-subtitle">
-            Conectamos Engenharia Florestal, Meio Ambiente, GIS e Inteligência Artificial para acelerar, padronizar e otimizar a tomada de decisão no campo e na corporação.
+          <p class="hero-subtitle" id="home-hero-subtitle">
+            Transformamos empresas e profissionais do meio ambiente em autoridades digitais. Combinamos expertise técnica florestal com estratégias de marketing digital de alta performance que realmente funcionam para o seu nicho.
           </p>
-          <div class="hero-actions" id="main-hero-actions">
-            <a href="/servicos/" class="btn btn-primary" id="btn-hero-solutions">Nossas Soluções</a>
-            <a href="#section-contact" class="btn btn-secondary" id="btn-hero-contact">Falar com Especialista</a>
-          </div>
-        </div>
-
-        <!-- Visual Preview: Painel Digital GIS de Alta Tecnologia -->
-        <div class="dashboard-preview" id="dashboard-mockup">
-          <div class="dashboard-header">
-            <div class="dots-container">
-              <span class="dot dot-red"></span>
-              <span class="dot dot-yellow"></span>
-              <span class="dot dot-green"></span>
-            </div>
-            <div class="dashboard-title" id="dashboard-title-text">ECOADS CONSOLE // DATA MONITORING ACTIVE</div>
-            <div style="width: 46px;"></div>
-          </div>
-          <div class="dashboard-body">
-            <div class="panel-left">
-              <div class="sidebar-widget">
-                <div class="sidebar-widget-title">Área Mapeada</div>
-                <div class="sidebar-widget-value" id="dashboard-area-mapped">1,842,910 ha</div>
-              </div>
-              <div class="sidebar-widget">
-                <div class="sidebar-widget-title">Espécies Catalogadas</div>
-                <div class="sidebar-widget-value" id="dashboard-species-count" style="color: var(--accent-cyan);">4,821 espécies</div>
-              </div>
-              <div class="sidebar-widget">
-                <div class="sidebar-widget-title">Precisão Preditiva (IA)</div>
-                <div class="sidebar-widget-value" id="dashboard-accuracy">98.4% Accuracy</div>
-              </div>
-            </div>
-            <div class="panel-right-map">
-              <!-- Visualização de Redes e Dados GIS -->
-              <svg class="gis-grid-svg" viewBox="0 0 600 300">
-                <!-- Linhas de grade GIS -->
-                <line x1="0" y1="50" x2="600" y2="50" />
-                <line x1="0" y1="100" x2="600" y2="100" />
-                <line x1="0" y1="150" x2="600" y2="150" />
-                <line x1="0" y1="200" x2="600" y2="200" />
-                <line x1="0" y1="250" x2="600" y2="250" />
-                <line x1="100" y1="0" x2="100" y2="300" />
-                <line x1="200" y1="0" x2="200" y2="300" />
-                <line x1="300" y1="0" x2="300" y2="300" />
-                <line x1="400" y1="0" x2="400" y2="300" />
-                <line x1="500" y1="0" x2="500" y2="300" />
-                
-                <!-- Polígonos de simulação topográfica florestal -->
-                <polygon points="120,80 180,120 220,90 190,60" fill="rgba(0, 230, 118, 0.05)" stroke="var(--accent-neon)" stroke-width="1.5" />
-                <polygon points="280,140 380,180 340,220 250,190" fill="rgba(0, 229, 255, 0.05)" stroke="var(--accent-cyan)" stroke-width="1.5" />
-                <polygon points="400,60 480,90 450,130 380,100" fill="rgba(0, 230, 118, 0.03)" stroke="rgba(0, 230, 118, 0.3)" stroke-width="1.2" />
-                
-                <!-- Conexões de nós (Sensoriamento Remoto) -->
-                <g stroke="#ffffff" stroke-width="0.5" opacity="0.3">
-                  <line x1="180" y1="120" x2="280" y2="140" />
-                  <line x1="220" y1="90" x2="280" y2="140" />
-                  <line x1="380" y1="100" x2="380" y2="180" />
-                </g>
-                
-                <!-- Nós com Pulsação -->
-                <circle cx="180" cy="120" r="5" fill="var(--accent-neon)" />
-                <circle cx="280" cy="140" r="5" fill="var(--accent-cyan)" />
-                <circle cx="380" cy="180" r="4" fill="var(--accent-cyan)" />
-                <circle cx="220" cy="90" r="4" fill="var(--accent-neon)" />
-                <circle cx="450" cy="130" r="3" fill="#ffffff" />
-                
-                <text x="195" y="125" fill="var(--text-secondary)" font-size="8" font-family="monospace">Node_01 [DAP: Active]</text>
-                <text x="295" y="145" fill="var(--text-secondary)" font-size="8" font-family="monospace">GIS_Anchor_02</text>
-              </svg>
-            </div>
+          <div class="hero-actions">
+            <a href="/servicos/" class="btn btn-primary" id="btn-hero-more">Nossos Serviços</a>
+            <a href="#contato-home" class="btn btn-secondary" id="btn-hero-talk">Iniciar Atendimento</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 2. SECTION SOLUÇÕES & TECNOLOGIA -->
-    <section class="section-padding" id="section-solutions">
+    <!-- 2. LOGOS DE PARCEIROS/CLIENTES (Slider/Trust Grid) -->
+    <section class="partners-section" id="partners-logos-trust">
       <div class="container">
-        <div class="section-header">
-          <span class="section-subtitle">Áreas de Atuação</span>
-          <h2 class="section-title" id="solutions-title">Tecnologia para quem cuida do planeta</h2>
-          <p class="section-desc">Desenvolvemos metodologias, softwares e inteligência geoespacial para simplificar processos ambientais complexos.</p>
-        </div>
-
-        <div class="solutions-grid" id="solutions-cards-container">
-          <!-- Card 1 -->
-          <div class="glass-panel solution-card" id="card-sol-gis">
-            <div class="solution-icon">
-              <!-- Ícone Map/GIS -->
-              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 4L9 7"></path></svg>
-            </div>
-            <h3 class="solution-card-title">Geotecnologias & GIS</h3>
-            <p class="solution-card-text">Mapeamento espacial avançado, sensoriamento remoto com satélites, processamento de nuvens de pontos e plataformas GIS corporativas sob medida.</p>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="glass-panel solution-card" id="card-sol-software">
-            <div class="solution-icon">
-              <!-- Ícone Code/Software -->
-              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-            </div>
-            <h3 class="solution-card-title">Desenvolvimento Florestal</h3>
-            <p class="solution-card-text">Construção de aplicações móveis exclusivas para campo, softwares web integrados e sistemas dedicados de inventário e manejo florestal.</p>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="glass-panel solution-card" id="card-sol-ia">
-            <div class="solution-icon">
-              <!-- Ícone IA/Cpu -->
-              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"></path></svg>
-            </div>
-            <h3 class="solution-card-title">Inteligência Artificial</h3>
-            <p class="solution-card-text">Assistentes inteligentes para análise de relatórios de licenciamento, modelos matemáticos preditivos e algoritmos automatizados de tomada de decisão.</p>
-          </div>
+        <div class="partners-title">Empresas e Profissionais que Confiam na EcoAds</div>
+        <div class="partners-grid">
+          <img src="/src/assets/client-x.png" alt="Cliente X Logo" class="partner-logo" id="partner-logo-x">
+          <img src="/src/assets/client-h.png" alt="Cliente H Logo" class="partner-logo" id="partner-logo-h">
+          <img src="/src/assets/client-c.png" alt="Cliente C Logo" class="partner-logo" id="partner-logo-c">
         </div>
       </div>
     </section>
 
-    <!-- 3. SECTION APLICATIVOS (LeafBook & LeafTag) -->
-    <section class="section-padding apps-section" id="section-apps">
+    <!-- 3. SEÇÃO DE SERVIÇOS (Dobra Clara) -->
+    <section class="section-padding dobra-clara" id="servicos-dobra-clara">
       <div class="container">
         <div class="section-header">
-          <span class="section-subtitle">Tecnologia no Bolso</span>
-          <h2 class="section-title">Nossos Aplicativos Florestais</h2>
-          <p class="section-desc">Mobilidade de alta precisão para eliminar a burocracia do caderno e do Excel direto nas operações de campo.</p>
+          <span class="section-subtitle">O que fazemos</span>
+          <h2 class="section-title">Como podemos ajudar a sua Empresa</h2>
+          <p class="section-desc">Soluções digitais completas desenvolvidas especificamente para consultores ambientais, engenheiros florestais e empresas do setor.</p>
         </div>
 
-        <div class="app-showcase-container">
+        <div class="services-grid" id="servicos-reais-grid">
           
-          <!-- Row LeafBook -->
-          <div class="app-row" id="row-app-leafbook">
-            <div class="app-visual">
-              <div class="phone-mockup">
-                <div class="phone-screen">
-                  <div class="phone-header">
-                    <span>15:30</span>
-                    <span style="color: var(--accent-neon);">LeafBook App</span>
-                    <span>100%</span>
-                  </div>
-                  <!-- Interface Simulada do LeafBook -->
-                  <div style="background: rgba(0, 230, 118, 0.05); border: 1px solid var(--color-border); border-radius: 8px; padding: 12px; font-size: 0.8rem;">
-                    <div style="font-weight: bold; margin-bottom: 6px; color: var(--accent-neon);">DendroQuiz Botânico</div>
-                    <div style="color: var(--text-secondary); margin-bottom: 10px; font-size: 0.75rem;">Identifique a espécie da folha abaixo:</div>
-                    <div style="height: 90px; background: rgba(8, 20, 16, 0.9); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 2rem;">🍂</div>
-                    <div style="display: grid; gap: 8px; margin-top: 10px;">
-                      <div style="padding: 6px; background: var(--bg-tertiary); border: 1px solid rgba(0,230,118,0.2); border-radius: 4px; font-size: 0.7rem; text-align: center;">a) Araucaria angustifolia</div>
-                      <div style="padding: 6px; background: var(--bg-tertiary); border: 1px solid rgba(0,230,118,0.2); border-radius: 4px; font-size: 0.7rem; text-align: center; color: var(--accent-neon);">b) Cedrela fissilis (Correto)</div>
-                      <div style="padding: 6px; background: var(--bg-tertiary); border: 1px solid rgba(0,230,118,0.2); border-radius: 4px; font-size: 0.7rem; text-align: center;">c) Cabralea canjerana</div>
-                    </div>
-                  </div>
-                  <div style="background: rgba(3, 15, 10, 0.7); border: 1px solid rgba(0,229,255,0.08); border-radius: 8px; padding: 10px; font-size: 0.75rem;">
-                    <div style="font-weight: bold; color: var(--accent-cyan); margin-bottom: 4px;">Último Registro Offline</div>
-                    <p style="color: var(--text-secondary); font-size: 0.7rem;">Ipê-amarelo • Irati-PR<br>Aguardando sinal para sincronizar...</p>
-                  </div>
-                </div>
-              </div>
+          <!-- Site Especializado -->
+          <div class="service-card" id="card-sites">
+            <div class="service-icon-wrapper">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
             </div>
-            
-            <div class="app-details" id="details-app-leafbook">
-              <span class="app-tag">Ativo / Assinatura</span>
-              <h3 class="app-title">LeafBook</h3>
-              <p class="app-description">
-                O aplicativo definitivo para dendrólogos, botânicos e engenheiros organizarem seus registros de campo de forma inteligente e integrada, mesmo sem acesso à internet.
-              </p>
-              <ul class="app-features">
-                <li>
-                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>
-                  <span><strong>Modo Offline-First</strong>: registre espécies com fotos, GPS e anotações técnicas sem sinal de rede.</span>
-                </li>
-                <li>
-                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>
-                  <span><strong>DendroQuiz de Fixação</strong>: aprenda botânica prática no dia a dia com testes baseados em registros reais.</span>
-                </li>
-                <li>
-                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>
-                  <span><strong>Galeria Botânica Colaborativa</strong>: contribua com o maior acervo dendrológico vivo do Brasil.</span>
-                </li>
-              </ul>
-              <div style="display: flex; align-items: center; gap: 24px; flex-wrap: wrap;">
-                <a href="/apps/" class="btn btn-primary" id="btn-details-leafbook">Saiba Mais & Assinar</a>
-                <div>
-                  <span style="font-size: 1.25rem; font-weight: 700; color: var(--accent-neon); display: block;">R$ 150,00 / ano</span>
-                  <span style="font-size: 0.8rem; color: var(--text-muted);">Estudantes têm 50% de desconto</span>
-                </div>
-              </div>
-            </div>
+            <h3 class="service-title">Criação de Sites Especializados</h3>
+            <p class="service-text">Desenvolvidos especificamente para consultores ambientais, engenheiros florestais e empresas do setor. Um design moderno que transmite credibilidade e profundo conhecimento técnico.</p>
           </div>
 
-          <!-- Row LeafTag -->
-          <div class="app-row" id="row-app-leaftag">
-            <div class="app-visual">
-              <div class="phone-mockup" style="border-color: var(--color-border-glow);">
-                <div class="phone-screen">
-                  <div class="phone-header">
-                    <span>15:30</span>
-                    <span style="color: var(--accent-cyan);">LeafTag Active</span>
-                    <span>100%</span>
-                  </div>
-                  <!-- Interface Simulada do LeafTag -->
-                  <div style="background: rgba(0, 229, 255, 0.05); border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 8px; padding: 12px; font-size: 0.8rem;">
-                    <div style="font-weight: bold; margin-bottom: 6px; color: var(--accent-cyan);">Inventário Florestal</div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;">
-                      <div>
-                        <span style="font-size: 0.65rem; color: var(--text-muted); display:block;">DAP (cm)</span>
-                        <input type="text" value="32.4" style="width:100%; padding:4px; background:var(--bg-primary); border:1px solid rgba(0,229,255,0.2); border-radius:4px; color:white; font-size:0.75rem;" readonly>
-                      </div>
-                      <div>
-                        <span style="font-size: 0.65rem; color: var(--text-muted); display:block;">Altura (m)</span>
-                        <input type="text" value="18.5" style="width:100%; padding:4px; background:var(--bg-primary); border:1px solid rgba(0,229,255,0.2); border-radius:4px; color:white; font-size:0.75rem;" readonly>
-                      </div>
-                    </div>
-                    <div style="padding: 6px; background: var(--bg-tertiary); border-radius: 4px; font-size: 0.7rem; text-align: center; color: var(--accent-cyan); font-weight: bold;">
-                      Calcular Volume: 0.724 m³
-                    </div>
-                  </div>
-                  <div style="background: rgba(3, 15, 10, 0.7); border: 1px solid rgba(0,230,118,0.08); border-radius: 8px; padding: 10px; font-size: 0.75rem;">
-                    <div style="font-weight: bold; color: var(--accent-neon); margin-bottom: 4px;">Validação Automática</div>
-                    <p style="color: var(--text-secondary); font-size: 0.7rem;">Dados validados contra erros de digitação comuns no campo.</p>
-                  </div>
-                </div>
-              </div>
+          <!-- Tráfego Pago -->
+          <div class="service-card" id="card-trafego">
+            <div class="service-icon-wrapper">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239a9 9 0 0112.573 12.574M5.121 5.121a9 9 0 00-1.239 12.573m0 0L2 22l4.305-1.654"></path></svg>
             </div>
-            
-            <div class="app-details" id="details-app-leaftag">
-              <span class="app-tag" style="color: var(--accent-neon);">Em Desenvolvimento — 2026</span>
-              <h3 class="app-title">LeafTag</h3>
-              <p class="app-description">
-                O primeiro aplicativo brasileiro que simplifica a coleta de inventários florestais de forma extrema. Colete dados rapidamente no celular e tenha seu inventário processado na hora — sem necessidade de planilhas Excel.
-              </p>
-              <ul class="app-features">
-                <li>
-                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>
-                  <span><strong>10x Mais Rápido</strong>: elimine digitação duplicada e relatórios manuais de escritório.</span>
-                </li>
-                <li>
-                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>
-                  <span><strong>Zero Erros</strong>: consistência e validação automática de dados matemáticos durante a entrada em campo.</span>
-                </li>
-                <li>
-                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>
-                  <span><strong>Cálculos de Volume e Manejo</strong>: processamento estatístico em tempo real direto nas nuvens da EcoAds.</span>
-                </li>
-              </ul>
-              <a href="/apps/" class="btn btn-secondary" id="btn-details-leaftag">Quero ser notificado no lançamento</a>
+            <h3 class="service-title">Gestão de Tráfego Pago Especializado</h3>
+            <p class="service-text">Campanhas de Google Ads e Meta Ads com estratégias específicas para o mercado florestal e ambiental. Otimizadas para gerar leads qualificados de empresas que precisam de serviços ambientais.</p>
+          </div>
+
+          <!-- Posicionamento Digital -->
+          <div class="service-card" id="card-posicionamento">
+            <div class="service-icon-wrapper">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
             </div>
+            <h3 class="service-title">Posicionamento Digital Completo</h3>
+            <p class="service-text">Estratégia completa de marketing digital: desde a estruturação de conteúdo técnico até a automação de vendas, totalmente focada em estabelecer autoridade no setor ambiental.</p>
+          </div>
+
+          <!-- Aplicativos Florestais -->
+          <div class="service-card" id="card-apps-dev">
+            <div class="service-icon-wrapper">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+            </div>
+            <h3 class="service-title">Aplicativos para Engenharia Florestal</h3>
+            <p class="service-text">Desenvolvimento de aplicativos especializados para cálculos de campo, inventários florestais, gestão ambiental e ferramentas dedicadas a facilitar a rotina técnica.</p>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- 4. SEÇÃO CURSO DE TRÁFEGO PAGO -->
-    <section class="section-padding course-section" id="section-course">
+    <!-- 4. SEÇÃO APLICATIVOS (Dobra Escura) -->
+    <section class="section-padding dobra-escura" id="apps-dobra-escura">
       <div class="container">
-        <div class="glass-panel course-card-wrapper" id="course-card">
-          <div class="course-content">
-            <div class="course-info-side">
-              <span class="course-tag">Aceleração Digital</span>
-              <h2 class="course-title" id="course-title-text">Curso de Tráfego Pago para Profissionais Ambientais</h2>
-              <p class="course-desc">
-                Seja percebido como uma autoridade digital no mercado. Aprenda a gerenciar campanhas de Google Ads e Meta Ads com casos práticos e reais da consultoria florestal e licenciamento ambiental.
-              </p>
-              
-              <div class="course-stats" id="course-metrics">
-                <div>
-                  <div class="stat-item-num">40h+</div>
-                  <div class="stat-item-label">Conteúdo Prático</div>
-                </div>
-                <div>
-                  <div class="stat-item-num">100%</div>
-                  <div class="stat-item-label">Cases do Setor</div>
-                </div>
-                <div>
-                  <div class="stat-item-num">Cert.</div>
-                  <div class="stat-item-label">Incluso no Final</div>
-                </div>
-              </div>
-              
-              <a href="/cursos/" class="btn btn-primary" id="btn-course-enroll">Conhecer o Curso</a>
+        <div class="section-header">
+          <span class="section-subtitle">Nossos Aplicativos</span>
+          <h2 class="section-title">Aplicativos que Revolucionam o Trabalho Florestal</h2>
+          <p class="section-desc">Desenvolvemos soluções móveis que transformam processos técnicos complexos de campo em experiências simples e profissionais.</p>
+        </div>
+
+        <div class="apps-container" id="apps-showcase-grid">
+          
+          <!-- LeafBook Card -->
+          <div class="app-card" id="card-app-leafbook">
+            <div class="app-status-badge">
+              <span class="app-status-dot"></span>
+              Ativo / Assinatura Anual
             </div>
-            
-            <div class="course-image-side" id="course-visual-wrapper">
-              <!-- Grid Digital Representando Campanhas e Conversões -->
-              <svg width="250" height="250" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="0.8">
-                <circle cx="50" cy="50" r="40" stroke="rgba(0, 229, 255, 0.2)" />
-                <circle cx="50" cy="50" r="30" stroke="rgba(0, 230, 118, 0.15)" stroke-dasharray="4,4" />
-                <path d="M20,50 L50,50 L75,30" stroke="var(--accent-cyan)" stroke-width="1.2" />
-                <circle cx="75" cy="30" r="3" fill="var(--accent-cyan)" />
-                <path d="M20,50 L50,50 L70,70" stroke="var(--accent-neon)" stroke-width="1.2" />
-                <circle cx="70" cy="70" r="3" fill="var(--accent-neon)" />
-                <text x="35" y="45" fill="var(--text-secondary)" font-size="4" font-family="monospace">CONVERSION</text>
-                <text x="79" y="32" fill="var(--accent-cyan)" font-size="4" font-family="monospace">Google Ads</text>
-                <text x="74" y="72" fill="var(--accent-neon)" font-size="4" font-family="monospace">Meta Ads</text>
-              </svg>
+            <h3 class="app-card-title">LeafBook</h3>
+            <p class="app-card-desc">
+              O aplicativo definitivo para dendrólogos organizarem seus registros botânicos de forma simples. Transforme a complexidade da organização botânica em um acervo fluído e offline-first.
+            </p>
+            <ul class="app-features-list">
+              <li>
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>
+                <span>Registro offline com fotos, notas e GPS.</span>
+              </li>
+              <li>
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>
+                <span>Galeria botânica colaborativa pública.</span>
+              </li>
+              <li>
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>
+                <span>Quiz interativo para treinamento botânico.</span>
+              </li>
+            </ul>
+            <div class="app-price-tag">
+              R$ 150,00 / ano
+              <span>Estudantes têm 50% de desconto</span>
             </div>
+            <a href="/apps/" class="btn btn-primary" id="btn-leafbook-info" style="margin-top: auto;">Conhecer LeafBook</a>
           </div>
+
+          <!-- LeafTag Card -->
+          <div class="app-card" id="card-app-leaftag">
+            <div class="app-status-badge" style="border-color: rgba(0, 229, 255, 0.15);">
+              <span class="app-status-dot" style="background-color: var(--brand-cyan);"></span>
+              Em Desenvolvimento — Lançamento 2026
+            </div>
+            <h3 class="app-card-title">LeafTag</h3>
+            <p class="app-card-desc">
+              O primeiro aplicativo brasileiro que simplifica a coleta de inventário florestal de forma definitiva. Colete dados em campo e processe seu inventário na hora, eliminando erros manuais.
+            </p>
+            <ul class="app-features-list">
+              <li>
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>
+                <span>Entrada rápida de dados de DAP e altura.</span>
+              </li>
+              <li>
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>
+                <span>Processamento automático de volumes.</span>
+              </li>
+              <li>
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>
+                <span>Totalmente livre de planilhas e digitação duplicada.</span>
+              </li>
+            </ul>
+            <a href="/apps/" class="btn btn-secondary" id="btn-leaftag-notify" style="margin-top: auto;">Quero ser Avisado(a)</a>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- 5. SOBRE A ECOADS / AUTORIDADE JONATHAN COSTA -->
-    <section class="section-padding" id="section-about">
+    <!-- 5. SEÇÃO CURSO (Dobra Clara) -->
+    <section class="section-padding dobra-clara-alt" id="curso-dobra-clara">
       <div class="container">
-        <div class="about-section-home">
-          <div class="about-image-wrapper">
-            <div class="about-image-frame" id="about-photo-wrapper">
-              <!-- Placeholder técnico refinado para a foto real -->
-              <div class="avatar-placeholder">🌿</div>
-              <div class="about-image-glow"></div>
+        <div class="course-wrapper">
+          <div class="course-text-side">
+            <span class="section-subtitle">Capacitação Profissional</span>
+            <h2 class="course-title">Curso EcoAds: Tráfego Pago para Profissionais Ambientais</h2>
+            <p class="course-description">
+              Desenvolvemos este curso prático porque percebemos que excelentes profissionais ambientais possuem conhecimento técnico excepcional, mas encontram barreiras para se posicionarem no meio digital. Aprenda Google Ads e Meta Ads na prática, com estudos de caso reais do mercado ambiental.
+            </p>
+            <div class="course-metrics">
+              <div>
+                <div class="metric-value">40h+</div>
+                <div class="metric-label">Aulas Práticas</div>
+              </div>
+              <div>
+                <div class="metric-value">100%</div>
+                <div class="metric-label">Cases de Sucesso</div>
+              </div>
             </div>
+            <a href="/cursos/" class="btn btn-primary" id="btn-course-enroll-home" style="width: fit-content;">Conhecer o Curso</a>
           </div>
           
-          <div class="about-text" id="about-description-text">
-            <span class="section-subtitle">Fundador & Visão</span>
-            <h3>Unindo a Engenharia Florestal à Fronteira Tecnológica</h3>
-            <p>
-              A EcoAds foi idealizada por <strong>Jonathan Costa</strong>, Engenheiro Florestal formado pela UNICENTRO em Irati-PR. Atuando diretamente em campo com inventários florestais e licenciamento ambiental por mais de 5 anos, ele vivenciou de perto a grande lacuna do setor: profissionais excepcionais de campo limitados por ferramentas ultrapassadas e falta de posicionamento.
-            </p>
-            <p>
-              A EcoAds nasceu em 2019 com o compromisso de liderar a transformação digital desse mercado. Desenvolvemos aplicativos móveis dedicados a resolver a complexidade de campo e criamos estratégias de autoridade que conectam de fato as empresas florestais e ambientais ao mercado digital de forma extraordinária.
-            </p>
-            <a href="/sobre/" class="btn btn-secondary" id="btn-about-read-more">Conheça Nossa História</a>
+          <div class="course-visual-side">
+            <!-- Representação Simples de Funil de Tráfego -->
+            <svg width="200" height="160" viewBox="0 0 100 80" fill="none" stroke="var(--brand-green)" stroke-width="1">
+              <polygon points="10,10 90,10 65,45 35,45" stroke-dasharray="2,2" />
+              <polygon points="35,45 65,45 55,70 45,70" />
+              <text x="50" y="5" text-anchor="middle" fill="var(--light-text-secondary)" font-size="4" font-family="sans-serif">Anúncios Ambientais</text>
+              <text x="50" y="77" text-anchor="middle" fill="var(--brand-green)" font-size="4" font-family="sans-serif" font-weight="bold">Clientes Qualificados</text>
+            </svg>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 6. HUB DE FERRAMENTAS / SEO BAIT -->
-    <section class="section-padding tools-hub-home" id="section-tools">
+    <!-- 6. SOBRE A ECOADS / AUTORIDADE (Dobra Escura) -->
+    <section class="section-padding dobra-escura" id="sobre-dobra-escura">
+      <div class="container">
+        <div class="about-wrapper-home">
+          <div class="about-visual-frame" id="about-avatar-wrapper">
+            🌱
+          </div>
+          
+          <div class="about-text-side">
+            <span class="section-subtitle" style="color: var(--dark-text-secondary);">Fundação e Experiência</span>
+            <h2 class="about-title-home">Conheça a História por Trás da EcoAds</h2>
+            <p>
+              A EcoAds foi fundada por <strong>Jonathan Costa</strong>, Engenheiro Florestal formado pela UNICENTRO de Irati-PR. Com mais de 5 anos de experiência atuando diretamente com projetos de inventário florestal, licenciamento, manejo sustentável e consultoria técnica, Jonathan identificou uma lacuna crítica.
+            </p>
+            <p>
+              Empresas sérias e profissionais altamente qualificados eram praticamente invisíveis online, perdendo espaço no mercado para concorrentes com menor capacidade técnica, mas com melhor presença digital. 
+            </p>
+            <p>
+              A partir desse insight, nasceu a EcoAds: a única agência digital do Brasil especializada em unir a bagagem técnica florestal com estratégias de desenvolvimento e marketing de alta performance para o setor ambiental.
+            </p>
+            <a href="/sobre/" class="btn btn-secondary" id="btn-about-link-home" style="width: fit-content;">Ler Nossa História</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. HUB DE FERRAMENTAS (Dobra Clara) -->
+    <section class="section-padding dobra-clara" id="ferramentas-dobra-clara">
       <div class="container">
         <div class="section-header">
-          <span class="section-subtitle">Acesso Gratuito</span>
+          <span class="section-subtitle">Recursos Práticos</span>
           <h2 class="section-title">Nossas Ferramentas Online</h2>
-          <p class="section-desc">Disponibilizamos conversores e calculadoras homologados que aceleram cálculos complexos da engenharia e atraem milhares de profissionais mensalmente.</p>
+          <p class="section-desc">Disponibilizamos calculadoras técnicas e conversores gratuitos homologados para apoiar a rotina de engenharia e consultoria.</p>
         </div>
 
-        <div class="tools-grid-home" id="tools-grid-cards">
-          <!-- Tool 1 -->
-          <div class="glass-panel tool-card-home" id="card-tool-coord">
-            <div class="tool-card-header">
-              <div class="solution-icon" style="color: var(--accent-neon); border-color: rgba(0, 230, 118, 0.2);">
-                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-              </div>
-              <a href="/ferramentas/coordenadas.html" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.8rem;" id="btn-use-coord">Abrir Conversor</a>
-            </div>
-            <h3 class="tool-card-title">Conversor de Coordenadas</h3>
-            <p class="tool-card-desc">Converta instantaneamente coordenadas de entrada (Decimais, GMS ou UTM) entre os Datums oficiais brasileiros: SIRGAS 2000, WGS84, SAD69 e Córrego Alegre.</p>
+        <div class="tools-grid">
+          <!-- Coordenadas -->
+          <div class="tool-card" id="tool-coord-home">
+            <div class="tool-title">Conversor de Coordenadas</div>
+            <p class="tool-description">Realize a conversão rápida de coordenadas geográficas (GMS), decimais e UTM entre os datums SIRGAS 2000, WGS84, SAD69 e Córrego Alegre.</p>
+            <a href="/ferramentas/coordenadas.html" class="btn btn-secondary" id="btn-use-coord-home" style="width: fit-content;">Usar Conversor</a>
           </div>
 
-          <!-- Tool 2 -->
-          <div class="glass-panel tool-card-home" id="card-tool-units">
-            <div class="tool-card-header">
-              <div class="solution-icon" style="color: var(--accent-cyan); border-color: rgba(0, 229, 255, 0.2);">
-                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-              </div>
-              <a href="/ferramentas/unidades.html" class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.8rem;" id="btn-use-units">Abrir Conversor</a>
-            </div>
-            <h3 class="tool-card-title">Conversor de Unidades</h3>
-            <p class="tool-card-desc">Realize conversões técnicas precisas de volumes de madeira (m³/ha, estéreo por hectare), unidades de área (hectares, alqueires), declividade e DAP.</p>
+          <!-- Unidades -->
+          <div class="tool-card" id="tool-units-home">
+            <div class="tool-title">Conversor de Unidades Florestais</div>
+            <p class="tool-description">Converta unidades de volume de madeira, DAP, circunferência, hectares, alqueires, declividade e densidade sob normas florestais.</p>
+            <a href="/ferramentas/unidades.html" class="btn btn-secondary" id="btn-use-units-home" style="width: fit-content;">Usar Conversor</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 7. SEÇÃO CONTATO -->
-    <section class="section-padding" id="section-contact" style="background: radial-gradient(circle at bottom, rgba(0, 229, 255, 0.03), transparent 60%);">
+    <!-- 8. CONTATO (Dobra Clara-Alt) -->
+    <section class="section-padding dobra-clara-alt" id="contato-home">
       <div class="container">
-        <div class="section-header">
-          <span class="section-subtitle">Conexão</span>
-          <h2 class="section-title">Inicie sua Transformação Digital</h2>
-          <p class="section-desc">Agende um diagnóstico técnico florestal ou tire suas dúvidas sobre nossos softwares com nosso time.</p>
-        </div>
-
-        <div style="max-width: 600px; margin: 0 auto; text-align: center;" id="contact-cta-wrapper">
-          <div class="glass-panel" style="padding: 40px; border-color: var(--color-border-glow);">
-            <h3 style="font-size: 1.4rem; margin-bottom: 12px;">Vamos conversar?</h3>
-            <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 30px;">Estamos prontos para atender consultorias, gestores florestais e corporações que buscam inovação real.</p>
-            <div style="display: flex; flex-direction: column; gap: 16px;">
-              <a href="https://wa.me/5547920022746?text=Olá,%20gostaria%20de%20conversar%20sobre%20as%20soluções%20da%20EcoAds!" class="btn btn-primary" target="_blank" style="gap: 10px;" id="btn-whatsapp-contact">
-                <!-- Ícone Whatsapp -->
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.498 1.453 5.435 1.455 5.515 0 10.002-4.484 10.005-9.998.003-2.673-1.031-5.184-2.91-7.06C17.26 1.667 14.755.63 12.01.63 6.495.63 2.007 5.114 2.004 10.63c-.001 1.97.512 3.896 1.488 5.623L2.5 22.546l6.305-1.654c1.7.925 3.618 1.411 5.568 1.411H12.01zm7.747-11.238c-.3-.15-1.782-.88-2.057-.98-.275-.1-.475-.15-.675.15-.2.3-.775.98-.95 1.18-.175.2-.35.225-.65.075-.3-.15-1.265-.467-2.41-1.487-.89-.794-1.49-1.77-1.665-2.07-.175-.3-.02-.463.13-.61.137-.133.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.675-1.625-.925-2.225-.244-.589-.496-.51-.675-.52-.175-.01-.375-.01-.575-.01-.2 0-.525.075-.8.375-.275.3-1.05 1.025-1.05 2.5s1.075 2.9 1.225 3.1c.15.2 2.11 3.22 5.11 4.52.714.31 1.27.494 1.7.63.717.228 1.37.196 1.885.12.575-.085 1.782-.73 2.032-1.435.25-.705.25-1.31.175-1.435-.075-.125-.275-.2-.575-.35z"/></svg>
-                Chamar no WhatsApp
-              </a>
-              <a href="mailto:contato@ecoadsbr.com" class="btn btn-secondary" style="gap: 10px;" id="btn-email-contact">
-                <!-- Ícone Email -->
-                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                Enviar E-mail Direto
-              </a>
-            </div>
+        <div class="contact-card">
+          <h3 class="contact-card-title">Pronto para Dominar o Mercado?</h3>
+          <p class="contact-card-desc">Fale com quem realmente entende os desafios e oportunidades do mercado florestal e ambiental. Vamos criar a sua presença digital de alta performance.</p>
+          <div class="contact-actions">
+            <a href="https://wa.me/5547920022746?text=Olá!%20Estava%20navegando%20no%20site%20da%20EcoAds%20e%20quero%20iniciar%20um%20atendimento." class="btn btn-primary" target="_blank" style="gap: 10px;" id="btn-whatsapp-action">
+              <!-- Ícone Whatsapp -->
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.498 1.453 5.435 1.455 5.515 0 10.002-4.484 10.005-9.998.003-2.673-1.031-5.184-2.91-7.06C17.26 1.667 14.755.63 12.01.63 6.495.63 2.007 5.114 2.004 10.63c-.001 1.97.512 3.896 1.488 5.623L2.5 22.546l6.305-1.654c1.7.925 3.618 1.411 5.568 1.411H12.01zm7.747-11.238c-.3-.15-1.782-.88-2.057-.98-.275-.1-.475-.15-.675.15-.2.3-.775.98-.95 1.18-.175.2-.35.225-.65.075-.3-.15-1.265-.467-2.41-1.487-.89-.794-1.49-1.77-1.665-2.07-.175-.3-.02-.463.13-.61.137-.133.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.675-1.625-.925-2.225-.244-.589-.496-.51-.675-.52-.175-.01-.375-.01-.575-.01-.2 0-.525.075-.8.375-.275.3-1.05 1.025-1.05 2.5s1.075 2.9 1.225 3.1c.15.2 2.11 3.22 5.11 4.52.714.31 1.27.494 1.7.63.717.228 1.37.196 1.885.12.575-.085 1.782-.73 2.032-1.435.25-.705.25-1.31.175-1.435-.075-.125-.275-.2-.575-.35z"/></svg>
+              Falar no WhatsApp
+            </a>
+            <a href="mailto:contato@ecoadsbr.com" class="btn btn-secondary" style="gap: 10px;" id="btn-email-action">
+              <!-- Ícone Mail -->
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              Enviar E-mail
+            </a>
           </div>
         </div>
       </div>
@@ -1047,70 +757,64 @@
   </main>
 
   <!-- ==========================================
-       FOOTER (Rodapé Refinado)
+       FOOTER (Rodapé Corporativo)
        ========================================== -->
-  <footer class="main-footer">
+  <footer class="main-footer" id="main-footer-v2">
     <div class="container">
       <div class="footer-grid">
         
-        <!-- Coluna 1: Marca -->
-        <div class="footer-brand" id="footer-branding-col">
-          <a href="/" class="logo" id="footer-logo">
-            <div class="logo-icon">E</div>
-            Eco<span>Ads</span>
-          </a>
+        <!-- Marca -->
+        <div class="footer-brand" id="footer-branding-info">
+          <img src="/src/assets/logo.png" alt="EcoAds Logo" class="footer-logo-img" id="footer-logo-image">
           <p>
-            A primeira Forest & Climate Tech da América Latina focada na inteligência e transformação digital de dados ambientais, florestais e territoriais.
+            A única agência digital do Brasil especializada exclusivamente no desenvolvimento e posicionamento de empresas e profissionais do setor ambiental e florestal.
           </p>
           <div class="footer-socials">
             <a href="https://instagram.com/ecoads.br" class="social-icon" target="_blank" aria-label="Instagram">
-              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"></path></svg>
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"></path></svg>
             </a>
             <a href="https://linkedin.com" class="social-icon" target="_blank" aria-label="LinkedIn">
-              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 2a2 2 0 110 4 2 2 0 010-4z"></path></svg>
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 2a2 2 0 110 4 2 2 0 010-4z"></path></svg>
             </a>
           </div>
         </div>
 
-        <!-- Coluna 2: Navegação -->
-        <div id="footer-nav-col">
+        <!-- Navegação -->
+        <div id="footer-links-navigation">
           <h4 class="footer-title">Navegação</h4>
           <ul class="footer-links">
-            <li><a href="/" id="footer-link-home">Home</a></li>
-            <li><a href="/servicos/" id="footer-link-solucoes">Soluções & Tecnologia</a></li>
-            <li><a href="/apps/" id="footer-link-apps">Aplicativos Mobile</a></li>
-            <li><a href="/cursos/" id="footer-link-cursos">Treinamentos</a></li>
-            <li><a href="/sobre/" id="footer-link-sobre">Sobre Nós</a></li>
+            <li><a href="/" id="footer-home">Home</a></li>
+            <li><a href="/servicos/" id="footer-solucoes">Serviços</a></li>
+            <li><a href="/apps/" id="footer-apps">Apps</a></li>
+            <li><a href="/cursos/" id="footer-cursos">Cursos</a></li>
+            <li><a href="/sobre/" id="footer-sobre">Sobre</a></li>
           </ul>
         </div>
 
-        <!-- Coluna 3: Ferramentas -->
-        <div id="footer-tools-col">
+        <!-- Ferramentas -->
+        <div id="footer-tools-navigation">
           <h4 class="footer-title">Ferramentas</h4>
           <ul class="footer-links">
-            <li><a href="/ferramentas/" id="footer-link-hub">Hub de Calculadoras</a></li>
-            <li><a href="/ferramentas/coordenadas.html" id="footer-link-coord">Conversor de Coordenadas</a></li>
-            <li><a href="/ferramentas/unidades.html" id="footer-link-units">Conversor de Unidades</a></li>
+            <li><a href="/ferramentas/" id="footer-tools-hub">Hub de Conversores</a></li>
+            <li><a href="/ferramentas/coordenadas.html" id="footer-tools-coord">Conversor de Coordenadas</a></li>
+            <li><a href="/ferramentas/unidades.html" id="footer-tools-units">Conversor de Unidades</a></li>
           </ul>
         </div>
 
-        <!-- Coluna 4: Contato -->
-        <div id="footer-contact-col">
-          <h4 class="footer-title">Contato & Suporte</h4>
+        <!-- Contato -->
+        <div id="footer-contact-details">
+          <h4 class="footer-title">Contato</h4>
           <ul class="footer-contact-info">
             <li>
-              <!-- Ícone MapPin -->
-              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
               <span>Irati — Paraná, Brasil</span>
             </li>
             <li>
-              <!-- Ícone Phone -->
-              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
               <span>+55 (47) 92002-2746</span>
             </li>
             <li>
-              <!-- Ícone Mail -->
-              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
               <span>contato@ecoadsbr.com</span>
             </li>
           </ul>
@@ -1118,10 +822,10 @@
 
       </div>
 
-      <!-- Barra de Copyright -->
+      <!-- Barra de Direitos -->
       <div class="footer-bottom">
-        <p>&copy; <span id="current-year"></span> EcoAds. Todos os direitos reservados. | CNPJ: 50.123.456/0001-01</p>
-        <p>Desenvolvido por EcoAds Tech Team</p>
+        <p>&copy; <span id="current-year"></span> EcoAds. Todos os direitos reservados.</p>
+        <p>CNPJ: 50.123.456/0001-01</p>
       </div>
     </div>
   </footer>

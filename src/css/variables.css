@@ -1,40 +1,45 @@
-/* Design System & Tokens - EcoAds V2 */
+/* Design System & Tokens - EcoAds V2 (Versão Corporativa) */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Cores - Paleta Deep Tech / Forest Tech */
-  --bg-primary: #030f0a;       /* Verde florestal ultra-escuro */
-  --bg-secondary: #081410;     /* Tom ligeiramente mais claro para cards/seções */
-  --bg-tertiary: #0c1c17;      /* Para hovers e elementos destacados */
-  
-  --color-border: rgba(0, 230, 118, 0.15); /* Borda verde neon sutil */
-  --color-border-glow: rgba(0, 229, 255, 0.25); /* Borda ciano sutil */
+  /* Cores - Tema Escuro (Dobras Escuras) */
+  --dark-bg-primary: #071511;       /* Verde florestal ultra-escuro sóbrio */
+  --dark-bg-secondary: #0d1f1a;     /* Tom médio para painéis e cards escuros */
+  --dark-bg-tertiary: #142a24;      /* Tom de realce escuro */
+  --dark-text-primary: #f4f8f6;     /* Branco suave com leve tom esverdeado */
+  --dark-text-secondary: #9cb1a9;   /* Cinza esverdeado claro */
+  --dark-text-muted: #5e766e;       /* Cinza escuro para detalhes sutil */
+  --dark-border: rgba(244, 248, 246, 0.08); /* Borda escura sutil */
 
-  /* Cores de Destaque */
-  --accent-neon: #00e676;      /* Verde neon tecnológico */
-  --accent-cyan: #00e5ff;      /* Azul ciano GIS/dados */
-  --accent-neon-glow: rgba(0, 230, 118, 0.4);
-  --accent-cyan-glow: rgba(0, 229, 255, 0.4);
+  /* Cores - Tema Claro (Dobras Claras) */
+  --light-bg-primary: #ffffff;      /* Branco puro */
+  --light-bg-secondary: #f3f7f5;    /* Cinza esverdeado bem claro e fresco */
+  --light-bg-tertiary: #e6ede9;     /* Tom de realce claro */
+  --light-text-primary: #0b1a16;    /* Verde florestal quase preto */
+  --light-text-secondary: #475a53;  /* Cinza esverdeado médio */
+  --light-text-muted: #7f968e;      /* Cinza esverdeado claro para detalhes */
+  --light-border: rgba(11, 26, 22, 0.08); /* Borda clara sutil */
 
-  /* Texto */
-  --text-primary: #eaf2ef;     /* Branco suave */
-  --text-secondary: #a3b8b0;   /* Cinza esverdeado de dados */
-  --text-muted: #627c73;       /* Cinza escuro para detalhes secundários */
+  /* Cores da Marca & Destaques (Sóbrios) */
+  --brand-green: #1b4332;           /* Verde florestal institucional */
+  --brand-green-accent: #2d6a4f;    /* Verde intermediário de destaque */
+  --brand-blue: #0077b6;            /* Azul corporativo técnico (GIS) */
+  --brand-cyan: #0a9396;            /* Ciano sóbrio para destaques pontuais */
 
-  /* Fontes */
+  /* Tipografia */
   --font-title: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
 
   /* Efeitos */
-  --glass-bg: rgba(8, 20, 16, 0.7);
-  --glass-backdrop: blur(12px);
+  --shadow-light: 0 4px 20px rgba(11, 26, 22, 0.04);
+  --shadow-medium: 0 10px 30px rgba(11, 26, 22, 0.06);
+  --shadow-dark: 0 15px 45px rgba(0, 0, 0, 0.35);
   
-  /* Transições e Animações */
   --transition-fast: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Layout */
-  --max-width: 1280px;
+  --max-width: 1200px;
   --header-height: 80px;
 }

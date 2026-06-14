@@ -7,6 +7,7 @@
   <meta name="description" content="Desenvolvemos sites, plataformas, aplicativos e estratégias de posicionamento de alta performance para o setor florestal, ambiental e geotecnologias.">
   
   <!-- Favicon -->
+  <link rel="icon" href="/src/assets/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/src/assets/logo.png" type="image/png">
 
   <!-- Estilos Globais -->
@@ -143,13 +144,13 @@
     <section class="section-padding" id="servicos-dobra-clara">
       <div class="container">
         <div class="section-header">
-          <span class="section-subtitle">Nossos Serviços</span>
+          <span class="section-subtitle">Principais Serviços</span>
           <h2 class="section-title">Como podemos ajudar a sua Empresa</h2>
           <p class="section-desc">Estruturas digitais completas desenvolvidas especificamente para consultores ambientais, engenheiros florestais e empresas do setor.</p>
         </div>
 
         <div class="services-grid" id="servicos-reais-grid">
-          
+
           <!-- Site Especializado -->
           <div class="service-card" id="card-sites">
             <div class="service-icon-wrapper">
@@ -159,13 +160,13 @@
             <p class="service-text">Desenvolvidos especificamente para consultores ambientais e empresas do setor. Um design moderno que transmite credibilidade e profundo conhecimento técnico.</p>
           </div>
 
-          <!-- Tráfego Pago -->
-          <div class="service-card" id="card-trafego">
+          <!-- Treinamento de Equipe -->
+          <div class="service-card" id="card-treinamento">
             <div class="service-icon-wrapper">
-              <iconify-icon icon="solar:graph-new-linear" width="20"></iconify-icon>
+              <iconify-icon icon="solar:presentation-graph-linear" width="20"></iconify-icon>
             </div>
-            <h3 class="service-title">Gestão de Tráfego Pago</h3>
-            <p class="service-text">Campanhas de Google Ads e Meta Ads com estratégias específicas para o mercado florestal e ambiental. Otimizadas para gerar leads de empresas que precisam de serviços ambientais.</p>
+            <h3 class="service-title">Treinamento de Equipe em Tecnologia</h3>
+            <p class="service-text">Capacitação prática para equipes do setor florestal e ambiental na adoção de ferramentas digitais, softwares de geoprocessamento e IA aplicada à rotina técnica.</p>
           </div>
 
           <!-- Posicionamento Digital -->
@@ -187,6 +188,11 @@
           </div>
 
         </div>
+
+        <div style="text-align:center; margin-top:40px;">
+          <a href="/servicos/" class="btn btn-secondary">Ver todos os serviços</a>
+        </div>
+
       </div>
     </section>
 
@@ -257,29 +263,6 @@
 
         </div>
 
-        <!-- Stats Grid de Impacto -->
-        <div class="stats-grid">
-          <div class="stat-item">
-            <span class="stat-value">15k+</span>
-            <span class="stat-label">Árvores Registradas</span>
-            <span class="stat-desc">Dendrologia em tempo real</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-value">100%</span>
-            <span class="stat-label">Precisão Técnica</span>
-            <span class="stat-desc">Eliminação de erros manuais</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-value">240+</span>
-            <span class="stat-label">Profissionais</span>
-            <span class="stat-desc">Capacitados digitalmente</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-value">&lt; 5ms</span>
-            <span class="stat-label">Latência GIS</span>
-            <span class="stat-desc">Renderização rápida de mapas</span>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -481,13 +464,13 @@
 
             <div class="map-cta-card">
               <div class="map-cta-icon">
-                <iconify-icon icon="solar:map-point-wave-linear" width="24"></iconify-icon>
+                <iconify-icon icon="solar:buildings-2-linear" width="24"></iconify-icon>
               </div>
-              <h3 class="map-cta-title">Seu estado está disponível!</h3>
-              <p class="map-cta-desc">Somos 100% remotos e atendemos consultores ambientais, engenheiros florestais e empresas do setor em qualquer estado do Brasil.</p>
+              <h3 class="map-cta-title">Ajudamos empresas a crescer em todo o Brasil</h3>
+              <p class="map-cta-desc">Somos 100% remotos. Independente do estado, levamos tecnologia especializada e posicionamento digital para consultores, engenheiros e empresas do setor ambiental.</p>
               <a href="https://wa.me/5547920022746?text=Olá!%20Quero%20iniciar%20um%20projeto%20com%20a%20EcoAds." class="btn btn-primary" target="_blank">
                 <iconify-icon icon="ic:baseline-whatsapp" width="16"></iconify-icon>
-                Iniciar Projeto
+                Falar com a Equipe
               </a>
             </div>
           </div>
@@ -639,20 +622,22 @@
             var code   = parseInt(path.id || '', 10);
             var active = ACTIVE.has(code);
 
-            path.style.fill        = active ? 'rgba(0,255,102,0.18)' : 'rgba(255,255,255,0.04)';
-            path.style.stroke      = active ? '#00ff66'              : 'rgba(255,255,255,0.18)';
-            path.style.strokeWidth = active ? '1.2'                  : '0.7';
+            /* Contorno: ativos em verde, disponíveis só outline */
+            path.style.fill        = active ? 'rgba(0,255,102,0.15)' : 'transparent';
+            path.style.stroke      = active ? '#00ff66'              : 'rgba(255,255,255,0.28)';
+            path.style.strokeWidth = active ? '1.5'                  : '0.8';
             path.style.cursor      = 'pointer';
-            path.style.transition  = 'fill 0.15s ease';
+            path.style.transition  = 'fill 0.15s ease, stroke 0.15s ease';
 
             path.addEventListener('mouseenter', function () {
-              path.style.fill = active ? 'rgba(0,255,102,0.35)' : 'rgba(0,255,102,0.08)';
+              path.style.fill   = active ? 'rgba(0,255,102,0.30)' : 'rgba(255,255,255,0.06)';
+              path.style.stroke = active ? '#00ff66' : 'rgba(255,255,255,0.55)';
               var name = STATE_NAMES[code] || 'Estado';
               tooltip.innerHTML =
                 '<div class="tt-name">' + name + '</div>' +
                 '<div class="tt-status ' + (active ? 'active' : 'available') + '">' +
                 '<span class="tt-dot"></span>' +
-                (active ? 'Projeto realizado' : 'Disponível para iniciar') +
+                (active ? 'Projeto realizado' : 'Disponível para atender') +
                 '</div>';
               tooltip.classList.add('visible');
             });
@@ -664,7 +649,8 @@
             });
 
             path.addEventListener('mouseleave', function () {
-              path.style.fill = active ? 'rgba(0,255,102,0.18)' : 'rgba(255,255,255,0.04)';
+              path.style.fill   = active ? 'rgba(0,255,102,0.15)' : 'transparent';
+              path.style.stroke = active ? '#00ff66' : 'rgba(255,255,255,0.28)';
               tooltip.classList.remove('visible');
             });
           });

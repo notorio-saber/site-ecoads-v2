@@ -1967,19 +1967,21 @@ body.tools-light h3 { color: #0d1a0d; }
 
 .map-layout {
   display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 48px;
+  grid-template-columns: 1fr 280px;
+  gap: 40px;
   align-items: start;
-  margin-top: 48px;
+  margin-top: 40px;
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Wrapper do SVG */
 .map-wrapper {
   position: relative;
-  background: rgba(255, 255, 255, 0.015);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 20px;
+  background: transparent;
+  border-radius: 12px;
+  padding: 8px;
 }
 
 /* SVG gerado pelo D3.js */

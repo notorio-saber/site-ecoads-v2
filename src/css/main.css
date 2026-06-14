@@ -2074,16 +2074,15 @@ body.tools-light .section-subtitle { color: var(--brand-green); }
 body.tools-light .service-icon-wrapper {
   background: rgba(0,155,59,0.06);
   border-color: rgba(0,155,59,0.15);
-  color: var(--brand-green);
+  /* color controlled per-card via inline style */
 }
-body.tools-light .btn-secondary {
+body.tools-light .btn-secondary:not([style*="color"]) {
   border-color: rgba(0,155,59,0.3);
   color: var(--brand-green);
   background: transparent;
 }
 body.tools-light .btn-secondary:hover {
-  background: rgba(0,155,59,0.08);
-  border-color: var(--brand-green);
+  background: rgba(0,155,59,0.06);
 }
 /* Tool page inner elements */
 body.tools-light .tool-card-desc,

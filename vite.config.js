@@ -16,6 +16,8 @@ export default defineConfig({
         calcularApp: resolve(__dirname, 'ferramentas/calcular-app-rio/index.html'),
         calcularRL: resolve(__dirname, 'ferramentas/calcular-reserva-legal/index.html'),
         visualizadorGis: resolve(__dirname, 'ferramentas/visualizador-gis-online/index.html'),
+        calcularAreaBasal: resolve(__dirname, 'ferramentas/calcular-area-basal/index.html'),
+        calcularArvoresHa: resolve(__dirname, 'ferramentas/calcular-arvores-por-hectare/index.html'),
       }
     }
   }

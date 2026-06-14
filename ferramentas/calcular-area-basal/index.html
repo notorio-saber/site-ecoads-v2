@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Área Basal | Inventário Florestal — EcoAds</title>
+  <meta name="description" content="Calcule a área basal individual (m²/árvore), a área basal da parcela e o G/ha a partir do DAP. Ferramenta gratuita para inventário florestal conforme NBR 16.700.">
+  <meta name="keywords" content="calcular área basal, G ha floresta, DAP área basal, inventário florestal, área basal por hectare, fórmula área basal, área seccional árvore">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="EcoAds">
+
+  <meta property="og:title" content="Calculadora de Área Basal — Inventário Florestal | EcoAds">
+  <meta property="og:description" content="Calcule a área basal (G) de árvores e parcelas florestais a partir do DAP. Resultado em m²/árvore e m²/ha.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ecoadsbr.com/ferramentas/calcular-area-basal/">
+  <meta property="og:site_name" content="EcoAds">
+
+  <link rel="canonical" href="https://ecoadsbr.com/ferramentas/calcular-area-basal/">
+  <link rel="icon" href="/src/assets/logo.png" type="image/png">
+  <link rel="stylesheet" href="/src/css/main.css">
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Calculadora de Área Basal para Inventário Florestal",
+    "description": "Ferramenta gratuita para calcular a área basal de árvores e parcelas florestais a partir do DAP, com extrapolação para G/ha.",
+    "author": { "@type": "Organization", "name": "EcoAds", "url": "https://ecoadsbr.com" },
+    "publisher": { "@type": "Organization", "name": "EcoAds" },
+    "inLanguage": "pt-BR"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "O que é área basal de uma árvore?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A área basal (g) de uma árvore é a área da seção transversal do tronco medida a 1,30 m do solo (DAP — diâmetro à altura do peito). É calculada pela fórmula g = π/4 × (DAP em metros)², expressa em m²."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O que é G/ha no inventário florestal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "G/ha (ou área basal por hectare) é a soma das áreas basais de todas as árvores em um hectare, expressa em m²/ha. É um dos indicadores mais importantes de densidade e produtividade de um povoamento florestal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Como calcular a área basal a partir do DAP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A fórmula é: AB = π/4 × d² onde d é o DAP em metros. Simplificando: AB (m²) = 0,00007854 × DAP_cm². Para o G/ha, some as áreas basais de todas as árvores da parcela e extrapole para 10.000 m²: G/ha = AB_parcela × (10.000/área_parcela)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Qual o G/ha típico de plantios florestais no Brasil?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Plantios de eucalipto no Brasil geralmente atingem 15–25 m²/ha aos 6–7 anos de rotação. Pinus pode atingir 25–40 m²/ha em rotações mais longas. Florestas nativas densas da Amazônia podem superar 30 m²/ha."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Onde medir o DAP em árvores bifurcadas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Em árvores bifurcadas abaixo de 1,30 m, cada fuste é medido separadamente e contabilizado como árvore individual. Se a bifurcação ocorre acima de 1,30 m, mede-se o DAP abaixo da bifurcação."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ecoadsbr.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Ferramentas", "item": "https://ecoadsbr.com/ferramentas/" },
+      { "@type": "ListItem", "position": 3, "name": "Calculadora de Área Basal", "item": "https://ecoadsbr.com/ferramentas/calcular-area-basal/" }
+    ]
+  }
+  </script>
+
+  <style>
+    .tool-page-hero { padding: 140px 0 60px; }
+
+    .tool-card {
+      background: rgba(10, 10, 10, 0.80);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 18px;
+      padding: 40px;
+      max-width: 820px;
+      margin: 0 auto 80px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+    }
+    .tool-card-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--brand-green-accent);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .tool-card h2 { font-size: 1.6rem; margin-bottom: 8px; }
+    .tool-card-desc {
+      color: var(--dark-text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+
+    .input-group { margin-bottom: 18px; }
+    .input-label {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: 7px;
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .input-field {
+      width: 100%;
+      padding: 13px 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 10px;
+      color: #ffffff;
+      font-size: 1rem;
+      font-family: var(--font-body);
+      outline: none;
+      transition: var(--transition-fast);
+      box-sizing: border-box;
+    }
+    textarea.input-field {
+      resize: vertical;
+      min-height: 110px;
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+    .input-field:focus {
+      border-color: var(--brand-green-accent);
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 20px rgba(0, 255, 102, 0.12);
+    }
+    .input-field::placeholder { color: rgba(255, 255, 255, 0.25); }
+
+    .input-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .calc-btn {
+      width: 100%;
+      padding: 14px 24px;
+      background: var(--brand-green-accent);
+      color: #030303;
+      border: none;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: var(--font-body);
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: var(--transition-fast);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .calc-btn:hover {
+      background: #00cc55;
+      box-shadow: 0 8px 30px rgba(0, 255, 102, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .result-box {
+      margin-top: 28px;
+      display: none;
+    }
+    .result-box.visible { display: block; }
+
+    .result-hero {
+      padding: 28px;
+      background: rgba(0, 255, 102, 0.04);
+      border: 1px solid rgba(0, 255, 102, 0.15);
+      border-radius: 14px;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+    .result-hero-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.45);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .result-hero-value {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--brand-green-accent);
+      font-family: var(--font-title);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .result-hero-unit {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.5);
+      margin-left: 4px;
+    }
+
+    .result-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .result-metric {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 18px 16px;
+      text-align: center;
+    }
+    .result-metric-label {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .result-metric-value {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #ffffff;
+      font-family: var(--font-title);
+    }
+    .result-metric-unit {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      margin-left: 3px;
+    }
+    .result-article {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      color: var(--brand-green-accent);
+      background: rgba(0, 255, 102, 0.08);
+      border: 1px solid rgba(0, 255, 102, 0.18);
+      padding: 6px 14px;
+      border-radius: 6px;
+    }
+
+    .error-box {
+      margin-top: 16px;
+      padding: 12px 18px;
+      background: rgba(255, 60, 60, 0.07);
+      border: 1px solid rgba(255, 60, 60, 0.2);
+      border-radius: 10px;
+      color: #ff8080;
+      font-size: 0.85rem;
+      display: none;
+    }
+    .error-box.visible { display: block; }
+
+    .hint {
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.3);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.35);
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .breadcrumb a { color: rgba(255, 255, 255, 0.45); transition: var(--transition-fast); }
+    .breadcrumb a:hover { color: var(--brand-green-accent); }
+    .breadcrumb-sep { color: rgba(255, 255, 255, 0.2); }
+    .breadcrumb-current { color: rgba(255, 255, 255, 0.6); }
+
+    /* SEO Content */
+    .seo-content { max-width: 860px; margin: 0 auto; padding-bottom: 80px; }
+    .seo-content h2 {
+      font-size: 1.5rem;
+      margin-top: 56px;
+      margin-bottom: 16px;
+      color: #ffffff;
+      position: relative;
+      padding-left: 18px;
+    }
+    .seo-content h2::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 4px; height: 70%;
+      background: var(--brand-green-accent);
+      border-radius: 2px;
+    }
+    .seo-content h3 { font-size: 1.1rem; margin-top: 28px; margin-bottom: 10px; color: rgba(255,255,255,0.9); }
+    .seo-content p { color: var(--dark-text-secondary); line-height: 1.8; margin-bottom: 16px; font-size: 0.95rem; }
+    .seo-content ul, .seo-content ol { color: var(--dark-text-secondary); line-height: 1.8; padding-left: 24px; margin-bottom: 16px; font-size: 0.95rem; }
+    .seo-content li { margin-bottom: 6px; }
+    .seo-content strong { color: rgba(255,255,255,0.85); }
+
+    .ab-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.88rem;
+    }
+    .ab-table th {
+      background: rgba(0, 255, 102, 0.07);
+      border: 1px solid rgba(255,255,255,0.07);
+      padding: 12px 16px;
+      text-align: left;
+      color: rgba(255,255,255,0.75);
+      font-weight: 500;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .ab-table td {
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 12px 16px;
+      color: var(--dark-text-secondary);
+    }
+    .ab-table tr:hover td { background: rgba(255,255,255,0.02); color: rgba(255,255,255,0.8); }
+    .ab-table td:last-child { color: var(--brand-green-accent); font-weight: 600; }
+
+    .example-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .example-card h3 { margin-top: 0 !important; font-size: 0.95rem; color: var(--brand-green-accent); margin-bottom: 10px !important; }
+
+    .faq-list { display: flex; flex-direction: column; gap: 0; margin-top: 20px; }
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .faq-question {
+      width: 100%; background: none; border: none;
+      padding: 18px 0; text-align: left;
+      color: rgba(255,255,255,0.85); font-size: 0.95rem;
+      font-family: var(--font-body); cursor: pointer;
+      display: flex; justify-content: space-between;
+      align-items: center; gap: 16px;
+      transition: var(--transition-fast);
+    }
+    .faq-question:hover { color: var(--brand-green-accent); }
+    .faq-question iconify-icon { flex-shrink: 0; transition: transform 0.25s ease; color: rgba(255,255,255,0.3); }
+    .faq-item.open .faq-question iconify-icon { transform: rotate(180deg); color: var(--brand-green-accent); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .faq-item.open .faq-answer { max-height: 500px; }
+    .faq-answer-inner { padding: 0 0 20px; color: var(--dark-text-secondary); font-size: 0.9rem; line-height: 1.75; }
+
+    .related-tools-section {
+      padding: 60px 0 80px;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .related-tools-section h2 { font-size: 1.3rem; margin-bottom: 24px; color: rgba(255,255,255,0.75); font-weight: 400; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    .related-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 20px;
+      transition: var(--transition-fast);
+      display: flex; flex-direction: column; gap: 10px;
+      text-decoration: none;
+    }
+    .related-card:hover { background: rgba(0,255,102,0.04); border-color: rgba(0,255,102,0.2); transform: translateY(-2px); }
+    .related-card iconify-icon { color: var(--brand-green-accent); font-size: 1.3rem; }
+    .related-card span { font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.4; }
+
+    @media (max-width: 640px) {
+      .tool-card { padding: 24px 20px; }
+      .input-row { grid-template-columns: 1fr; }
+      .result-metrics { grid-template-columns: 1fr 1fr; }
+      .result-hero-value { font-size: 2.6rem; }
+    }
+  </style>
+</head>
+<body class="tools-light">
+
+  <div class="bg-atmosphere">
+    <div class="glow-top-beam"></div>
+    <div class="interference-conic"></div>
+    <div class="vignette-overlay"></div>
+  </div>
+
+  <header class="main-header" id="main-header-v2">
+    <div class="container header-container">
+      <a href="/" class="header-logo-link" id="logo-link">
+        <img src="/src/assets/logo.png" alt="EcoAds Logo" class="header-logo-img" id="header-logo-image">
+      </a>
+      <nav class="nav-menu" id="navigation-menu-links">
+        <div class="nav-hover-pill"></div>
+        <a href="/" class="nav-link" id="menu-home">Home</a>
+        <a href="/servicos/" class="nav-link" id="menu-solucoes">Serviços</a>
+        <a href="/apps/" class="nav-link" id="menu-apps">Apps</a>
+        <a href="/cursos/" class="nav-link" id="menu-cursos">Cursos</a>
+        <a href="/ferramentas/" class="nav-link active" id="menu-ferramentas">Ferramentas</a>
+        <a href="/sobre/" class="nav-link" id="menu-sobre">Sobre</a>
+        <a href="https://wa.me/5547920022746?text=Olá!%20Estava%20navegando%20no%20site%20da%20EcoAds%20e%20quero%20iniciar%20um%20atendimento." class="header-cta header-cta-mobile" id="cta-mobile-nav" target="_blank">Atendimento</a>
+      </nav>
+      <a href="https://wa.me/5547920022746?text=Olá!%20Estava%20navegando%20no%20site%20da%20EcoAds%20e%20quero%20iniciar%20um%20atendimento." class="header-cta" id="cta-desktop-nav" target="_blank">Atendimento</a>
+      <button class="menu-toggle" id="menu-toggle-btn" aria-label="Abrir Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section-padding" style="padding-top: 140px;">
+      <div class="container">
+
+        <!-- Ferramenta -->
+        <div class="tool-card">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span class="breadcrumb-sep">/</span>
+            <a href="/ferramentas/">Ferramentas</a>
+            <span class="breadcrumb-sep">/</span>
+            <span class="breadcrumb-current">Calculadora de Área Basal</span>
+          </nav>
+
+          <span class="tool-card-label">Inventário Florestal</span>
+          <h2>Calculadora de Área Basal</h2>
+          <p class="tool-card-desc">
+            Insira os valores de DAP (diâmetro à altura do peito, em cm) das árvores medidas. A ferramenta calcula a área basal individual, a soma da parcela e extrapola para G/ha — o principal indicador de densidade de um plantio ou floresta nativa.
+          </p>
+
+          <div class="input-group">
+            <label class="input-label" for="dapInput">DAP das Árvores (cm) — um valor por linha ou separados por vírgula</label>
+            <textarea class="input-field" id="dapInput" placeholder="Ex:&#10;18.5&#10;22.3&#10;15.0&#10;30.2&#10;19.8"></textarea>
+            <p class="hint">Mínimo: 1 valor. Para G/ha, informe também a área da parcela.</p>
+          </div>
+
+          <div class="input-row">
+            <div class="input-group" style="margin-bottom:0;">
+              <label class="input-label" for="plotArea">Área da Parcela (m²) <span style="opacity:0.5;font-size:0.7em;">opcional</span></label>
+              <input type="number" class="input-field" id="plotArea" placeholder="Ex: 400" min="1" step="any">
+            </div>
+            <div class="input-group" style="margin-bottom:0;">
+              <label class="input-label" for="dapUnit">Unidade do DAP</label>
+              <select class="input-field" id="dapUnit">
+                <option value="cm" selected>Centímetros (cm)</option>
+                <option value="mm">Milímetros (mm)</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="calc-btn" onclick="calcularAreaBasal()" style="margin-top:20px;">
+            <iconify-icon icon="solar:calculator-minimalistic-linear" width="16"></iconify-icon>
+            Calcular Área Basal
+          </button>
+
+          <div class="error-box" id="errorBox">
+            Insira pelo menos um valor de DAP válido (número positivo).
+          </div>
+
+          <div class="result-box" id="resultBox">
+            <div class="result-hero">
+              <span class="result-hero-label">Área Basal por Hectare (G/ha)</span>
+              <span class="result-hero-value" id="gHa">—</span>
+              <span class="result-hero-unit" id="gHaUnit">m²/ha</span>
+              <p id="semParcela" style="font-size:0.78rem;color:rgba(255,255,255,0.35);margin:8px 0 0;display:none;">Informe a área da parcela para calcular o G/ha</p>
+            </div>
+
+            <div class="result-metrics">
+              <div class="result-metric">
+                <span class="result-metric-label">Nº de Árvores</span>
+                <span class="result-metric-value" id="nTrees">—</span>
+              </div>
+              <div class="result-metric">
+                <span class="result-metric-label">AB Média / Árvore</span>
+                <div>
+                  <span class="result-metric-value" id="abMean">—</span>
+                  <span class="result-metric-unit">m²</span>
+                </div>
+              </div>
+              <div class="result-metric">
+                <span class="result-metric-label">AB Total Parcela</span>
+                <div>
+                  <span class="result-metric-value" id="abParcela">—</span>
+                  <span class="result-metric-unit">m²</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="result-article">
+              <iconify-icon icon="solar:book-2-linear" width="14"></iconify-icon>
+              <span>Fórmula: g = π/4 × (DAP/100)² m² &nbsp;|&nbsp; G/ha = G_parcela × (10.000 / área_parcela)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEO Content -->
+        <article class="seo-content">
+
+          <h2>O que é área basal no inventário florestal</h2>
+          <p>
+            A <strong>área basal</strong> (ou área seccional) de uma árvore é a área da seção transversal do tronco medida à altura padrão de 1,30 m do solo — o ponto de medição do <strong>DAP (Diâmetro à Altura do Peito)</strong>. Ela é expressa em metros quadrados (m²) por árvore e calculada pela fórmula da área do círculo:
+          </p>
+          <p>
+            <strong>g = π/4 × d²</strong>, onde <em>d</em> é o DAP em metros.
+          </p>
+          <p>
+            Quando somamos a área basal de todas as árvores de um hectare, obtemos o <strong>G/ha</strong> — a área basal por hectare, expressa em m²/ha. O G/ha é um dos parâmetros dendrométricos mais utilizados em inventários florestais pois correlaciona-se diretamente com o volume de madeira, a biomassa e a competição entre indivíduos no talhão.
+          </p>
+
+          <h2>Fórmula da área basal: passo a passo</h2>
+          <p>
+            Como o DAP é medido em centímetros em campo, a conversão para metros é necessária antes da aplicação da fórmula. A forma mais prática é usar o fator de conversão direto:
+          </p>
+          <p>
+            <strong>g (m²) = 0,00007854 × DAP_cm²</strong>
+          </p>
+          <p>
+            Esse fator corresponde a π/40000. Por exemplo, uma árvore com DAP de 20 cm terá área basal de: 0,00007854 × 400 = <strong>0,03142 m²</strong>.
+          </p>
+
+          <h3>Extrapolação para G/ha</h3>
+          <p>
+            Para obter a área basal por hectare a partir de uma parcela de inventário:
+          </p>
+          <ol>
+            <li>Meça o DAP de todas as árvores dentro da parcela;</li>
+            <li>Calcule a área basal de cada árvore com g = 0,00007854 × DAP²;</li>
+            <li>Some todas as áreas basais: G_parcela = Σg;</li>
+            <li>Extrapole para hectare: <strong>G/ha = G_parcela × (10.000 / área_parcela_m²)</strong>.</li>
+          </ol>
+          <p>
+            Por exemplo, se uma parcela de 400 m² tem G_parcela = 0,9 m², então G/ha = 0,9 × (10.000/400) = <strong>22,5 m²/ha</strong>.
+          </p>
+
+          <h2>Tabela de área basal por DAP</h2>
+          <p>Valores de referência de área basal individual para DAPs comuns em plantios florestais brasileiros:</p>
+
+          <table class="ab-table">
+            <thead>
+              <tr>
+                <th>DAP (cm)</th>
+                <th>Área Basal / Árvore (m²)</th>
+                <th>Circunferência CAP (cm)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>8</td><td>0,0050</td><td>25,1</td></tr>
+              <tr><td>10</td><td>0,0079</td><td>31,4</td></tr>
+              <tr><td>12</td><td>0,0113</td><td>37,7</td></tr>
+              <tr><td>15</td><td>0,0177</td><td>47,1</td></tr>
+              <tr><td>18</td><td>0,0254</td><td>56,5</td></tr>
+              <tr><td>20</td><td>0,0314</td><td>62,8</td></tr>
+              <tr><td>25</td><td>0,0491</td><td>78,5</td></tr>
+              <tr><td>30</td><td>0,0707</td><td>94,2</td></tr>
+              <tr><td>35</td><td>0,0962</td><td>110,0</td></tr>
+              <tr><td>40</td><td>0,1257</td><td>125,7</td></tr>
+            </tbody>
+          </table>
+
+          <h2>DAP x CAP: medição em campo</h2>
+          <p>
+            O <strong>DAP</strong> é medido com suta dendrométrica ou fita diamétrica. A fita diamétrica mede a <strong>CAP (Circunferência à Altura do Peito)</strong> — a circunferência do tronco a 1,30 m — e converte automaticamente para diâmetro por meio da relação DAP = CAP / π.
+          </p>
+          <p>
+            Ao usar a calculadora com valores medidos em CAP, converta primeiro: <strong>DAP = CAP / 3,14159</strong>.
+          </p>
+
+          <h3>Critérios de inclusão</h3>
+          <p>
+            Em inventários florestais, define-se um <strong>diâmetro mínimo de inclusão</strong> (DMI) para decidir quais árvores são medidas. Em plantios de eucalipto e pinus, o DMI típico é de 5 cm de DAP. Em florestas nativas, pode variar entre 5 cm (inventários de biomassa) e 10 cm (inventários comerciais). Árvores abaixo do DMI não entram no cálculo de G/ha.
+          </p>
+
+          <h2>Valores de referência de G/ha</h2>
+          <p>
+            O G/ha varia significativamente entre espécies, idades e intensidades de manejo:
+          </p>
+          <ul>
+            <li><strong>Eucalipto — 6 anos (sem desbaste):</strong> 12 a 22 m²/ha;</li>
+            <li><strong>Eucalipto — 7 anos (com desbaste):</strong> 16 a 28 m²/ha;</li>
+            <li><strong>Pinus — 15 anos:</strong> 20 a 40 m²/ha;</li>
+            <li><strong>Teca — 20 anos:</strong> 15 a 25 m²/ha;</li>
+            <li><strong>Floresta Ombrófila Densa (Amazônia):</strong> 25 a 40 m²/ha;</li>
+            <li><strong>Cerrado sentido restrito:</strong> 5 a 12 m²/ha;</li>
+            <li><strong>Caatinga arbórea:</strong> 2 a 8 m²/ha.</li>
+          </ul>
+
+          <h2>Exemplos práticos de cálculo</h2>
+
+          <div class="example-card">
+            <h3>Exemplo 1 — Parcela de inventário de eucalipto</h3>
+            <p>
+              Uma parcela circular de <strong>400 m²</strong> em um plantio de eucalipto de 5 anos apresenta 8 árvores com os seguintes DAPs: 16, 18, 19, 20, 21, 22, 17, 20 cm.
+            </p>
+            <p>
+              Calculando: g_parcela = 0,00007854 × (16² + 18² + 19² + 20² + 21² + 22² + 17² + 20²) = 0,00007854 × (256 + 324 + 361 + 400 + 441 + 484 + 289 + 400) = 0,00007854 × 2.955 = <strong>0,2320 m²</strong>.
+            </p>
+            <p>
+              G/ha = 0,2320 × (10.000/400) = <strong>5,8 m²/ha</strong> — valor típico de plantio jovem, sem desbaste ainda.
+            </p>
+          </div>
+
+          <div class="example-card">
+            <h3>Exemplo 2 — Inventário de floresta nativa</h3>
+            <p>
+              Uma parcela de <strong>1.000 m²</strong> em floresta ombrófila mista registrou 22 árvores com DAPs entre 10 e 55 cm, resultando em G_parcela = 1,87 m².
+            </p>
+            <p>
+              G/ha = 1,87 × (10.000/1.000) = <strong>18,7 m²/ha</strong> — valor esperado para floresta com Araucária em bom estado de conservação.
+            </p>
+          </div>
+
+          <h2>Perguntas Frequentes</h2>
+          <div class="faq-list" id="faqList">
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                O que é área basal de uma árvore?
+                <iconify-icon icon="solar:alt-arrow-down-linear" width="18"></iconify-icon>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  A área basal (g) é a <strong>área da seção transversal do tronco</strong> medida a 1,30 m do solo (DAP). É calculada como a área de um círculo: g = π/4 × d², onde d é o DAP em metros. Representa quanto de "espaço" o tronco ocupa e correlaciona-se com o volume de madeira da árvore.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                O que é G/ha no inventário florestal?
+                <iconify-icon icon="solar:alt-arrow-down-linear" width="18"></iconify-icon>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  G/ha é a <strong>soma das áreas basais de todas as árvores em um hectare</strong>, expressa em m²/ha. É um dos indicadores mais utilizados em manejo florestal porque correlaciona-se com volume, biomassa e grau de fechamento do dossel. Um G/ha alto indica maior competição entre árvores, enquanto um G/ha baixo pode indicar supressão ou plantio jovem.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                Qual a diferença entre DAP e CAP?
+                <iconify-icon icon="solar:alt-arrow-down-linear" width="18"></iconify-icon>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  <strong>DAP</strong> (Diâmetro à Altura do Peito) é o diâmetro do tronco medido a 1,30 m, expresso em cm. <strong>CAP</strong> (Circunferência à Altura do Peito) é a circunferência no mesmo ponto, medida com trena simples — mais prática em campo. A conversão é: DAP = CAP / π (≈ 3,14159). Fitas diamétricas já fazem essa conversão automaticamente.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                Como medir o DAP em árvores tortuosas ou com sapopemas?
+                <iconify-icon icon="solar:alt-arrow-down-linear" width="18"></iconify-icon>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  Em árvores com tortuosidade, raízes tabulares (sapopemas) ou inclinadas, o ponto de medição é ajustado. A norma ABNT NBR 16.700 e o manual do inventário do SFB recomendam medir acima da irregularidade, registrando a altura real de medição. Para sapopemas altas (florestas tropicais), mede-se acima delas, anotando a altura de medição (ex.: 1,5 m ou 2,0 m). Isso deve ser padronizado em todo o inventário.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                Qual o tamanho ideal de parcela para inventário florestal?
+                <iconify-icon icon="solar:alt-arrow-down-linear" width="18"></iconify-icon>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  Depende do tipo de floresta e do objetivo. Em plantios homogêneos (eucalipto/pinus), parcelas de <strong>300 a 600 m²</strong> são comuns. Em florestas nativas tropicais, parcelas de <strong>1.000 a 10.000 m²</strong> são necessárias para capturar a heterogeneidade. Parcelas circulares de 400 m² (raio ≈ 11,28 m) e retangulares de 20×25 m são formatos muito usados no Brasil.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- Related Tools -->
+        <section class="related-tools-section">
+          <div style="max-width: 860px; margin: 0 auto;">
+            <h2>Outras ferramentas gratuitas</h2>
+            <div class="related-grid">
+              <a href="/ferramentas/calcular-arvores-por-hectare/" class="related-card">
+                <iconify-icon icon="solar:forest-linear" width="22"></iconify-icon>
+                <span>Calculadora de Árvores por Hectare</span>
+              </a>
+              <a href="/ferramentas/calcular-app-rio/" class="related-card">
+                <iconify-icon icon="solar:waterdrops-linear" width="22"></iconify-icon>
+                <span>Calculadora de APP</span>
+              </a>
+              <a href="/ferramentas/calcular-reserva-legal/" class="related-card">
+                <iconify-icon icon="solar:leaf-linear" width="22"></iconify-icon>
+                <span>Calculadora de Reserva Legal</span>
+              </a>
+              <a href="/ferramentas/visualizador-gis-online/" class="related-card">
+                <iconify-icon icon="solar:map-linear" width="22"></iconify-icon>
+                <span>Visualizador GIS Online</span>
+              </a>
+              <a href="/ferramentas/coordenadas.html" class="related-card">
+                <iconify-icon icon="solar:map-point-wave-linear" width="22"></iconify-icon>
+                <span>Conversor de Coordenadas</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer" id="main-footer-v2">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="/src/assets/logo.png" alt="EcoAds Logo" class="footer-logo-img">
+          <p>A única agência digital do Brasil especializada exclusivamente no desenvolvimento e posicionamento de empresas do setor ambiental e florestal.</p>
+          <div class="footer-socials">
+            <a href="https://instagram.com/ecoads.br" class="social-icon" target="_blank" aria-label="Instagram"><iconify-icon icon="simple-icons:instagram" width="14"></iconify-icon></a>
+            <a href="https://www.linkedin.com/company/ecoads-agência/" class="social-icon" target="_blank" aria-label="LinkedIn"><iconify-icon icon="simple-icons:linkedin" width="14"></iconify-icon></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-title">Navegação</h4>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/servicos/">Serviços</a></li>
+            <li><a href="/apps/">Apps</a></li>
+            <li><a href="/cursos/">Cursos</a></li>
+            <li><a href="/sobre/">Sobre</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Ferramentas</h4>
+          <ul class="footer-links">
+            <li><a href="/ferramentas/">Central de Ferramentas</a></li>
+            <li><a href="/ferramentas/calcular-app-rio/">Calculadora de APP</a></li>
+            <li><a href="/ferramentas/calcular-reserva-legal/">Reserva Legal</a></li>
+            <li><a href="/ferramentas/calcular-area-basal/">Área Basal</a></li>
+            <li><a href="/ferramentas/calcular-arvores-por-hectare/">Árvores/ha</a></li>
+            <li><a href="/ferramentas/visualizador-gis-online/">Visualizador GIS</a></li>
+            <li><a href="/ferramentas/coordenadas.html">Conversor de Coordenadas</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Contato</h4>
+          <ul class="footer-contact-info">
+            <li><iconify-icon icon="solar:map-point-linear" width="16" style="margin-top:3px;color:var(--brand-green-accent)"></iconify-icon><span>Irati — Paraná, Brasil</span></li>
+            <li><iconify-icon icon="solar:phone-linear" width="16" style="margin-top:3px;color:var(--brand-green-accent)"></iconify-icon><span>+55 (47) 92002-2746</span></li>
+            <li><iconify-icon icon="solar:letter-linear" width="16" style="margin-top:3px;color:var(--brand-green-accent)"></iconify-icon><span>contato@ecoadsbr.com</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="current-year"></span> EcoAds. Todos os direitos reservados.</p>
+        <p>CNPJ: 60.854.323/0001-74</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function calcularAreaBasal() {
+      const raw = document.getElementById('dapInput').value;
+      const unit = document.getElementById('dapUnit').value;
+      const plotAreaVal = document.getElementById('plotArea').value;
+      const errorBox = document.getElementById('errorBox');
+      const resultBox = document.getElementById('resultBox');
+
+      errorBox.classList.remove('visible');
+      resultBox.classList.remove('visible');
+
+      // Parse DAP values (split by newline, comma or semicolon)
+      const daps = raw.split(/[\n,;]+/)
+        .map(v => parseFloat(v.trim()))
+        .filter(v => !isNaN(v) && v > 0);
+
+      if (daps.length === 0) {
+        errorBox.classList.add('visible');
+        return;
+      }
+
+      // Convert to cm if necessary
+      const dapsCm = unit === 'mm' ? daps.map(d => d / 10) : daps;
+
+      // g = π/4 × (DAP_m)² = 0.00007854 × DAP_cm²
+      const abValues = dapsCm.map(d => 0.00007854 * d * d);
+      const abTotal = abValues.reduce((a, b) => a + b, 0);
+      const abMean = abTotal / dapsCm.length;
+
+      document.getElementById('nTrees').textContent = dapsCm.length;
+      document.getElementById('abMean').textContent = abMean.toFixed(4);
+      document.getElementById('abParcela').textContent = abTotal.toFixed(4);
+
+      const plotArea = parseFloat(plotAreaVal);
+      const gHaEl = document.getElementById('gHa');
+      const semParcelaEl = document.getElementById('semParcela');
+
+      if (!isNaN(plotArea) && plotArea > 0) {
+        const gHa = abTotal * (10000 / plotArea);
+        gHaEl.textContent = gHa.toFixed(2);
+        document.getElementById('gHaUnit').style.display = '';
+        semParcelaEl.style.display = 'none';
+      } else {
+        gHaEl.textContent = '—';
+        document.getElementById('gHaUnit').style.display = 'none';
+        semParcelaEl.style.display = 'block';
+      }
+
+      resultBox.classList.add('visible');
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('dapInput').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); calcularAreaBasal(); }
+      });
+    });
+
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>

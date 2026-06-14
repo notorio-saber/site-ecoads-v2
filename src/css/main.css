@@ -2357,6 +2357,18 @@ body.tools-light .related-card:hover {
 }
 body.tools-light .related-card iconify-icon { color: var(--brand-green); }
 body.tools-light .related-card span { color: #556655; }
+body.tools-light .related-tools-section h2 { color: #1a2a1a; }
+
+/* seo-content headings (used in coordenadas & unidades) */
+body.tools-light .seo-content h2 { color: #0d1a0d; }
+body.tools-light .seo-content h2::before { background: var(--brand-green); }
+body.tools-light .seo-content h3 { color: #1a2a1a; }
+
+/* info-table (generic table for seo content) */
+body.tools-light .info-table th { background: rgba(0,155,59,0.07); color: var(--brand-green); border-color: #e5ede5; }
+body.tools-light .info-table td { border-color: #e5ede5; color: #445544; }
+body.tools-light .info-table td:first-child { color: #1a2a1a; }
+body.tools-light .info-table tr:hover td { background: #f8fcf8; }
 
 /* Responsive inner pages */
 @media (max-width: 768px) {

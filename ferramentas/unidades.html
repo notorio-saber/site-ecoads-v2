@@ -144,6 +144,60 @@
       text-align: center;
     }
     
+    .seo-content { max-width: 860px; margin: 56px auto 0; }
+    .seo-content h2 {
+      font-size: 1.4rem; margin-top: 48px; margin-bottom: 14px;
+      color: #ffffff; position: relative; padding-left: 18px;
+    }
+    .seo-content h2::before {
+      content: ''; position: absolute; left: 0; top: 50%;
+      transform: translateY(-50%); width: 4px; height: 70%;
+      background: var(--brand-green-accent); border-radius: 2px;
+    }
+    .seo-content h3 { font-size: 1.05rem; margin-top: 24px; margin-bottom: 10px; color: rgba(255,255,255,0.9); }
+    .seo-content p { color: var(--dark-text-secondary); line-height: 1.8; margin-bottom: 14px; font-size: 0.93rem; }
+    .seo-content ul, .seo-content ol { color: var(--dark-text-secondary); line-height: 1.8; padding-left: 24px; margin-bottom: 14px; font-size: 0.93rem; }
+    .seo-content li { margin-bottom: 6px; }
+    .seo-content strong { color: rgba(255,255,255,0.85); }
+
+    .info-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.88rem; }
+    .info-table th {
+      background: rgba(0,255,102,0.07); border: 1px solid rgba(255,255,255,0.07);
+      padding: 12px 16px; text-align: left; color: rgba(255,255,255,0.75);
+      font-weight: 500; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .info-table td { border: 1px solid rgba(255,255,255,0.05); padding: 12px 16px; color: var(--dark-text-secondary); }
+    .info-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .info-table td:first-child { color: rgba(255,255,255,0.8); font-weight: 500; }
+
+    .faq-list { display: flex; flex-direction: column; gap: 0; margin-top: 20px; }
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .faq-question {
+      width: 100%; background: none; border: none; padding: 18px 0;
+      text-align: left; color: rgba(255,255,255,0.85); font-size: 0.93rem;
+      font-family: var(--font-body); cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      transition: var(--transition-fast);
+    }
+    .faq-question:hover { color: var(--brand-green-accent); }
+    .faq-question iconify-icon { flex-shrink: 0; transition: transform 0.25s ease; color: rgba(255,255,255,0.3); }
+    .faq-item.open .faq-question iconify-icon { transform: rotate(180deg); color: var(--brand-green-accent); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .faq-item.open .faq-answer { max-height: 600px; }
+    .faq-answer-inner { padding: 0 0 20px; color: var(--dark-text-secondary); font-size: 0.9rem; line-height: 1.75; }
+
+    .related-tools-section { margin-top: 56px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.04); padding-bottom: 20px; }
+    .related-tools-section h2 { font-size: 1.2rem; margin-bottom: 20px; color: rgba(255,255,255,0.75); font-weight: 400; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+    .related-card {
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px; padding: 18px; transition: var(--transition-fast);
+      display: flex; flex-direction: column; gap: 8px; text-decoration: none;
+    }
+    .related-card:hover { background: rgba(0,255,102,0.04); border-color: rgba(0,255,102,0.2); transform: translateY(-2px); }
+    .related-card iconify-icon { color: var(--brand-green-accent); font-size: 1.2rem; }
+    .related-card span { font-size: 0.82rem; color: rgba(255,255,255,0.7); line-height: 1.4; }
+
     @media (max-width: 768px) {
       .calc-grid {
         grid-template-columns: 1fr;
@@ -264,6 +318,167 @@
           </div>
           
         </div>
+
+        <!-- ─── Conteúdo informativo ─── -->
+        <div class="seo-content">
+
+          <h2>Por que converter unidades no setor florestal?</h2>
+          <p>
+            No dia a dia do inventário florestal, do manejo e da gestão ambiental, convivemos com grandezas diversas que surgem em contextos diferentes: volume de madeira em m³ ou estéreos em notas fiscais de lenha, área de terra em hectares no CAR e em alqueires em conversas com proprietários, DAP em centímetros no campo e em polegadas em relatórios para o mercado internacional. Converter essas unidades de forma rápida e correta reduz erros em laudos, propostas e projetos.
+          </p>
+
+          <h2>Volume de madeira: m³, estéreo, cord e fbm</h2>
+          <p>
+            A unidade padrão para volume de madeira no Brasil é o <strong>metro cúbico (m³)</strong>, porém o mercado de biomassa e lenha frequentemente utiliza o <strong>estéreo (st)</strong> — 1 m³ de espaço ocupado por toras empilhadas, incluindo os vazios entre elas. O fator de conversão varia com o diâmetro das toras e o tipo de empilhamento, sendo 0,70 a 0,75 m³ por estéreo o valor médio adotado na prática.
+          </p>
+          <table class="info-table">
+            <thead>
+              <tr><th>Unidade</th><th>Equivalência aprox. em m³</th><th>Uso típico</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Metro cúbico (m³)</td><td>1,00</td><td>Madeira serrada, celulose, exportação</td></tr>
+              <tr><td>Estéreo (st)</td><td>≈ 0,714</td><td>Lenha, biomassa energética, carvão vegetal</td></tr>
+              <tr><td>Cord (EUA/Canadá)</td><td>≈ 3,625</td><td>Mercado internacional de celulose e lenha</td></tr>
+              <tr><td>Pé Board Foot (fbm)</td><td>0,00236</td><td>Exportação de madeira serrada para o mercado americano</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Área e alqueires no Brasil</h2>
+          <p>
+            O <strong>alqueire</strong> é uma unidade de área ainda muito utilizada em negociações rurais, mas seu valor varia entre estados, o que causa confusões em documentos técnicos. Sempre que possível, utilize <strong>hectares</strong> em laudos, CAR e projetos florestais, convertendo apenas para comunicação com proprietários que utilizam a medida regional.
+          </p>
+          <table class="info-table">
+            <thead>
+              <tr><th>Unidade</th><th>Equivalência em hectares</th><th>Região de uso</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Alqueire Paulista</td><td>2,42 ha</td><td>SP, PR, SC, RS</td></tr>
+              <tr><td>Alqueire Mineiro / Goiano</td><td>4,84 ha</td><td>MG, GO, MT, MS</td></tr>
+              <tr><td>Acre (ac)</td><td>0,4047 ha</td><td>Mercado internacional</td></tr>
+              <tr><td>Quilômetro quadrado (km²)</td><td>100 ha</td><td>Relatórios de macroescala, UCs</td></tr>
+            </tbody>
+          </table>
+
+          <h2>DAP, CAP e circunferência: medições em campo</h2>
+          <p>
+            O <strong>DAP (Diâmetro à Altura do Peito)</strong>, medido a 1,30 m do solo, é o principal parâmetro dendrométrico de campo. Dependendo do instrumento utilizado, a medição pode ser direta em centímetros (suta) ou indireta via circunferência (fita métrica):
+          </p>
+          <ul>
+            <li><strong>Suta dendrométrica:</strong> leitura direta do DAP em cm;</li>
+            <li><strong>Fita diamétrica:</strong> mede a CAP e converte automaticamente para DAP;</li>
+            <li><strong>Fita métrica comum:</strong> mede a CAP — converter com <strong>DAP = CAP ÷ π (3,14159)</strong>.</li>
+          </ul>
+          <p>
+            Para relatórios destinados ao mercado norte-americano, o DAP pode ser exigido em <strong>polegadas</strong>: 1 polegada = 2,54 cm. Uma árvore com DAP de 25 cm equivale a 9,84 polegadas.
+          </p>
+
+          <h2>Densidade da madeira: kg/m³ e g/cm³</h2>
+          <p>
+            A <strong>densidade básica da madeira</strong> é utilizada para converter volume em biomassa e para calcular o estoque de carbono de um plantio ou floresta. Os valores típicos para as principais espécies plantadas no Brasil são:
+          </p>
+          <ul>
+            <li><strong>Eucalipto (E. grandis / E. urophylla):</strong> 400 a 600 kg/m³;</li>
+            <li><strong>Pinus (P. taeda / P. elliottii):</strong> 300 a 500 kg/m³;</li>
+            <li><strong>Teca (Tectona grandis):</strong> 580 a 750 kg/m³;</li>
+            <li><strong>Paricá (Schizolobium amazonicum):</strong> 230 a 350 kg/m³;</li>
+            <li><strong>Mogno africano (Khaya ivorensis):</strong> 560 a 720 kg/m³.</li>
+          </ul>
+          <p>
+            A conversão é direta: <strong>1 g/cm³ = 1.000 kg/m³ = 1 ton/m³</strong>. Por exemplo, eucalipto com densidade de 0,5 g/cm³ equivale a 500 kg/m³.
+          </p>
+
+          <h2>Perguntas Frequentes</h2>
+          <div class="faq-list">
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                Qual a diferença entre metro cúbico (m³) e estéreo na compra de lenha?
+                <iconify-icon icon="solar:alt-arrow-down-linear" width="18"></iconify-icon>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  O metro cúbico (m³) representa o volume real de madeira — sem vazios. O estéreo representa 1 m³ de espaço de empilhamento, que inclui os vazios entre as toras. Na prática, 1 estéreo de lenha contém entre 0,60 e 0,75 m³ de madeira real, dependendo do diâmetro das toras e da forma de empilhamento. Em contratos, exija sempre a especificação da unidade e do fator de conversão adotado para evitar divergências.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                Quanto vale um alqueire em hectares? Depende do estado?
+                <iconify-icon icon="solar:alt-arrow-down-linear" width="18"></iconify-icon>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  Sim, o valor do alqueire varia conforme a região. O <strong>alqueire paulista</strong> equivale a 2,42 ha e é utilizado em SP, PR, SC e RS. O <strong>alqueire mineiro ou goiano</strong> equivale a 4,84 ha (exatamente o dobro) e é usado em MG, GO, MT e MS. Em documentos técnicos, contratos de arrendamento ou projetos de manejo, sempre converta para hectares e especifique o tipo de alqueire para evitar ambiguidades.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                Como converter CAP para DAP em campo sem calculadora?
+                <iconify-icon icon="solar:alt-arrow-down-linear" width="18"></iconify-icon>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  A fórmula é: <strong>DAP = CAP ÷ 3,1416</strong>. Para estimativas rápidas em campo, use <strong>DAP ≈ CAP ÷ 3,14</strong>. Por exemplo, uma CAP de 62,8 cm resulta em DAP de 20,0 cm. A fita diamétrica já traz essa escala impressa e realiza a divisão automaticamente ao envolver o tronco. Para medições mais precisas, utilize a suta, que lê o diâmetro diretamente sem necessidade de conversão.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                O que é densidade básica da madeira e para que serve?
+                <iconify-icon icon="solar:alt-arrow-down-linear" width="18"></iconify-icon>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  A densidade básica é a razão entre a massa seca da madeira e seu volume saturado. Expressa em g/cm³ ou kg/m³, é o principal parâmetro para converter volume de madeira em peso (biomassa), calcular estoque de carbono e estimar a qualidade da madeira para uso energético ou industrial. Madeiras mais densas têm maior poder calorífico por m³ (lenha e carvão) e maior resistência mecânica (serraria e construção).
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                Qual unidade de área usar em laudos técnicos no Brasil?
+                <iconify-icon icon="solar:alt-arrow-down-linear" width="18"></iconify-icon>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  O <strong>hectare (ha)</strong> é a unidade padrão para área em todos os documentos técnicos, ambientais e rurais do Brasil — incluindo CAR, SIGEF, CCIR, laudos de georreferenciamento e planos de manejo florestal. O uso de alqueires, acres ou km² em documentos técnicos deve ser evitado ou, quando necessário por contexto, sempre acompanhado da conversão para hectares entre parênteses.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="related-tools-section">
+          <h2>Outras ferramentas gratuitas</h2>
+          <div class="related-grid">
+            <a href="/ferramentas/calcular-area-basal/" class="related-card">
+              <iconify-icon icon="solar:ruler-cross-pen-linear" width="22"></iconify-icon>
+              <span>Calculadora de Área Basal</span>
+            </a>
+            <a href="/ferramentas/calcular-arvores-por-hectare/" class="related-card">
+              <iconify-icon icon="solar:trees-linear" width="22"></iconify-icon>
+              <span>Calculadora de Árvores por Hectare</span>
+            </a>
+            <a href="/ferramentas/calcular-app-rio/" class="related-card">
+              <iconify-icon icon="solar:waterdrops-linear" width="22"></iconify-icon>
+              <span>Calculadora de APP de Rio</span>
+            </a>
+            <a href="/ferramentas/calcular-reserva-legal/" class="related-card">
+              <iconify-icon icon="solar:leaf-linear" width="22"></iconify-icon>
+              <span>Calculadora de Reserva Legal</span>
+            </a>
+            <a href="/ferramentas/coordenadas.html" class="related-card">
+              <iconify-icon icon="solar:map-point-linear" width="22"></iconify-icon>
+              <span>Conversor de Coordenadas</span>
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
   </main>
@@ -482,6 +697,13 @@
         }).catch(function(err) {
             console.error('Erro ao copiar:', err);
         });
+    }
+
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
     }
 
     document.addEventListener('DOMContentLoaded', function() {

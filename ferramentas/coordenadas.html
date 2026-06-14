@@ -115,6 +115,60 @@
       color: var(--brand-green-accent);
     }
     
+    .seo-content { max-width: 860px; margin: 56px auto 0; }
+    .seo-content h2 {
+      font-size: 1.4rem; margin-top: 48px; margin-bottom: 14px;
+      color: #ffffff; position: relative; padding-left: 18px;
+    }
+    .seo-content h2::before {
+      content: ''; position: absolute; left: 0; top: 50%;
+      transform: translateY(-50%); width: 4px; height: 70%;
+      background: var(--brand-green-accent); border-radius: 2px;
+    }
+    .seo-content h3 { font-size: 1.05rem; margin-top: 24px; margin-bottom: 10px; color: rgba(255,255,255,0.9); }
+    .seo-content p { color: var(--dark-text-secondary); line-height: 1.8; margin-bottom: 14px; font-size: 0.93rem; }
+    .seo-content ul, .seo-content ol { color: var(--dark-text-secondary); line-height: 1.8; padding-left: 24px; margin-bottom: 14px; font-size: 0.93rem; }
+    .seo-content li { margin-bottom: 6px; }
+    .seo-content strong { color: rgba(255,255,255,0.85); }
+
+    .info-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.88rem; }
+    .info-table th {
+      background: rgba(0,255,102,0.07); border: 1px solid rgba(255,255,255,0.07);
+      padding: 12px 16px; text-align: left; color: rgba(255,255,255,0.75);
+      font-weight: 500; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .info-table td { border: 1px solid rgba(255,255,255,0.05); padding: 12px 16px; color: var(--dark-text-secondary); }
+    .info-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .info-table td:first-child { color: rgba(255,255,255,0.8); font-weight: 500; }
+
+    .faq-list { display: flex; flex-direction: column; gap: 0; margin-top: 20px; }
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .faq-question {
+      width: 100%; background: none; border: none; padding: 18px 0;
+      text-align: left; color: rgba(255,255,255,0.85); font-size: 0.93rem;
+      font-family: var(--font-body); cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      transition: var(--transition-fast);
+    }
+    .faq-question:hover { color: var(--brand-green-accent); }
+    .faq-question iconify-icon { flex-shrink: 0; transition: transform 0.25s ease; color: rgba(255,255,255,0.3); }
+    .faq-item.open .faq-question iconify-icon { transform: rotate(180deg); color: var(--brand-green-accent); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .faq-item.open .faq-answer { max-height: 600px; }
+    .faq-answer-inner { padding: 0 0 20px; color: var(--dark-text-secondary); font-size: 0.9rem; line-height: 1.75; }
+
+    .related-tools-section { margin-top: 56px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.04); padding-bottom: 20px; }
+    .related-tools-section h2 { font-size: 1.2rem; margin-bottom: 20px; color: rgba(255,255,255,0.75); font-weight: 400; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+    .related-card {
+      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px; padding: 18px; transition: var(--transition-fast);
+      display: flex; flex-direction: column; gap: 8px; text-decoration: none;
+    }
+    .related-card:hover { background: rgba(0,255,102,0.04); border-color: rgba(0,255,102,0.2); transform: translateY(-2px); }
+    .related-card iconify-icon { color: var(--brand-green-accent); font-size: 1.2rem; }
+    .related-card span { font-size: 0.82rem; color: rgba(255,255,255,0.7); line-height: 1.4; }
+
     @media (max-width: 768px) {
       .calc-grid {
         grid-template-columns: 1fr;
@@ -316,6 +370,151 @@
           </div>
           
         </div>
+
+        <!-- ─── Conteúdo informativo ─── -->
+        <div class="seo-content">
+
+          <h2>O que é conversão de coordenadas geográficas?</h2>
+          <p>
+            A conversão de coordenadas é um processo matemático que permite expressar um mesmo ponto na superfície terrestre em diferentes sistemas de representação. No dia a dia do engenheiro florestal e do consultor ambiental, essa necessidade surge com frequência: o GPS de campo gera coordenadas em GMS, o shapefile exige UTM e o sistema do CAR aceita apenas graus decimais.
+          </p>
+          <p>
+            Esta ferramenta realiza a conversão entre <strong>GMS (Graus, Minutos, Segundos)</strong>, <strong>Graus Decimais</strong> e <strong>UTM (Universal Transversal de Mercator)</strong>, com suporte às principais transformações de datum utilizadas no Brasil.
+          </p>
+
+          <h2>Sistemas de coordenadas mais utilizados no Brasil</h2>
+          <table class="info-table">
+            <thead>
+              <tr><th>Sistema</th><th>Formato de exemplo</th><th>Uso típico</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>GMS (Graus, Minutos, Segundos)</td><td>25°22'45"S, 50°38'12"W</td><td>Receptores GPS de campo, fichas técnicas</td></tr>
+              <tr><td>Graus Decimais</td><td>-25.379228, -50.636717</td><td>Google Earth, KML, APIs de mapa, Python/R</td></tr>
+              <tr><td>UTM (Universal Transversal de Mercator)</td><td>536540 E, 7192130 N (Fuso 22S)</td><td>CAR, SIGEF, shapefiles técnicos, QGIS</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Datums geodésicos utilizados no Brasil</h2>
+          <p>
+            O <strong>datum</strong> é o modelo matemático que define o formato e a posição da Terra utilizado como referência para as coordenadas. A troca incorreta de datum pode causar deslocamentos de dezenas ou centenas de metros, comprometendo a validade de laudos e polígonos ambientais.
+          </p>
+          <ul>
+            <li><strong>SIRGAS 2000</strong> — Datum oficial do Brasil desde 2015 (IBGE). Obrigatório para CAR, SIGEF, CCIR e qualquer documento técnico público. Praticamente coincide com o WGS 84 (diferença &lt; 1 m).</li>
+            <li><strong>WGS 84</strong> — Datum global utilizado pelo GPS, Google Earth e aplicativos de navegação. Para fins práticos no Brasil, equivale ao SIRGAS 2000.</li>
+            <li><strong>SAD 69</strong> — Datum sul-americano utilizado em documentos anteriores a 2005. Pode gerar deslocamentos de 40 a 65 metros em relação ao SIRGAS 2000, dependendo da localização no território.</li>
+            <li><strong>Córrego Alegre</strong> — Datum de origem mineira, presente em cartas topográficas antigas do IBGE (anteriores a 1990). Diferenças em relação ao SIRGAS 2000 podem ultrapassar 200 metros.</li>
+          </ul>
+
+          <h2>Fusos UTM no Brasil</h2>
+          <p>
+            O Brasil está distribuído entre os fusos UTM 18 a 25. Os fusos mais utilizados em levantamentos de propriedades rurais e áreas ambientais são:
+          </p>
+          <table class="info-table">
+            <thead>
+              <tr><th>Fuso UTM</th><th>Longitude Central</th><th>Principais estados abrangidos</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>19S</td><td>69°W</td><td>Acre, Amazonas (parte oeste)</td></tr>
+              <tr><td>20S</td><td>63°W</td><td>Rondônia, Mato Grosso, Amazonas</td></tr>
+              <tr><td>21S</td><td>57°W</td><td>Mato Grosso, Mato Grosso do Sul, Paraná (parte)</td></tr>
+              <tr><td>22S</td><td>51°W</td><td>Paraná, Santa Catarina, Rio Grande do Sul, São Paulo</td></tr>
+              <tr><td>23S</td><td>45°W</td><td>São Paulo, Minas Gerais, Rio de Janeiro, Espírito Santo</td></tr>
+              <tr><td>24S</td><td>39°W</td><td>Bahia, Espírito Santo, Minas Gerais (leste)</td></tr>
+            </tbody>
+          </table>
+
+          <h2>Perguntas Frequentes</h2>
+          <div class="faq-list">
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                Por que meu GPS mostra coordenadas diferentes do QGIS ou do CAR?
+                <iconify-icon icon="solar:alt-arrow-down-linear" width="18"></iconify-icon>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  A principal causa é a diferença de datum. Receptores GPS antigos costumam operar em WGS 84, enquanto o SIGEF e o CAR exigem SIRGAS 2000. Embora a diferença entre WGS 84 e SIRGAS 2000 seja menor que 1 metro, equívocos entre SAD 69 e SIRGAS 2000 podem gerar deslocamentos de 40 a 65 m — suficiente para invalidar um georreferenciamento. Sempre configure o datum do receptor GPS antes do levantamento e registre qual datum foi utilizado.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                Qual datum usar para o CAR e o SIGEF?
+                <iconify-icon icon="solar:alt-arrow-down-linear" width="18"></iconify-icon>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  Ambos os sistemas exigem <strong>SIRGAS 2000</strong> como datum de referência, conforme as normativas do IBGE e do Serviço Florestal Brasileiro. Polígonos inseridos em WGS 84 geralmente são aceitos sem conversão, pois a diferença é inferior à precisão GPS. Porém, ao trabalhar com dados legados em SAD 69 ou Córrego Alegre, a conversão correta do datum é obrigatória antes de qualquer inserção nos sistemas oficiais.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                Qual a diferença entre GMS e graus decimais?
+                <iconify-icon icon="solar:alt-arrow-down-linear" width="18"></iconify-icon>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  Ambos representam o mesmo ponto, mas com notações diferentes. GMS usa a mesma lógica de horas: 1 grau = 60 minutos = 3.600 segundos. Graus decimais expressam tudo na fração do grau: 25°22'45" equivale a 25 + 22/60 + 45/3600 = <strong>25,37917°</strong>. O sinal negativo indica Sul (latitude) ou Oeste (longitude). Graus decimais são preferidos em processamento computacional, KML e APIs.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                O que é o fuso UTM e como identifico o fuso correto da minha área?
+                <iconify-icon icon="solar:alt-arrow-down-linear" width="18"></iconify-icon>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  O sistema UTM divide a Terra em 60 fusos verticais de 6° de longitude cada. Para identificar o fuso de uma área, use: <strong>Fuso = int((longitude + 180) / 6) + 1</strong>. Por exemplo, Curitiba está em aproximadamente 49° W → fuso 22. A maioria dos softwares (QGIS, ArcGIS) identifica o fuso automaticamente ao abrir dados georreferenciados.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                As conversões desta ferramenta têm precisão suficiente para laudos técnicos?
+                <iconify-icon icon="solar:alt-arrow-down-linear" width="18"></iconify-icon>
+              </button>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  Para <strong>conversões entre formatos</strong> (DMS ↔ decimal ↔ UTM) dentro do mesmo datum, a precisão é total — é matemática pura. Para <strong>transformações de datum</strong> (ex: SAD 69 → SIRGAS 2000), a ferramenta usa parâmetros de translação simplificados com precisão de 1 a 5 metros, adequada para verificações de campo. Para georreferenciamento oficial de imóvel rural, utilize software homologado pelo INCRA com grades de transformação NTv2.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="related-tools-section">
+          <h2>Outras ferramentas gratuitas</h2>
+          <div class="related-grid">
+            <a href="/ferramentas/visualizador-gis-online/" class="related-card">
+              <iconify-icon icon="solar:map-linear" width="22"></iconify-icon>
+              <span>Visualizador GIS Online</span>
+            </a>
+            <a href="/ferramentas/calcular-app-rio/" class="related-card">
+              <iconify-icon icon="solar:waterdrops-linear" width="22"></iconify-icon>
+              <span>Calculadora de APP de Rio</span>
+            </a>
+            <a href="/ferramentas/calcular-reserva-legal/" class="related-card">
+              <iconify-icon icon="solar:leaf-linear" width="22"></iconify-icon>
+              <span>Calculadora de Reserva Legal</span>
+            </a>
+            <a href="/ferramentas/calcular-area-basal/" class="related-card">
+              <iconify-icon icon="solar:ruler-cross-pen-linear" width="22"></iconify-icon>
+              <span>Calculadora de Área Basal</span>
+            </a>
+            <a href="/ferramentas/unidades.html" class="related-card">
+              <iconify-icon icon="solar:scale-linear" width="22"></iconify-icon>
+              <span>Conversor de Unidades Florestais</span>
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
   </main>
@@ -634,9 +833,15 @@
         });
     }
 
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         updateInputFields();
-        // Permitir enter para calcular
         const inputs = document.querySelectorAll('input');
         inputs.forEach(input => {
             input.addEventListener('keypress', function(e) {

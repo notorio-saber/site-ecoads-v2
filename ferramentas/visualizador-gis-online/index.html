@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualizador GIS Online Gratuito | Abrir KML, KMZ e GeoJSON — EcoAds</title>
+  <meta name="description" content="Visualize arquivos KML, KMZ e GeoJSON diretamente no navegador. Ferramenta gratuita para profissionais ambientais, florestais e GIS. Sem instalação necessária.">
+  <meta name="keywords" content="abrir arquivo kml online, visualizar kml online, visualizar kmz online, abrir geojson online, visualizador gis online, abrir shapefile online, visualizar coordenadas no mapa">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://ecoadsbr.com/ferramentas/visualizador-gis-online/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Visualizador GIS Online Gratuito | Abrir KML, KMZ e GeoJSON — EcoAds">
+  <meta property="og:description" content="Visualize arquivos KML, KMZ e GeoJSON diretamente no navegador. Ferramenta gratuita para profissionais ambientais, florestais e GIS. Sem instalação necessária.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ecoadsbr.com/ferramentas/visualizador-gis-online/">
+  <meta property="og:image" content="https://ecoadsbr.com/src/assets/og-visualizador-gis.png">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="EcoAds">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Visualizador GIS Online Gratuito | KML, KMZ e GeoJSON">
+  <meta name="twitter:description" content="Visualize arquivos KML, KMZ e GeoJSON diretamente no navegador. Sem instalação. Processamento 100% local.">
+  <meta name="twitter:image" content="https://ecoadsbr.com/src/assets/og-visualizador-gis.png">
+
+  <!-- Schema: Breadcrumb -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://ecoadsbr.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Ferramentas",
+        "item": "https://ecoadsbr.com/ferramentas/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Visualizador GIS Online",
+        "item": "https://ecoadsbr.com/ferramentas/visualizador-gis-online/"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Schema: Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Visualizador GIS Online Gratuito — Abrir KML, KMZ e GeoJSON no Navegador",
+    "description": "Ferramenta gratuita para visualizar arquivos KML, KMZ e GeoJSON online, sem instalação. Processamento 100% local no navegador.",
+    "author": {
+      "@type": "Organization",
+      "name": "EcoAds",
+      "url": "https://ecoadsbr.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "EcoAds",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://ecoadsbr.com/src/assets/logo.png"
+      }
+    },
+    "url": "https://ecoadsbr.com/ferramentas/visualizador-gis-online/",
+    "datePublished": "2025-01-01",
+    "dateModified": "2026-06-13",
+    "inLanguage": "pt-BR"
+  }
+  </script>
+
+  <!-- Schema: FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "O que é um visualizador GIS online?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Um visualizador GIS online é uma ferramenta web que permite carregar e exibir dados geoespaciais (como arquivos KML, KMZ ou GeoJSON) diretamente no navegador, sobre um mapa base, sem necessidade de instalar softwares como QGIS ou ArcGIS."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Meus dados ficam armazenados no servidor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Não. Todo o processamento é feito exclusivamente no seu navegador (JavaScript client-side). Nenhum arquivo ou dado é enviado para qualquer servidor. Seus dados permanecem 100% privados e seguros no seu dispositivo."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Posso visualizar Shapefiles (SHP)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Esta ferramenta suporta KML, KMZ e GeoJSON. Para Shapefiles, recomendamos convertê-los para GeoJSON usando QGIS ou o site mapshaper.org antes de carregar aqui."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O que é KML e para que serve?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "KML (Keyhole Markup Language) é um formato XML para representar dados geográficos como pontos, linhas e polígonos. Foi criado pelo Google para o Google Earth e é amplamente usado em licenciamento ambiental, GPS, ArcGIS e drones."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Como converter KML para GeoJSON?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Você pode usar o QGIS (Salvar Como > GeoJSON), o site mapshaper.org, ou a própria ferramenta desta página, que exporta os dados carregados como GeoJSON com um clique."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Qual a diferença entre KML e KMZ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "KMZ é simplesmente um arquivo KML compactado no formato ZIP. O KMZ pode conter, além do arquivo KML principal, imagens e ícones referenciados. Esta ferramenta descompacta automaticamente o KMZ e processa o KML interno."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Como calcular área de um polígono no mapa?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Após carregar seu arquivo KML, KMZ ou GeoJSON, o painel de estatísticas exibe automaticamente a área total dos polígonos em hectares (ha) e metros quadrados (m²), calculada com a biblioteca Turf.js."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Posso usar o visualizador no celular?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim. A ferramenta é responsiva e funciona em smartphones e tablets com navegadores modernos (Chrome, Firefox, Safari). O mapa interativo usa touch para zoom e pan."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/src/css/main.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
+  <style>
+    /* ---- Tool-specific styles ---- */
+    #map {
+      height: 500px;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 255, 102, 0.2);
+      background: #0a0a0a;
+    }
+
+    .upload-zone {
+      border: 2px dashed rgba(0, 255, 102, 0.3);
+      border-radius: 12px;
+      padding: 48px 32px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: rgba(0, 255, 102, 0.02);
+    }
+    .upload-zone:hover,
+    .upload-zone.drag-over {
+      border-color: #00ff66;
+      background: rgba(0, 255, 102, 0.05);
+    }
+    .upload-zone iconify-icon {
+      font-size: 3rem;
+      color: rgba(0, 255, 102, 0.5);
+      display: block;
+      margin-bottom: 16px;
+    }
+    .upload-zone h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+    .upload-zone p {
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 20px;
+    }
+    .upload-zone .file-types {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .file-badge {
+      padding: 4px 10px;
+      background: rgba(0, 255, 102, 0.06);
+      border: 1px solid rgba(0, 255, 102, 0.2);
+      border-radius: 20px;
+      font-size: 0.72rem;
+      color: #00ff66;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .stats-panel {
+      background: rgba(10, 10, 10, 0.8);
+      border: 1px solid rgba(0, 255, 102, 0.15);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 20px;
+      display: none;
+    }
+    .stats-panel h3 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(0, 255, 102, 0.7);
+      margin-bottom: 16px;
+    }
+    .stat-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+    .stat-item:last-child {
+      border-bottom: none;
+    }
+    .stat-label {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.82rem;
+    }
+    .stat-value {
+      color: #00ff66;
+      font-weight: 600;
+      font-size: 0.9rem;
+      font-family: monospace;
+    }
+
+    .tool-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .btn-tool {
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.2s;
+    }
+    .btn-primary-tool {
+      background: rgba(0, 255, 102, 0.12);
+      border: 1px solid rgba(0, 255, 102, 0.35);
+      color: #00ff66;
+    }
+    .btn-primary-tool:hover {
+      background: rgba(0, 255, 102, 0.2);
+      border-color: #00ff66;
+    }
+    .btn-secondary-tool {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.6);
+    }
+    .btn-secondary-tool:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+
+    .error-banner {
+      padding: 14px 18px;
+      background: rgba(255, 60, 60, 0.07);
+      border: 1px solid rgba(255, 60, 60, 0.25);
+      border-radius: 8px;
+      color: #ff6b6b;
+      font-size: 0.84rem;
+      display: none;
+      margin-top: 16px;
+    }
+    .file-info-bar {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: rgba(0, 255, 102, 0.04);
+      border: 1px solid rgba(0, 255, 102, 0.12);
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .file-info-bar iconify-icon {
+      color: #00ff66;
+      font-size: 1.2rem;
+    }
+    .file-info-bar .file-name {
+      font-size: 0.85rem;
+      color: #fff;
+      font-weight: 500;
+    }
+    .file-info-bar .file-size {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.4);
+    }
+    .privacy-note {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: rgba(0, 229, 255, 0.04);
+      border: 1px solid rgba(0, 229, 255, 0.12);
+      border-radius: 8px;
+      font-size: 0.76rem;
+      color: rgba(255, 255, 255, 0.45);
+      margin-bottom: 24px;
+    }
+    .privacy-note iconify-icon {
+      color: rgba(0, 229, 255, 0.6);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .map-wrapper {
+      display: none;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.35);
+      margin-bottom: 24px;
+    }
+    .breadcrumb a {
+      color: rgba(255, 255, 255, 0.35);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .breadcrumb a:hover {
+      color: #00ff66;
+    }
+    .breadcrumb .sep {
+      color: rgba(255, 255, 255, 0.15);
+    }
+    .breadcrumb .current {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* SEO Content Section */
+    .seo-content {
+      max-width: 1000px;
+      margin: 60px auto 0;
+    }
+    .seo-content h2 {
+      font-size: 1.7rem;
+      margin-bottom: 16px;
+      margin-top: 48px;
+      color: #fff;
+    }
+    .seo-content h2:first-child {
+      margin-top: 0;
+    }
+    .seo-content h3 {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      margin-top: 28px;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .seo-content p {
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.8;
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+    }
+    .seo-content ul, .seo-content ol {
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.8;
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+      padding-left: 24px;
+    }
+    .seo-content li {
+      margin-bottom: 6px;
+    }
+    .seo-content strong {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Comparison Table */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 0.85rem;
+    }
+    .comparison-table th {
+      padding: 12px 16px;
+      background: rgba(0, 255, 102, 0.06);
+      border: 1px solid rgba(0, 255, 102, 0.12);
+      color: #00ff66;
+      font-weight: 600;
+      text-align: left;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .comparison-table td {
+      padding: 11px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.5;
+    }
+    .comparison-table tr:first-child td {
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    .comparison-table tr:hover td {
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    /* FAQ Accordion */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .faq-item {
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 18px 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.85);
+      transition: color 0.2s;
+    }
+    .faq-question:hover {
+      color: #fff;
+    }
+    .faq-question iconify-icon {
+      color: rgba(0, 255, 102, 0.6);
+      font-size: 1rem;
+      flex-shrink: 0;
+      transition: transform 0.25s;
+    }
+    .faq-item.open .faq-question iconify-icon {
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+    }
+    .faq-answer p {
+      padding: 0 20px 18px;
+      margin-bottom: 0;
+    }
+
+    /* Related Tools */
+    .related-tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .related-tool-card {
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .related-tool-card:hover {
+      border-color: rgba(0, 255, 102, 0.2);
+      background: rgba(0, 255, 102, 0.03);
+    }
+    .related-tool-card iconify-icon {
+      font-size: 1.4rem;
+      color: rgba(0, 255, 102, 0.6);
+    }
+    .related-tool-card .rtc-title {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    .related-tool-card .rtc-desc {
+      font-size: 0.76rem;
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    /* Leaflet popup override for dark theme */
+    .leaflet-popup-content-wrapper {
+      background: #0f0f0f;
+      border: 1px solid rgba(0, 255, 102, 0.2);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    }
+    .leaflet-popup-tip {
+      background: #0f0f0f;
+    }
+    .leaflet-popup-close-button {
+      color: rgba(255,255,255,0.5) !important;
+    }
+    .popup-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      min-width: 180px;
+      max-width: 320px;
+    }
+    .popup-table tr td:first-child {
+      color: rgba(0, 255, 102, 0.8);
+      font-weight: 600;
+      padding: 5px 10px 5px 0;
+      vertical-align: top;
+      white-space: nowrap;
+    }
+    .popup-table tr td:last-child {
+      color: rgba(255,255,255,0.75);
+      padding: 5px 0;
+      word-break: break-word;
+    }
+    .popup-no-props {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .tool-actions {
+        flex-direction: column;
+      }
+      .btn-tool {
+        justify-content: center;
+      }
+      .comparison-table {
+        font-size: 0.75rem;
+      }
+      .comparison-table th,
+      .comparison-table td {
+        padding: 9px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       BACKGROUND ATMOSPHERE
+       ========================================== -->
+  <div class="bg-atmosphere">
+    <div class="glow-top-beam"></div>
+    <div class="interference-conic"></div>
+    <div class="vignette-overlay"></div>
+  </div>
+
+  <!-- ==========================================
+       HEADER (MENU LIQUID GLASS)
+       ========================================== -->
+  <header class="main-header" id="main-header-v2">
+    <div class="container header-container">
+      <a href="/" class="header-logo-link" id="logo-link">
+        <img src="/src/assets/logo.png" alt="EcoAds Logo" class="header-logo-img" id="header-logo-image">
+      </a>
+
+      <!-- Menu de Links -->
+      <nav class="nav-menu" id="navigation-menu-links">
+        <div class="nav-hover-pill"></div>
+        <a href="/" class="nav-link" id="menu-home">Home</a>
+        <a href="/servicos/" class="nav-link" id="menu-solucoes">Serviços</a>
+        <a href="/apps/" class="nav-link" id="menu-apps">Apps</a>
+        <a href="/cursos/" class="nav-link" id="menu-cursos">Cursos</a>
+        <a href="/ferramentas/" class="nav-link active" id="menu-ferramentas">Ferramentas</a>
+        <a href="/sobre/" class="nav-link" id="menu-sobre">Sobre</a>
+
+        <!-- CTA Mobile -->
+        <a href="https://wa.me/5547920022746?text=Olá!%20Estava%20navegando%20no%20site%20da%20EcoAds%20e%20quero%20iniciar%20um%20atendimento." class="header-cta header-cta-mobile" id="cta-mobile-nav" target="_blank">Atendimento</a>
+      </nav>
+
+      <!-- Botão CTA Desktop -->
+      <a href="https://wa.me/5547920022746?text=Olá!%20Estava%20navegando%20no%20site%20da%20EcoAds%20e%20quero%20iniciar%20um%20atendimento." class="header-cta" id="cta-desktop-nav" target="_blank">Atendimento</a>
+
+      <!-- Hambúrguer Mobile -->
+      <button class="menu-toggle" id="menu-toggle-btn" aria-label="Abrir Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       CONTEÚDO PRINCIPAL
+       ========================================== -->
+  <main style="padding: 140px 0 100px;">
+    <div class="container">
+
+      <!-- Tool Card -->
+      <div style="background: rgba(10,10,10,0.7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.05); padding: 48px; border-radius: 20px; max-width: 1000px; margin: 0 auto; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span class="sep">/</span>
+          <a href="/ferramentas/">Ferramentas</a>
+          <span class="sep">/</span>
+          <span class="current">Visualizador GIS Online</span>
+        </nav>
+
+        <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--brand-green-accent); font-weight: 500; margin-bottom: 12px; display: block;">Geoprocessamento</span>
+        <h1 style="font-size: 2.2rem; margin-bottom: 12px; font-weight: 500; letter-spacing: -0.02em;">Visualizador GIS Online</h1>
+        <p style="color: var(--dark-text-secondary); line-height: 1.7; margin-bottom: 32px;">
+          Carregue arquivos <strong style="color: rgba(255,255,255,0.7);">KML, KMZ ou GeoJSON</strong> e visualize seus dados geoespaciais em um mapa interativo. Calcule áreas, perímetros e exporte em GeoJSON. Tudo no navegador, sem instalar nada.
+        </p>
+
+        <!-- Privacy notice -->
+        <div class="privacy-note">
+          <iconify-icon icon="solar:shield-check-linear"></iconify-icon>
+          <span>Processamento 100% local — seus arquivos não são enviados a nenhum servidor. Privacidade garantida.</span>
+        </div>
+
+        <!-- File info bar (shown after upload) -->
+        <div class="file-info-bar" id="fileInfoBar">
+          <iconify-icon icon="solar:file-check-linear"></iconify-icon>
+          <div>
+            <div class="file-name" id="fileNameDisplay">—</div>
+            <div class="file-size" id="fileSizeDisplay">—</div>
+          </div>
+        </div>
+
+        <!-- Error banner -->
+        <div class="error-banner" id="errorBanner"></div>
+
+        <!-- Upload Zone -->
+        <div id="uploadSection">
+          <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+            <iconify-icon icon="solar:upload-minimalistic-linear"></iconify-icon>
+            <h3>Arraste seu arquivo aqui ou clique para selecionar</h3>
+            <p>Formatos suportados: KML, KMZ e GeoJSON</p>
+            <div class="file-types">
+              <span class="file-badge">.kml</span>
+              <span class="file-badge">.kmz</span>
+              <span class="file-badge">.geojson</span>
+              <span class="file-badge">.json</span>
+            </div>
+          </div>
+          <input type="file" id="fileInput" accept=".kml,.kmz,.geojson,.json" style="display:none;">
+        </div>
+
+        <!-- Map Wrapper (hidden until file loaded) -->
+        <div class="map-wrapper" id="mapWrapper">
+          <div id="map"></div>
+
+          <!-- Stats Panel -->
+          <div class="stats-panel" id="statsPanel">
+            <h3>Estatísticas do Arquivo</h3>
+            <div class="stat-item">
+              <span class="stat-label">Total de feições</span>
+              <span class="stat-value" id="statFeatures">—</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Área total (polígonos)</span>
+              <span class="stat-value" id="statArea">—</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Comprimento total (linhas)</span>
+              <span class="stat-value" id="statLength">—</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Bounding box (min lat, min lng)</span>
+              <span class="stat-value" id="statBboxMin">—</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Bounding box (max lat, max lng)</span>
+              <span class="stat-value" id="statBboxMax">—</span>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="tool-actions">
+            <button class="btn-tool btn-primary-tool" id="btnExport" onclick="exportGeoJSON()">
+              <iconify-icon icon="solar:download-minimalistic-linear"></iconify-icon>
+              Exportar GeoJSON
+            </button>
+            <button class="btn-tool btn-secondary-tool" onclick="resetTool()">
+              <iconify-icon icon="solar:restart-linear"></iconify-icon>
+              Carregar novo arquivo
+            </button>
+            <button class="btn-tool btn-secondary-tool" onclick="clearLayers()">
+              <iconify-icon icon="solar:trash-bin-minimalistic-linear"></iconify-icon>
+              Limpar mapa
+            </button>
+          </div>
+        </div>
+
+      </div>
+      <!-- end Tool Card -->
+
+      <!-- ==========================================
+           SEO CONTENT
+           ========================================== -->
+      <div class="seo-content">
+
+        <h2>Como visualizar arquivos KML online</h2>
+
+        <p>
+          O <strong>KML (Keyhole Markup Language)</strong> é um formato de arquivo baseado em XML criado originalmente pela Keyhole Inc. e posteriormente adquirido e popularizado pelo Google para uso no Google Earth. Desde 2008, o KML é um padrão aberto mantido pelo Open Geospatial Consortium (OGC). Ele é amplamente utilizado para representar dados geográficos — pontos (coordenadas GPS), linhas (trajetos, divisas), e polígonos (áreas de preservação permanente, reservas legais, propriedades rurais) — de forma portável e compatível com diferentes softwares.
+        </p>
+        <p>
+          No contexto ambiental e florestal brasileiro, o KML é o formato padrão de exportação de shapefiles convertidos para uso no campo, de equipamentos GPS Garmin e Trimble, de levantamentos com drones, de mapas de delineamento de bacias hidrográficas e de arquivos exigidos em processos de licenciamento ambiental. Profissionais de QGIS, ArcGIS e Google Earth Pro lidam com KML diariamente.
+        </p>
+
+        <h3>Passo a passo para usar o visualizador</h3>
+        <ol>
+          <li><strong>Upload</strong>: clique na zona de upload ou arraste diretamente seu arquivo .kml, .kmz ou .geojson para a área indicada.</li>
+          <li><strong>Processamento</strong>: a ferramenta lê o arquivo inteiramente no seu navegador e converte para GeoJSON se necessário.</li>
+          <li><strong>Visualização</strong>: os dados aparecem sobre um mapa base OpenStreetMap com zoom automático para a extensão dos dados.</li>
+          <li><strong>Interação</strong>: clique em qualquer feição para ver um popup com todos os atributos (nome, descrição, campos personalizados).</li>
+          <li><strong>Análise</strong>: o painel de estatísticas exibe número de feições, área total em hectares, comprimento total e bounding box.</li>
+          <li><strong>Exportação</strong>: use o botão "Exportar GeoJSON" para baixar seus dados no formato padrão web.</li>
+        </ol>
+
+        <h3>Vantagens sobre softwares desktop</h3>
+        <p>
+          Softwares como QGIS e ArcGIS são ferramentas poderosas, mas exigem instalação, configuração e — no caso do ArcGIS — licenças pagas que podem custar milhares de reais por ano. Para tarefas simples de visualização, verificação de arquivo e compartilhamento rápido de dados, um visualizador online oferece vantagens claras: <strong>nenhuma instalação</strong>, funciona em qualquer sistema operacional (Windows, macOS, Linux, iOS, Android), e o link para a ferramenta pode ser compartilhado com qualquer colega ou cliente instantaneamente. Além disso, como o processamento ocorre no próprio navegador, arquivos confidenciais de processos ambientais nunca saem do seu dispositivo.
+        </p>
+
+        <h2>Como abrir arquivos KMZ sem instalar programas</h2>
+
+        <p>
+          O <strong>KMZ</strong> é simplesmente um arquivo KML compactado no formato ZIP — o nome KMZ vem de "KML Zipped". A compressão ZIP reduz significativamente o tamanho do arquivo, especialmente quando o KML contém geometrias complexas com muitos vértices, como contornos de bacias hidrográficas ou limites de unidades de conservação com alta precisão.
+        </p>
+        <p>
+          Arquivos KMZ são frequentemente criados pelo Google Earth Pro ao exportar projetos, pelo ArcGIS ao publicar camadas para visualização externa, por receptores GPS de campo (como Garmin Montana e Trimble Juno) e por sistemas de processamento de imagens de drone (como DJI Terra e Pix4D, ao exportar áreas de missão de voo).
+        </p>
+        <p>
+          Esta ferramenta utiliza a biblioteca <strong>JSZip</strong> para descompactar o arquivo KMZ diretamente no navegador, identifica automaticamente o arquivo .kml principal dentro do pacote ZIP e o processa com a biblioteca toGeoJSON. O processo é transparente para o usuário: basta fazer o upload do .kmz e o mapa é renderizado automaticamente.
+        </p>
+
+        <h3>Usos comuns do formato KMZ</h3>
+        <ul>
+          <li>Compartilhamento de dados de levantamento de campo entre equipes sem acesso a softwares GIS</li>
+          <li>Exportação de tracks e waypoints de GPS para visualização rápida</li>
+          <li>Envio de polígonos de área de estudo para clientes em processos de licenciamento ambiental</li>
+          <li>Distribuição de mapas de áreas de drone survey e ortomosaicos</li>
+          <li>Armazenamento de shapefiles convertidos para formato leve em dispositivos móveis</li>
+          <li>Submissão de arquivos geoespaciais em plataformas de georeferenciamento online</li>
+        </ul>
+
+        <h2>O que é GeoJSON</h2>
+
+        <p>
+          O <strong>GeoJSON</strong> é um padrão aberto para representação de dados geoespaciais baseado no formato JSON (JavaScript Object Notation). Foi formalizado pela Internet Engineering Task Force (IETF) através da RFC 7946, publicada em 2016. O GeoJSON suporta todos os tipos geométricos essenciais: Point, MultiPoint, LineString, MultiLineString, Polygon, MultiPolygon e GeometryCollection.
+        </p>
+        <p>
+          Uma das características mais úteis do GeoJSON é que o GitHub renderiza automaticamente arquivos .geojson em um mapa interativo quando visualizados no repositório — o que o torna o formato preferido para versionamento e compartilhamento de dados geoespaciais em projetos de código aberto. Plataformas como Mapbox, Leaflet, deck.gl, Observable e praticamente todas as ferramentas de visualização web modernas adotam GeoJSON como formato nativo.
+        </p>
+
+        <h3>Compatibilidade do GeoJSON com software GIS</h3>
+        <ul>
+          <li><strong>QGIS</strong>: importação e exportação nativas, com suporte a reprojeção de CRS</li>
+          <li><strong>ArcGIS Pro / Online</strong>: suporte completo desde a versão 10.3</li>
+          <li><strong>PostGIS</strong>: funções ST_GeomFromGeoJSON() e ST_AsGeoJSON() integradas</li>
+          <li><strong>Google Earth Engine</strong>: aceita GeoJSON para definição de áreas de estudo (ROI)</li>
+          <li><strong>Mapbox / Leaflet / OpenLayers</strong>: suporte nativo no JavaScript</li>
+          <li><strong>Python (geopandas, fiona)</strong>: leitura e escrita transparentes</li>
+          <li><strong>R (sf package)</strong>: funções st_read() e st_write() com suporte completo</li>
+        </ul>
+
+        <h3>GeoJSON vs. Shapefile: qual usar?</h3>
+        <p>
+          O Shapefile é o formato legado dominante no mundo GIS, criado pela ESRI nos anos 1990. Apesar de ainda ser amplamente utilizado, tem limitações relevantes: um único dataset shapefile consiste em no mínimo três arquivos separados (.shp com geometrias, .dbf com atributos, .shx com índice espacial) e frequentemente um quarto (.prj com o sistema de referência). Nomes de campos são limitados a 10 caracteres, e o tamanho máximo por arquivo é 2 GB. O GeoJSON, por sua vez, é um arquivo único, sem limite prático de tamanho para dados modernos, com nomes de campos sem restrição e encoding UTF-8 por padrão — o que é essencial para nomes com acentos em português.
+        </p>
+
+        <h2>Diferenças entre KML, KMZ e GeoJSON</h2>
+
+        <p>Entender as diferenças entre os três formatos ajuda a escolher o mais adequado para cada situação e a planejar fluxos de conversão eficientes.</p>
+
+        <div style="overflow-x: auto;">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Característica</th>
+                <th>KML</th>
+                <th>KMZ</th>
+                <th>GeoJSON</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Formato base</td>
+                <td>XML</td>
+                <td>ZIP (contém KML)</td>
+                <td>JSON</td>
+              </tr>
+              <tr>
+                <td>Compressão</td>
+                <td>Nenhuma</td>
+                <td>ZIP (até 80% menor)</td>
+                <td>Nenhuma (gzip opcional)</td>
+              </tr>
+              <tr>
+                <td>Criado por</td>
+                <td>Google / OGC</td>
+                <td>Google Earth</td>
+                <td>IETF (RFC 7946)</td>
+              </tr>
+              <tr>
+                <td>Usos comuns</td>
+                <td>GPS, licenciamento ambiental, ArcGIS</td>
+                <td>Google Earth Pro, drones, GPS</td>
+                <td>Web mapping, APIs, GitHub, análise</td>
+              </tr>
+              <tr>
+                <td>Compatibilidade web</td>
+                <td>Boa (requer conversão)</td>
+                <td>Boa (requer descompressão)</td>
+                <td>Nativa — padrão da web</td>
+              </tr>
+              <tr>
+                <td>Tamanho relativo</td>
+                <td>Médio</td>
+                <td>Pequeno</td>
+                <td>Médio (menor que KML)</td>
+              </tr>
+              <tr>
+                <td>Encoding padrão</td>
+                <td>UTF-8</td>
+                <td>UTF-8</td>
+                <td>UTF-8</td>
+              </tr>
+              <tr>
+                <td>Suporta estilos visuais</td>
+                <td>Sim (cores, ícones)</td>
+                <td>Sim (+ arquivos de mídia)</td>
+                <td>Não (estilos definidos na aplicação)</td>
+              </tr>
+              <tr>
+                <td>Legível por humanos</td>
+                <td>Sim (XML verboso)</td>
+                <td>Não (binário comprimido)</td>
+                <td>Sim (JSON conciso)</td>
+              </tr>
+              <tr>
+                <td>CRS padrão</td>
+                <td>WGS84 (EPSG:4326)</td>
+                <td>WGS84 (EPSG:4326)</td>
+                <td>WGS84 (EPSG:4326) — obrigatório</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Quando usar cada formato</h3>
+        <p>
+          Use <strong>KML</strong> quando precisar compartilhar dados com usuários do Google Earth ou quando o destino final é uma plataforma que aceita KML nativamente (como o Google Maps). Use <strong>KMZ</strong> quando precisar compactar um KML grande para envio por e-mail ou upload em sistemas com limite de tamanho de arquivo. Use <strong>GeoJSON</strong> para desenvolvimento web, APIs, análise com Python/R, integração com bancos de dados PostGIS e qualquer fluxo moderno de dados geoespaciais.
+        </p>
+
+        <h3>Fluxo de conversão recomendado</h3>
+        <p>
+          Para converter entre formatos, os caminhos mais práticos são: <strong>KML → GeoJSON</strong> via esta ferramenta (botão "Exportar GeoJSON" após carregar o KML); <strong>GeoJSON → KML</strong> via QGIS (Camada > Salvar Como > KML) ou ogr2ogr na linha de comando; <strong>Shapefile → GeoJSON</strong> via QGIS, mapshaper.org ou o comando <code style="color: #00ff66; background: rgba(0,255,102,0.05); padding: 2px 6px; border-radius: 4px; font-size: 0.85em;">ogr2ogr -f GeoJSON saida.geojson entrada.shp</code>.
+        </p>
+
+        <h2>Perguntas Frequentes</h2>
+
+        <div class="faq-list" id="faqList">
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              O que é um visualizador GIS online?
+              <iconify-icon icon="solar:alt-arrow-down-linear"></iconify-icon>
+            </div>
+            <div class="faq-answer">
+              <p>Um visualizador GIS online é uma ferramenta web que permite carregar e exibir dados geoespaciais — como arquivos KML, KMZ ou GeoJSON — diretamente no navegador, sobre um mapa base interativo, sem necessidade de instalar softwares especializados como QGIS ou ArcGIS. Esta ferramenta usa Leaflet.js e OpenStreetMap para renderizar o mapa e Turf.js para os cálculos geométricos.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Meus dados ficam armazenados no servidor?
+              <iconify-icon icon="solar:alt-arrow-down-linear"></iconify-icon>
+            </div>
+            <div class="faq-answer">
+              <p>Não. Todo o processamento é feito exclusivamente no seu navegador usando JavaScript client-side. Quando você faz o upload de um arquivo, ele é lido pela API FileReader do navegador e processado localmente. Nenhum byte do seu arquivo é transmitido para qualquer servidor da EcoAds ou de terceiros. Seus dados geoespaciais — incluindo coordenadas, atributos e metadados — permanecem 100% privados no seu dispositivo.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Posso visualizar Shapefiles (SHP)?
+              <iconify-icon icon="solar:alt-arrow-down-linear"></iconify-icon>
+            </div>
+            <div class="faq-answer">
+              <p>Esta ferramenta suporta nativamente KML, KMZ e GeoJSON. Para Shapefiles, o fluxo recomendado é converter para GeoJSON antes de carregar aqui. Você pode usar o QGIS (clique com botão direito na camada > Exportar > Salvar Feições Como > GeoJSON), o site gratuito mapshaper.org (arraste o .zip contendo todos os arquivos do shapefile), ou a ferramenta de linha de comando ogr2ogr.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              O que é KML e para que serve?
+              <iconify-icon icon="solar:alt-arrow-down-linear"></iconify-icon>
+            </div>
+            <div class="faq-answer">
+              <p>KML (Keyhole Markup Language) é um formato de arquivo XML para representação de dados geográficos como pontos, linhas e polígonos. Foi criado originalmente pela empresa Keyhole Inc. (adquirida pelo Google em 2004) para o software Google Earth. Hoje é um padrão OGC e é amplamente usado em licenciamento ambiental, exportação de receptores GPS, levantamentos com drones, ArcGIS e qualquer contexto que envolva compartilhamento de dados geoespaciais entre profissionais.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Como converter KML para GeoJSON?
+              <iconify-icon icon="solar:alt-arrow-down-linear"></iconify-icon>
+            </div>
+            <div class="faq-answer">
+              <p>O caminho mais simples é usar esta própria ferramenta: carregue o arquivo KML ou KMZ e clique no botão "Exportar GeoJSON" — o arquivo será baixado imediatamente. Outras opções incluem o QGIS (Camada > Exportar > Salvar Como > GeoJSON), o site mapshaper.org, ou via linha de comando com ogr2ogr: <code style="color: #00ff66;">ogr2ogr -f GeoJSON saida.geojson entrada.kml</code>. O resultado em todos os casos é um arquivo .geojson em coordenadas WGS84 (EPSG:4326).</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Qual a diferença entre KML e KMZ?
+              <iconify-icon icon="solar:alt-arrow-down-linear"></iconify-icon>
+            </div>
+            <div class="faq-answer">
+              <p>KMZ é simplesmente um arquivo KML compactado no formato ZIP — o "Z" em KMZ significa "Zipped". O KMZ pode conter, além do arquivo doc.kml principal, imagens, ícones e outros recursos referenciados pelo KML. A compressão ZIP normalmente reduz o tamanho do arquivo em 60% a 80%, o que é especialmente útil para KMLs com geometrias complexas. Esta ferramenta descompacta automaticamente o KMZ e processa o KML interno, sem nenhuma ação adicional do usuário.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Como calcular área de um polígono no mapa?
+              <iconify-icon icon="solar:alt-arrow-down-linear"></iconify-icon>
+            </div>
+            <div class="faq-answer">
+              <p>Após carregar seu arquivo KML, KMZ ou GeoJSON, o painel de estatísticas é exibido automaticamente abaixo do mapa. Para polígonos, a ferramenta calcula a área total usando a biblioteca Turf.js (função turf.area()), que considera a curvatura da Terra e retorna resultados em metros quadrados — convertidos automaticamente para hectares (ha) e m². O cálculo é geodésico e preciso para áreas de até algumas centenas de quilômetros quadrados, como reservas legais e APPs.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              Posso usar o visualizador no celular?
+              <iconify-icon icon="solar:alt-arrow-down-linear"></iconify-icon>
+            </div>
+            <div class="faq-answer">
+              <p>Sim. A ferramenta é totalmente responsiva e funciona em smartphones e tablets com navegadores modernos — Chrome, Firefox, Safari e Edge. O mapa Leaflet suporta gestos de toque (touch) para zoom com dois dedos e pan arrastando. O upload de arquivos funciona via seletor de arquivos do sistema operacional, que no Android e iOS também permite selecionar arquivos de serviços de nuvem como Google Drive e iCloud. Recomendamos usar em orientação paisagem para melhor visualização do mapa.</p>
+            </div>
+          </div>
+
+        </div>
+        <!-- end faq-list -->
+
+        <!-- Related Tools -->
+        <h2 style="margin-top: 64px;">Outras Ferramentas Gratuitas</h2>
+        <p>Explore o hub de ferramentas da EcoAds para profissionais do setor ambiental e florestal.</p>
+
+        <div class="related-tools-grid">
+          <a href="/ferramentas/coordenadas.html" class="related-tool-card">
+            <iconify-icon icon="solar:map-point-linear"></iconify-icon>
+            <span class="rtc-title">Conversor de Coordenadas</span>
+            <span class="rtc-desc">Converta entre DD, DMS, UTM e outros sistemas de referência</span>
+          </a>
+          <a href="/ferramentas/unidades.html" class="related-tool-card">
+            <iconify-icon icon="solar:ruler-linear"></iconify-icon>
+            <span class="rtc-title">Conversor de Unidades Florestais</span>
+            <span class="rtc-desc">Volume de madeira, área, DAP, densidade e muito mais</span>
+          </a>
+          <a href="/ferramentas/calcular-app-rio/" class="related-tool-card">
+            <iconify-icon icon="solar:water-linear"></iconify-icon>
+            <span class="rtc-title">Calcular APP de Rio</span>
+            <span class="rtc-desc">Área de Preservação Permanente conforme o Código Florestal</span>
+          </a>
+          <a href="/ferramentas/calcular-reserva-legal/" class="related-tool-card">
+            <iconify-icon icon="solar:trees-linear"></iconify-icon>
+            <span class="rtc-title">Calcular Reserva Legal</span>
+            <span class="rtc-desc">Percentual de RL por bioma e módulo fiscal</span>
+          </a>
+        </div>
+
+      </div>
+      <!-- end seo-content -->
+
+    </div>
+  </main>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="main-footer" id="main-footer-v2">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+          <img src="/src/assets/logo.png" alt="EcoAds Logo" class="footer-logo-img">
+          <p>
+            A única agência digital do Brasil especializada exclusivamente no desenvolvimento e posicionamento do setor ambiental e florestal.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Navegação</h4>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/servicos/">Serviços</a></li>
+            <li><a href="/apps/">Apps</a></li>
+            <li><a href="/cursos/">Cursos</a></li>
+            <li><a href="/sobre/">Sobre</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Ferramentas</h4>
+          <ul class="footer-links">
+            <li><a href="/ferramentas/">Hub de Conversores</a></li>
+            <li><a href="/ferramentas/coordenadas.html">Conversor de Coordenadas</a></li>
+            <li><a href="/ferramentas/unidades.html">Conversor de Unidades</a></li>
+            <li><a href="/ferramentas/visualizador-gis-online/">Visualizador GIS Online</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Contato</h4>
+          <ul class="footer-contact-info">
+            <li>
+              <iconify-icon icon="solar:map-point-linear" width="16" style="margin-top: 3px; color: var(--brand-green-accent);"></iconify-icon>
+              <span>Irati — Paraná, Brasil</span>
+            </li>
+            <li>
+              <iconify-icon icon="solar:letter-linear" width="16" style="margin-top: 3px; color: var(--brand-green-accent);"></iconify-icon>
+              <span>contato@ecoadsbr.com</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="current-year"></span> EcoAds. Todos os direitos reservados.</p>
+        <p>CNPJ: 60.854.323/0001-74</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       LIBRARIES
+       ========================================== -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mapbox/togeojson@0.16.0/togeojson.js"></script>
+
+  <!-- ==========================================
+       TOOL JAVASCRIPT
+       ========================================== -->
+  <script>
+    // ---- State ----
+    var map = null;
+    var geoLayer = null;
+    var currentGeoJSON = null;
+
+    // ---- Init map ----
+    function initMap() {
+      if (map) return;
+      map = L.map('map', {
+        center: [-14, -52],
+        zoom: 4,
+        zoomControl: true
+      });
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19
+      }).addTo(map);
+    }
+
+    // ---- Upload Zone drag-and-drop ----
+    var uploadZone = document.getElementById('uploadZone');
+    var fileInput = document.getElementById('fileInput');
+
+    uploadZone.addEventListener('dragover', function(e) {
+      e.preventDefault();
+      uploadZone.classList.add('drag-over');
+    });
+    uploadZone.addEventListener('dragleave', function() {
+      uploadZone.classList.remove('drag-over');
+    });
+    uploadZone.addEventListener('drop', function(e) {
+      e.preventDefault();
+      uploadZone.classList.remove('drag-over');
+      var files = e.dataTransfer.files;
+      if (files && files.length > 0) handleFile(files[0]);
+    });
+    fileInput.addEventListener('change', function() {
+      if (fileInput.files && fileInput.files.length > 0) handleFile(fileInput.files[0]);
+    });
+
+    // ---- File handling ----
+    function handleFile(file) {
+      hideError();
+      var ext = file.name.split('.').pop().toLowerCase();
+      var allowed = ['kml', 'kmz', 'geojson', 'json'];
+      if (allowed.indexOf(ext) === -1) {
+        showError('Formato não suportado: .' + ext + '. Por favor, envie um arquivo .kml, .kmz, .geojson ou .json.');
+        return;
+      }
+
+      showFileInfo(file);
+
+      var reader = new FileReader();
+
+      if (ext === 'kmz') {
+        reader.onload = function(e) { processKMZ(e.target.result); };
+        reader.readAsArrayBuffer(file);
+      } else {
+        reader.onload = function(e) {
+          if (ext === 'kml') {
+            processKML(e.target.result);
+          } else {
+            processGeoJSON(e.target.result);
+          }
+        };
+        reader.readAsText(file);
+      }
+    }
+
+    function processKML(text) {
+      try {
+        var parser = new DOMParser();
+        var kmlDoc = parser.parseFromString(text, 'text/xml');
+        var parserError = kmlDoc.getElementsByTagName('parsererror');
+        if (parserError.length > 0) {
+          showError('O arquivo KML está malformado ou corrompido. Verifique se o XML é válido.');
+          return;
+        }
+        var geojson = toGeoJSON.kml(kmlDoc);
+        if (!geojson || !geojson.features || geojson.features.length === 0) {
+          showError('Nenhuma feição geográfica encontrada no arquivo KML. O arquivo pode estar vazio ou usar uma estrutura não suportada.');
+          return;
+        }
+        renderGeoJSON(geojson);
+      } catch (err) {
+        showError('Erro ao processar o arquivo KML: ' + err.message);
+      }
+    }
+
+    function processKMZ(buffer) {
+      JSZip.loadAsync(buffer).then(function(zip) {
+        var kmlFile = null;
+        zip.forEach(function(relativePath, zipEntry) {
+          if (!kmlFile && relativePath.toLowerCase().endsWith('.kml')) {
+            kmlFile = zipEntry;
+          }
+        });
+        if (!kmlFile) {
+          showError('Nenhum arquivo .kml encontrado dentro do KMZ. O arquivo pode estar corrompido.');
+          return;
+        }
+        return kmlFile.async('string').then(function(kmlText) {
+          processKML(kmlText);
+        });
+      }).catch(function(err) {
+        showError('Erro ao descompactar o arquivo KMZ: ' + err.message);
+      });
+    }
+
+    function processGeoJSON(text) {
+      try {
+        var geojson = JSON.parse(text);
+        if (!geojson || !geojson.type) {
+          showError('O arquivo não contém um GeoJSON válido. Verifique se o JSON está correto e possui a propriedade "type".');
+          return;
+        }
+        // Normalize FeatureCollection or single Feature/Geometry
+        if (geojson.type === 'Feature') {
+          geojson = { type: 'FeatureCollection', features: [geojson] };
+        } else if (geojson.type !== 'FeatureCollection') {
+          // Wrap geometry
+          geojson = { type: 'FeatureCollection', features: [{ type: 'Feature', geometry: geojson, properties: {} }] };
+        }
+        if (!geojson.features || geojson.features.length === 0) {
+          showError('Nenhuma feição encontrada no GeoJSON. O arquivo pode estar vazio.');
+          return;
+        }
+        renderGeoJSON(geojson);
+      } catch (err) {
+        showError('Erro ao analisar o GeoJSON: ' + err.message + '. Verifique se o arquivo é um JSON válido.');
+      }
+    }
+
+    // ---- Render on map ----
+    function renderGeoJSON(geojson) {
+      currentGeoJSON = geojson;
+
+      // Show map section, hide upload
+      document.getElementById('uploadSection').style.display = 'none';
+      document.getElementById('mapWrapper').style.display = 'block';
+
+      // Init map if needed, then invalidate size
+      initMap();
+      setTimeout(function() { map.invalidateSize(); }, 100);
+
+      // Remove existing layer
+      if (geoLayer) {
+        map.removeLayer(geoLayer);
+        geoLayer = null;
+      }
+
+      // Marker cluster-like: create circle markers for points
+      geoLayer = L.geoJSON(geojson, {
+        style: function(feature) {
+          var gt = feature.geometry ? feature.geometry.type : '';
+          if (gt === 'Polygon' || gt === 'MultiPolygon') {
+            return {
+              color: '#00ff66',
+              weight: 2,
+              fillColor: '#00ff66',
+              fillOpacity: 0.15,
+              opacity: 0.8
+            };
+          }
+          // Lines
+          return {
+            color: '#00ff66',
+            weight: 2,
+            opacity: 0.85
+          };
+        },
+        pointToLayer: function(feature, latlng) {
+          return L.circleMarker(latlng, {
+            radius: 7,
+            fillColor: '#00ff66',
+            color: '#00cc55',
+            weight: 1.5,
+            opacity: 1,
+            fillOpacity: 0.8
+          });
+        },
+        onEachFeature: function(feature, layer) {
+          layer.on('click', function() {
+            var props = feature.properties || {};
+            var keys = Object.keys(props);
+            var content = '';
+            if (keys.length === 0) {
+              content = '<span class="popup-no-props">Nenhum atributo disponível</span>';
+            } else {
+              content = '<table class="popup-table">';
+              keys.forEach(function(k) {
+                var val = props[k];
+                if (val === null || val === undefined || val === '') val = '—';
+                content += '<tr><td>' + escapeHtml(String(k)) + '</td><td>' + escapeHtml(String(val)) + '</td></tr>';
+              });
+              content += '</table>';
+            }
+            layer.bindPopup(content, { maxWidth: 340 }).openPopup();
+          });
+        }
+      }).addTo(map);
+
+      // Fit bounds
+      try {
+        var bounds = geoLayer.getBounds();
+        if (bounds.isValid()) {
+          map.fitBounds(bounds, { padding: [32, 32] });
+        }
+      } catch(e) { /* no bounds if only points with single coord */ }
+
+      // Compute stats
+      computeStats(geojson);
+    }
+
+    // ---- Stats ----
+    function computeStats(geojson) {
+      var features = geojson.features || [];
+      var totalArea_m2 = 0;
+      var totalLength_km = 0;
+      var hasPolygon = false;
+      var hasLine = false;
+
+      features.forEach(function(f) {
+        if (!f.geometry) return;
+        var gt = f.geometry.type;
+        if (gt === 'Polygon' || gt === 'MultiPolygon') {
+          hasPolygon = true;
+          try { totalArea_m2 += turf.area(f); } catch(e) {}
+          try { totalLength_km += turf.length(f, { units: 'kilometers' }); } catch(e) {}
+        } else if (gt === 'LineString' || gt === 'MultiLineString') {
+          hasLine = true;
+          try { totalLength_km += turf.length(f, { units: 'kilometers' }); } catch(e) {}
+        }
+      });
+
+      // Bounding box
+      var bboxMin = '—', bboxMax = '—';
+      try {
+        var bb = turf.bbox(geojson); // [minLng, minLat, maxLng, maxLat]
+        bboxMin = bb[1].toFixed(6) + ', ' + bb[0].toFixed(6);
+        bboxMax = bb[3].toFixed(6) + ', ' + bb[2].toFixed(6);
+      } catch(e) {}
+
+      document.getElementById('statFeatures').textContent = features.length;
+
+      if (hasPolygon) {
+        var ha = totalArea_m2 / 10000;
+        document.getElementById('statArea').textContent = formatNumber(ha, 4) + ' ha  (' + formatNumber(totalArea_m2, 2) + ' m²)';
+      } else {
+        document.getElementById('statArea').textContent = 'N/A (sem polígonos)';
+      }
+
+      if (hasPolygon || hasLine) {
+        document.getElementById('statLength').textContent = formatNumber(totalLength_km, 4) + ' km  (' + formatNumber(totalLength_km * 1000, 2) + ' m)';
+      } else {
+        document.getElementById('statLength').textContent = 'N/A (sem linhas/polígonos)';
+      }
+
+      document.getElementById('statBboxMin').textContent = bboxMin;
+      document.getElementById('statBboxMax').textContent = bboxMax;
+
+      var statsPanel = document.getElementById('statsPanel');
+      statsPanel.style.display = 'block';
+    }
+
+    function formatNumber(num, decimals) {
+      return num.toLocaleString('pt-BR', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+    }
+
+    // ---- Export GeoJSON ----
+    function exportGeoJSON() {
+      if (!currentGeoJSON) return;
+      var str = JSON.stringify(currentGeoJSON, null, 2);
+      var blob = new Blob([str], { type: 'application/geo+json' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'ecoads-export.geojson';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    // ---- Clear layers ----
+    function clearLayers() {
+      if (geoLayer && map) {
+        map.removeLayer(geoLayer);
+        geoLayer = null;
+      }
+      currentGeoJSON = null;
+      document.getElementById('statsPanel').style.display = 'none';
+      if (map) map.setView([-14, -52], 4);
+    }
+
+    // ---- Reset to upload screen ----
+    function resetTool() {
+      clearLayers();
+      document.getElementById('mapWrapper').style.display = 'none';
+      document.getElementById('uploadSection').style.display = 'block';
+      document.getElementById('fileInfoBar').style.display = 'none';
+      document.getElementById('fileNameDisplay').textContent = '—';
+      document.getElementById('fileSizeDisplay').textContent = '—';
+      fileInput.value = '';
+      hideError();
+    }
+
+    // ---- Helpers ----
+    function showFileInfo(file) {
+      document.getElementById('fileNameDisplay').textContent = file.name;
+      var size = file.size;
+      var sizeStr;
+      if (size < 1024) sizeStr = size + ' B';
+      else if (size < 1024 * 1024) sizeStr = (size / 1024).toFixed(1) + ' KB';
+      else sizeStr = (size / (1024 * 1024)).toFixed(2) + ' MB';
+      document.getElementById('fileSizeDisplay').textContent = sizeStr;
+      document.getElementById('fileInfoBar').style.display = 'flex';
+    }
+
+    function showError(msg) {
+      var banner = document.getElementById('errorBanner');
+      banner.textContent = msg;
+      banner.style.display = 'block';
+      document.getElementById('fileInfoBar').style.display = 'none';
+    }
+
+    function hideError() {
+      document.getElementById('errorBanner').style.display = 'none';
+    }
+
+    function escapeHtml(str) {
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // ---- FAQ accordion ----
+    function toggleFaq(el) {
+      var item = el.parentElement;
+      var isOpen = item.classList.contains('open');
+      // close all
+      document.querySelectorAll('.faq-item.open').forEach(function(i) { i.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // ---- Footer year ----
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>

@@ -261,6 +261,85 @@ a {
 }
 
 /* ==========================================
+   CARROSSEL DE LOGOS — CLIENTES
+   ========================================== */
+.clients-section {
+  background: #ffffff;
+  padding: 36px 0 40px;
+  border-top: 1px solid #f0f3f0;
+  border-bottom: 1px solid #f0f3f0;
+  overflow: hidden;
+}
+
+.clients-label {
+  text-align: center;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #b0c0b0;
+  margin-bottom: 28px;
+  font-weight: 500;
+}
+
+.clients-track-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.clients-track-wrapper::before,
+.clients-track-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+.clients-track-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, #fff 30%, transparent);
+}
+.clients-track-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #fff 30%, transparent);
+}
+
+.clients-track {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  width: max-content;
+  animation: clients-marquee 32s linear infinite;
+  padding: 0 40px;
+}
+
+.clients-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes clients-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.client-logo {
+  height: 46px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  opacity: 0.6;
+  filter: grayscale(20%);
+  transition: opacity 0.25s, filter 0.25s;
+  flex-shrink: 0;
+}
+
+.client-logo:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+/* ==========================================
    CARDS E COMPONENTES GLASSMORPHISM
    ========================================== */
 .service-card, .app-card, .tool-card, .contact-card, .testimonial-card {

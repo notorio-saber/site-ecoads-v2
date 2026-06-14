@@ -598,7 +598,6 @@
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script>
     (function () {
-      /* Códigos IBGE → nome do estado */
       var STATE_NAMES = {
         11:'Rondônia', 12:'Acre', 13:'Amazonas', 14:'Roraima',
         15:'Pará', 16:'Amapá', 17:'Tocantins',
@@ -610,8 +609,14 @@
         50:'Mato Grosso do Sul', 51:'Mato Grosso', 52:'Goiás', 53:'Distrito Federal'
       };
 
-      /* Estados com projetos realizados (códigos IBGE) */
       var ACTIVE = new Set([13, 53, 41, 42]); /* AM, DF, PR, SC */
+
+      var FILL_AVAILABLE  = 'rgba(255,255,255,0.05)';
+      var FILL_ACTIVE     = 'rgba(0,255,102,0.18)';
+      var FILL_HOVER_AVA  = 'rgba(0,255,102,0.07)';
+      var FILL_HOVER_ACT  = 'rgba(0,255,102,0.35)';
+      var STROKE_AVAILABLE = 'rgba(255,255,255,0.18)';
+      var STROKE_ACTIVE    = '#00ff66';
 
       var container  = document.getElementById('br-map-container');
       var loadingEl  = document.getElementById('map-loading');
@@ -619,42 +624,67 @@
       var mapWrapper = document.querySelector('.map-wrapper');
       if (!container || !tooltip || !mapWrapper) return;
 
-      var W = container.clientWidth || 560;
-      var H = Math.round(W * 1.05);
+      var W = Math.max(container.clientWidth, 320) || 520;
+      var H = Math.round(W * 1.08);
 
       var svg = d3.select(container)
         .append('svg')
         .attr('width', '100%')
+        .attr('height', H)
         .attr('viewBox', '0 0 ' + W + ' ' + H)
-        .attr('class', 'br-map-d3');
+        .style('display', 'block')
+        .style('background', 'transparent');
+
+      /* Fundo escuro explícito dentro do SVG */
+      svg.append('rect')
+        .attr('width', W)
+        .attr('height', H)
+        .attr('fill', 'rgba(3,3,3,0)');
 
       var pathGen = d3.geoPath();
 
       var IBGE_URL = 'https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR'
-        + '?intrarregiao=UF&resolucao=3&formato=application/vnd.geo+json';
+        + '?intrarregiao=UF&resolucao=2&formato=application/vnd.geo+json';
 
       fetch(IBGE_URL)
         .then(function (r) { return r.json(); })
         .then(function (geo) {
           if (loadingEl) loadingEl.remove();
 
-          /* Ajusta projeção automaticamente ao tamanho do container */
-          var projection = d3.geoMercator().fitSize([W, H], geo);
+          /* Suporte a FeatureCollection e GeometryCollection */
+          var features = geo.features;
+          if (!features && geo.geometries) {
+            features = geo.geometries.map(function (g, i) {
+              return { type: 'Feature', geometry: g, properties: {} };
+            });
+          }
+          if (!features || !features.length) throw new Error('no features');
+
+          var fc = { type: 'FeatureCollection', features: features };
+          var projection = d3.geoMercator().fitExtent([[4, 4], [W - 4, H - 4]], fc);
           pathGen.projection(projection);
 
-          svg.selectAll('path')
-            .data(geo.features)
+          svg.selectAll('path.br-state')
+            .data(features)
             .enter()
             .append('path')
+            .attr('class', 'br-state')
             .attr('d', pathGen)
-            .attr('class', function (d) {
-              var code = parseInt(d.properties.codarea, 10);
-              return 'br-state ' + (ACTIVE.has(code) ? 'state-active' : 'state-available');
+            .style('fill', function (d) {
+              var code = parseInt(d.properties && d.properties.codarea, 10);
+              return ACTIVE.has(code) ? FILL_ACTIVE : FILL_AVAILABLE;
             })
+            .style('stroke', function (d) {
+              var code = parseInt(d.properties && d.properties.codarea, 10);
+              return ACTIVE.has(code) ? STROKE_ACTIVE : STROKE_AVAILABLE;
+            })
+            .style('stroke-width', '0.7')
+            .style('cursor', 'pointer')
             .on('mouseenter', function (event, d) {
-              var code = parseInt(d.properties.codarea, 10);
-              var name = STATE_NAMES[code] || 'Estado';
+              var code = parseInt(d.properties && d.properties.codarea, 10);
               var active = ACTIVE.has(code);
+              d3.select(this).style('fill', active ? FILL_HOVER_ACT : FILL_HOVER_AVA);
+              var name = STATE_NAMES[code] || 'Estado';
               tooltip.innerHTML =
                 '<div class="tt-name">' + name + '</div>' +
                 '<div class="tt-status ' + (active ? 'active' : 'available') + '">' +
@@ -668,11 +698,13 @@
               tooltip.style.left = (event.clientX - rect.left + 14) + 'px';
               tooltip.style.top  = (event.clientY - rect.top  - 54) + 'px';
             })
-            .on('mouseleave', function () {
+            .on('mouseleave', function (event, d) {
+              var code = parseInt(d.properties && d.properties.codarea, 10);
+              d3.select(this).style('fill', ACTIVE.has(code) ? FILL_ACTIVE : FILL_AVAILABLE);
               tooltip.classList.remove('visible');
             });
         })
-        .catch(function () {
+        .catch(function (e) {
           if (loadingEl) loadingEl.textContent = 'Mapa temporariamente indisponível.';
         });
     })();

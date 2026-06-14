@@ -482,6 +482,22 @@ a {
   color: var(--brand-green-accent);
 }
 
+.nav-badge-new {
+  display: inline-block;
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #030303;
+  background: var(--brand-green-accent);
+  padding: 2px 5px;
+  border-radius: 4px;
+  vertical-align: middle;
+  margin-left: 5px;
+  line-height: 1.5;
+  position: relative;
+  top: -1px;
+}
+
 .header-cta {
   display: inline-flex;
   align-items: center;

@@ -20,6 +20,8 @@ export default defineConfig({
         calcularArvoresHa: resolve(__dirname, 'ferramentas/calcular-arvores-por-hectare/index.html'),
         calcularVolumeLenha: resolve(__dirname, 'ferramentas/calcular-volume-lenha/index.html'),
         calcularDeclividade: resolve(__dirname, 'ferramentas/conversor-declividade/index.html'),
+        conversorDapCap: resolve(__dirname, 'ferramentas/conversor-dap-cap/index.html'),
+        moduloFiscal: resolve(__dirname, 'ferramentas/modulo-fiscal/index.html'),
       }
     }
   }

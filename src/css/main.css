@@ -826,12 +826,25 @@ a {
    DOBRA DE SOLUÇÕES (SERVIÇOS) — TEMA CLARO
    ========================================== */
 #servicos-dobra-clara {
-  background-color: #f6f8f6; /* Verde-cinza claro ultra sutil */
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  background-color: #f6f8f6;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   color: #111111;
   position: relative;
   z-index: 5;
+  border-radius: 24px 24px 0 0;
+}
+
+/* Botão secundário dentro da dobra clara */
+#servicos-dobra-clara .btn-secondary {
+  color: #111;
+  border-color: rgba(0, 0, 0, 0.18);
+  background: transparent;
+}
+#servicos-dobra-clara .btn-secondary:hover {
+  color: #000;
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.35);
+  box-shadow: none;
 }
 
 #servicos-dobra-clara .section-subtitle {
@@ -879,7 +892,7 @@ a {
    ========================================== */
 .apps-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   margin-bottom: 64px;
 }
@@ -1441,6 +1454,7 @@ a {
   .footer-grid > div:last-child { grid-column: span 3; }
   .pricing-grid { grid-template-columns: 1fr; gap: 32px; }
   .testimonials-grid { grid-template-columns: 1fr; gap: 32px; }
+  .apps-container { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 768px) {

@@ -1512,6 +1512,440 @@ a {
 }
 
 /* ==========================================
+   PÁGINAS INTERNAS — TEMA CLARO (Serviços)
+   ========================================== */
+.page-light-main {
+  background: #f4f8f4;
+  padding-top: 100px;
+  min-height: 80vh;
+}
+
+.page-hero-light {
+  padding: 72px 0 60px;
+  background: #f4f8f4;
+}
+
+.page-hero-light .section-subtitle {
+  color: var(--brand-green);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.page-hero-light .page-title {
+  font-size: 2.8rem;
+  color: #0d1a0d;
+  margin-bottom: 16px;
+  line-height: 1.18;
+}
+
+.page-hero-light .page-title span { color: var(--brand-green); }
+
+.page-hero-light .page-desc {
+  font-size: 1.05rem;
+  color: #556655;
+  max-width: 580px;
+  line-height: 1.72;
+}
+
+/* Cards de serviço — light */
+.services-light-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 0 0 80px;
+  background: #f4f8f4;
+}
+
+.svc-card-l {
+  background: #ffffff;
+  border: 1px solid #e2ede2;
+  border-radius: 16px;
+  padding: 28px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.svc-card-l:hover {
+  box-shadow: 0 8px 28px rgba(0, 100, 40, 0.1);
+  transform: translateY(-2px);
+}
+
+.svc-card-l .svc-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(0, 155, 59, 0.08);
+  border: 1px solid rgba(0, 155, 59, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-green);
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.svc-card-l h3 {
+  font-size: 1.05rem;
+  color: #0d1a0d;
+  margin-bottom: 8px;
+}
+
+.svc-card-l p {
+  font-size: 0.86rem;
+  color: #637563;
+  line-height: 1.65;
+}
+
+/* Seção de formulário — light */
+.svc-form-section {
+  background: #ffffff;
+  padding: 80px 0 100px;
+  border-top: 1px solid #e2ede2;
+}
+
+.svc-form-wrap {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.svc-form-header h2 {
+  font-size: 2rem;
+  color: #0d1a0d;
+  margin-bottom: 8px;
+}
+
+.svc-form-header p {
+  color: #778877;
+  margin-bottom: 36px;
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.fg {
+  margin-bottom: 18px;
+}
+
+.fg label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #334433;
+  margin-bottom: 6px;
+  letter-spacing: 0.01em;
+}
+
+.fg input,
+.fg select,
+.fg textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid #d5e8d5;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  color: #1a2a1a;
+  background: #fafdf8;
+  outline: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  font-family: var(--font-body);
+  appearance: none;
+}
+
+.fg input:focus,
+.fg select:focus,
+.fg textarea:focus {
+  border-color: var(--brand-green);
+  box-shadow: 0 0 0 3px rgba(0, 155, 59, 0.1);
+  background: #fff;
+}
+
+.fg textarea { resize: vertical; }
+
+/* ==========================================
+   PÁGINAS INTERNAS — APPS / SISTEMAS (dark)
+   ========================================== */
+.apps-page-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.app-card-v2 {
+  background: rgba(10, 10, 10, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.app-card-v2:hover {
+  border-color: rgba(0, 255, 102, 0.22);
+  transform: translateY(-2px);
+}
+
+.app-card-v2 .acp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  font-family: var(--font-title);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 20px;
+}
+
+.acp-badge-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--brand-green-accent);
+  box-shadow: 0 0 5px var(--brand-green-accent);
+}
+
+.acp-badge-dot.blue { background: var(--brand-blue-accent); box-shadow: 0 0 5px var(--brand-blue-accent); }
+.acp-badge-dot.yellow { background: var(--brand-yellow); box-shadow: 0 0 5px var(--brand-yellow); }
+
+.app-card-v2 .acp-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-green-accent);
+  margin-bottom: 16px;
+}
+
+.app-card-v2 h3 {
+  font-size: 1.3rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.app-card-v2 p {
+  font-size: 0.875rem;
+  color: var(--dark-text-secondary);
+  line-height: 1.68;
+  margin-bottom: 22px;
+  flex: 1;
+}
+
+.app-card-v2 .acp-features {
+  list-style: none;
+  margin-bottom: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.app-card-v2 .acp-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.65);
+}
+
+.app-card-v2 .acp-features li iconify-icon { color: var(--brand-green-accent); margin-top: 1px; flex-shrink: 0; }
+
+/* Mentoria CTA block */
+.mentoria-cta-block {
+  margin-top: 80px;
+  background: linear-gradient(135deg, rgba(0,255,102,0.04) 0%, rgba(0,229,255,0.04) 100%);
+  border: 1px solid rgba(0,255,102,0.12);
+  border-radius: 20px;
+  padding: 52px 48px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+}
+
+.mentoria-cta-block .men-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  font-family: var(--font-title);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brand-green-accent);
+  margin-bottom: 12px;
+}
+
+.mentoria-cta-block h3 {
+  font-size: 1.6rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.mentoria-cta-block p {
+  font-size: 0.9rem;
+  color: var(--dark-text-secondary);
+  line-height: 1.7;
+  max-width: 520px;
+}
+
+.mentoria-cta-block .men-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ==========================================
+   PÁGINAS INTERNAS — CURSOS
+   ========================================== */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.course-card {
+  background: rgba(10, 10, 10, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.course-card:hover {
+  border-color: rgba(0, 255, 102, 0.2);
+  transform: translateY(-2px);
+}
+
+.course-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--font-title);
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 20px;
+}
+
+.course-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  color: var(--brand-green-accent);
+}
+
+.course-card h3 {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.course-card p {
+  font-size: 0.875rem;
+  color: var(--dark-text-secondary);
+  line-height: 1.68;
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+.course-price {
+  font-size: 0.8rem;
+  color: var(--brand-green-accent);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 18px;
+}
+
+/* ==========================================
+   FERRAMENTAS — light bg override (tool pages)
+   ========================================== */
+body.tools-light {
+  background: #f4f8f4;
+  color: #1a2a1a;
+}
+body.tools-light .bg-atmosphere { display: none; }
+body.tools-light .input-label { color: #445544; }
+body.tools-light .input-field {
+  background: #fff;
+  border-color: #d5e8d5;
+  color: #1a2a1a;
+}
+body.tools-light .input-field:focus {
+  border-color: var(--brand-green);
+  box-shadow: 0 0 0 3px rgba(0,155,59,0.1);
+}
+body.tools-light .result-box {
+  background: #fff;
+  border-color: #e2ede2;
+}
+body.tools-light .result-item {
+  background: #f8fcf8;
+  border-color: #e2ede2;
+}
+body.tools-light .result-label { color: #778877; }
+body.tools-light .result-value { color: #1a2a1a; }
+body.tools-light .copy-btn {
+  background: #fff;
+  border-color: #d5e8d5;
+  color: #556655;
+}
+body.tools-light .copy-btn:hover {
+  background: rgba(0, 155, 59, 0.08);
+  border-color: var(--brand-green);
+  color: var(--brand-green);
+}
+body.tools-light .category-card {
+  background: #fff;
+  border-color: #e2ede2;
+  color: #1a2a1a;
+}
+body.tools-light .category-card:hover {
+  background: #f4f8f4;
+  border-color: #c5d8c5;
+}
+body.tools-light .category-card.active {
+  background: rgba(0,155,59,0.08);
+  border-color: var(--brand-green);
+}
+body.tools-light h1,
+body.tools-light h2,
+body.tools-light h3 { color: #0d1a0d; }
+
+/* Responsive inner pages */
+@media (max-width: 768px) {
+  .page-hero-light .page-title { font-size: 2rem; }
+  .services-light-grid { grid-template-columns: 1fr; }
+  .form-row-2 { grid-template-columns: 1fr; }
+  .mentoria-cta-block { grid-template-columns: 1fr; padding: 36px 24px; }
+  .mentoria-cta-block .men-cta { flex-direction: row; flex-wrap: wrap; justify-content: flex-start; }
+  .courses-grid { grid-template-columns: 1fr; }
+  .apps-page-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================
    MAPA INTERATIVO DE PRESENÇA NACIONAL
    ========================================== */
 .map-section {

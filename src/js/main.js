@@ -390,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${(intensity * 0.88).toFixed(3)})`;
             ctx.lineWidth   = 0.4 + intensity * 2.0;
           } else {
-            ctx.strokeStyle = 'rgba(0, 156, 59, 0.025)';
+            ctx.strokeStyle = 'rgba(0, 180, 70, 0.08)';
             ctx.lineWidth   = 0.5;
           }
           drawRing(ring);

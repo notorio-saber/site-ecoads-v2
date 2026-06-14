@@ -633,16 +633,21 @@
             var code   = parseInt(path.id || '', 10);
             var active = ACTIVE.has(code);
 
-            /* Contorno: ativos em verde, disponíveis em verde sutil */
-            path.style.fill        = active ? 'rgba(0,255,102,0.22)' : 'transparent';
-            path.style.stroke      = active ? '#00ff66'              : 'rgba(0,255,102,0.45)';
-            path.style.strokeWidth = active ? '2'                    : '1.2';
-            path.style.cursor      = 'pointer';
-            path.style.transition  = 'fill 0.15s ease, stroke 0.15s ease';
+            /* vector-effect: non-scaling-stroke garante que o stroke fique
+               com espessura fixa em pixels, independente do sistema de
+               coordenadas geográficas do SVG retornado pelo IBGE */
+            path.setAttribute('vector-effect', 'non-scaling-stroke');
+            path.setAttribute('stroke', '#00ff66');
+            path.setAttribute('stroke-width', active ? '2.5' : '1.2');
+            path.setAttribute('stroke-opacity', active ? '1' : '0.55');
+            path.setAttribute('fill', active ? '#00ff66' : 'none');
+            path.setAttribute('fill-opacity', active ? '0.22' : '0');
+            path.style.cursor = 'pointer';
+            path.style.transition = 'fill-opacity 0.15s, stroke-opacity 0.15s';
 
             path.addEventListener('mouseenter', function () {
-              path.style.fill   = active ? 'rgba(0,255,102,0.38)' : 'rgba(0,255,102,0.07)';
-              path.style.stroke = active ? '#00ff66' : 'rgba(0,255,102,0.75)';
+              path.setAttribute('fill-opacity', active ? '0.38' : '0.08');
+              path.setAttribute('stroke-opacity', '1');
               var name = STATE_NAMES[code] || 'Estado';
               tooltip.innerHTML =
                 '<div class="tt-name">' + name + '</div>' +
@@ -660,8 +665,8 @@
             });
 
             path.addEventListener('mouseleave', function () {
-              path.style.fill   = active ? 'rgba(0,255,102,0.22)' : 'transparent';
-              path.style.stroke = active ? '#00ff66' : 'rgba(0,255,102,0.45)';
+              path.setAttribute('fill-opacity', active ? '0.22' : '0');
+              path.setAttribute('stroke-opacity', active ? '1' : '0.55');
               tooltip.classList.remove('visible');
             });
           });

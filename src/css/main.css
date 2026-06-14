@@ -2194,9 +2194,12 @@ body.tools-light h3 { color: #0d1a0d; }
   .map-layout {
     grid-template-columns: 1fr;
   }
+  .map-wrapper {
+    order: 1;
+  }
   .map-sidebar {
     position: static;
-    order: -1;
+    order: 2;
   }
 }
 

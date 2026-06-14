@@ -2003,23 +2003,122 @@ a {
    FERRAMENTAS — light bg override (tool pages)
    ========================================== */
 body.tools-light {
+  /* Override CSS custom properties so all var() references resolve to light values */
+  --dark-text-primary: #0d1a0d;
+  --dark-text-secondary: #556655;
+  --dark-text-muted: #778877;
+  --dark-bg-primary: #f4f8f4;
+  --dark-bg-secondary: #ffffff;
+  --dark-bg-tertiary: #eef4ee;
+  --dark-border: rgba(0, 0, 0, 0.08);
+  --brand-green-accent: #1a7a35;
+  --brand-blue-accent: #005f7a;
+  --brand-yellow: #6e5200;
   background: #f4f8f4;
   color: #1a2a1a;
 }
 body.tools-light .bg-atmosphere { display: none; }
-body.tools-light .input-label { color: #445544; }
+
+/* headings */
+body.tools-light h1,
+body.tools-light h2,
+body.tools-light h3 { color: #0d1a0d; }
+
+/* Hub de ferramentas + tool page cards */
+body.tools-light .service-card,
+body.tools-light .tool-card {
+  background: #fff !important;
+  border-color: #e5ede5 !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+body.tools-light .service-card:hover,
+body.tools-light .tool-card:hover {
+  border-color: rgba(0,155,59,0.35) !important;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08) !important;
+}
+body.tools-light .service-title { color: #0d1a0d; }
+body.tools-light .service-text { color: #556655; }
+body.tools-light .section-title { color: #0d1a0d; }
+body.tools-light .section-desc { color: #445544; }
+body.tools-light .section-subtitle { color: var(--brand-green); }
+body.tools-light .service-icon-wrapper {
+  background: rgba(0,155,59,0.06);
+  border-color: rgba(0,155,59,0.15);
+}
+body.tools-light .btn-secondary:not([style*="color"]) {
+  border-color: rgba(0,155,59,0.3);
+  color: var(--brand-green);
+  background: transparent;
+}
+body.tools-light .btn-secondary:hover { background: rgba(0,155,59,0.06); }
+
+/* Tool page text */
+body.tools-light .tool-card-desc,
+body.tools-light .tool-card-label + p { color: #556655; }
+body.tools-light .tool-card-label { color: var(--brand-green) !important; }
+
+/* Breadcrumb */
+body.tools-light .breadcrumb { color: #778877; }
+body.tools-light .breadcrumb a { color: #556655; }
+body.tools-light .breadcrumb-current { color: #0d1a0d; }
+body.tools-light .breadcrumb-sep { color: #aabcaa; }
+
+/* Inputs */
+body.tools-light .input-label { color: #445544 !important; }
 body.tools-light .input-field {
+  background: #f8fcf8 !important;
+  border-color: #d5e8d5 !important;
+  color: #1a2a1a !important;
+}
+body.tools-light .input-field::placeholder { color: #aabcaa !important; }
+body.tools-light .input-field:focus {
+  border-color: var(--brand-green) !important;
+  box-shadow: 0 0 0 3px rgba(0,155,59,0.1) !important;
+}
+body.tools-light select.input-field option {
   background: #fff;
-  border-color: #d5e8d5;
   color: #1a2a1a;
 }
-body.tools-light .input-field:focus {
-  border-color: var(--brand-green);
-  box-shadow: 0 0 0 3px rgba(0,155,59,0.1);
+body.tools-light select.input-field optgroup { color: #778877; }
+
+/* Biome toggle (calcular-rl) */
+body.tools-light .biome-toggle-label { color: #445544; }
+body.tools-light .biome-btn {
+  background: #fff;
+  border-color: #d5e8d5;
+  color: #556655;
 }
+body.tools-light .biome-btn:hover {
+  background: #f4f8f4;
+  border-color: #b5d5b5;
+  color: #445544;
+}
+body.tools-light .biome-btn.active {
+  background: rgba(0,155,59,0.08);
+  border-color: var(--brand-green);
+  color: var(--brand-green);
+}
+
+/* Action button */
+body.tools-light .calc-btn {
+  background: var(--brand-green) !important;
+  color: #fff !important;
+}
+body.tools-light .calc-btn:hover {
+  background: #007a2f !important;
+  box-shadow: 0 8px 30px rgba(0,155,59,0.2) !important;
+}
+
+/* Result areas */
 body.tools-light .result-box {
   background: #fff;
   border-color: #e2ede2;
+}
+body.tools-light .result-main-card {
+  background: rgba(0,155,59,0.04);
+  border-color: rgba(0,155,59,0.15);
 }
 body.tools-light .result-item {
   background: #f8fcf8;
@@ -2027,16 +2126,31 @@ body.tools-light .result-item {
 }
 body.tools-light .result-label { color: #778877; }
 body.tools-light .result-value { color: #1a2a1a; }
+body.tools-light .result-tag { color: #778877; }
+body.tools-light .result-rule { color: #445544; }
+body.tools-light .result-unit { color: #778877; }
+body.tools-light .result-pct-label { color: #556655; }
+body.tools-light .result-value-big,
+body.tools-light .result-pct { color: var(--brand-green) !important; }
+body.tools-light .result-article {
+  color: var(--brand-green) !important;
+  background: rgba(0,155,59,0.06) !important;
+  border-color: rgba(0,155,59,0.18) !important;
+}
+
+/* Copy button */
 body.tools-light .copy-btn {
   background: #fff;
   border-color: #d5e8d5;
   color: #556655;
 }
 body.tools-light .copy-btn:hover {
-  background: rgba(0, 155, 59, 0.08);
+  background: rgba(0,155,59,0.08);
   border-color: var(--brand-green);
   color: var(--brand-green);
 }
+
+/* Category cards (coord/unidades pages) */
 body.tools-light .category-card {
   background: #fff;
   border-color: #e2ede2;
@@ -2050,52 +2164,199 @@ body.tools-light .category-card.active {
   background: rgba(0,155,59,0.08);
   border-color: var(--brand-green);
 }
-body.tools-light h1,
-body.tools-light h2,
-body.tools-light h3 { color: #0d1a0d; }
 
-/* Hub de ferramentas + tool pages — light cards */
-body.tools-light .service-card,
-body.tools-light .tool-card {
+/* GIS visualizer specific */
+body.tools-light #map {
+  border-color: #d5e8d5 !important;
+  background: #e8f0e8 !important;
+}
+body.tools-light .upload-zone {
+  border-color: rgba(0,155,59,0.3);
+  background: rgba(0,155,59,0.02);
+}
+body.tools-light .upload-zone:hover,
+body.tools-light .upload-zone.drag-over {
+  border-color: var(--brand-green);
+  background: rgba(0,155,59,0.05);
+}
+body.tools-light .upload-zone iconify-icon { color: rgba(0,155,59,0.5); }
+body.tools-light .upload-zone p { color: #778877; }
+body.tools-light .file-badge {
+  background: rgba(0,155,59,0.06);
+  border-color: rgba(0,155,59,0.2);
+  color: var(--brand-green);
+}
+body.tools-light .stats-panel {
+  background: #fff !important;
+  border-color: #d5e8d5 !important;
+}
+body.tools-light .stats-panel h3 { color: var(--brand-green) !important; }
+body.tools-light .stat-label { color: #778877; }
+body.tools-light .stat-value { color: var(--brand-green) !important; }
+body.tools-light .stat-item { border-bottom-color: rgba(0,0,0,0.06); }
+
+/* SEO content sections (all tool pages) */
+body.tools-light .seo-content p,
+body.tools-light .seo-content ul,
+body.tools-light .seo-content ol,
+body.tools-light .seo-content li { color: #445544; }
+body.tools-light .seo-content strong { color: #0d1a0d; }
+
+/* Breadcrumb variant used in GIS page (.sep / .current vs .breadcrumb-sep / .breadcrumb-current) */
+body.tools-light .breadcrumb .sep { color: #aabcaa; }
+body.tools-light .breadcrumb .current { color: #0d1a0d; }
+body.tools-light .breadcrumb a:hover { color: var(--brand-green); }
+
+/* Tool action buttons (GIS) */
+body.tools-light .btn-primary-tool {
+  background: rgba(0,155,59,0.08);
+  border-color: rgba(0,155,59,0.25);
+  color: var(--brand-green);
+}
+body.tools-light .btn-primary-tool:hover {
+  background: rgba(0,155,59,0.14);
+  border-color: var(--brand-green);
+}
+body.tools-light .btn-secondary-tool {
+  background: #f4f8f4;
+  border-color: #d5e8d5;
+  color: #556655;
+}
+body.tools-light .btn-secondary-tool:hover {
+  background: #e8f0e8;
+  border-color: #c5d8c5;
+  color: #0d1a0d;
+}
+
+/* File info bar */
+body.tools-light .file-info-bar {
+  background: rgba(0,155,59,0.04);
+  border-color: rgba(0,155,59,0.12);
+}
+body.tools-light .file-info-bar iconify-icon { color: var(--brand-green); }
+body.tools-light .file-info-bar .file-name { color: #1a2a1a; }
+body.tools-light .file-info-bar .file-size { color: #778877; }
+
+/* Privacy note */
+body.tools-light .privacy-note {
+  background: rgba(0,95,122,0.04);
+  border-color: rgba(0,95,122,0.12);
+  color: #556655;
+}
+body.tools-light .privacy-note iconify-icon { color: rgba(0,95,122,0.6); }
+
+/* Comparison table */
+body.tools-light .comparison-table th {
+  background: rgba(0,155,59,0.06);
+  border-color: rgba(0,155,59,0.12);
+  color: var(--brand-green);
+}
+body.tools-light .comparison-table td {
+  border-color: rgba(0,0,0,0.06);
+  color: #445544;
+}
+body.tools-light .comparison-table tr:first-child td { color: #0d1a0d; }
+body.tools-light .comparison-table tr:hover td { background: rgba(0,0,0,0.02); }
+
+/* FAQ accordion */
+body.tools-light .faq-item {
   background: #fff;
   border-color: #e5ede5;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
 }
-body.tools-light .service-card:hover,
-body.tools-light .tool-card:hover {
-  border-color: rgba(0,155,59,0.35);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+body.tools-light .faq-question {
+  color: #1a2a1a;
 }
-body.tools-light .service-title { color: #0d1a0d; }
-body.tools-light .service-text { color: #556655; }
-body.tools-light .section-title { color: #0d1a0d; }
-body.tools-light .section-desc { color: #445544; }
-body.tools-light .section-subtitle { color: var(--brand-green); }
-body.tools-light .service-icon-wrapper {
-  background: rgba(0,155,59,0.06);
-  border-color: rgba(0,155,59,0.15);
-  /* color controlled per-card via inline style */
+body.tools-light .faq-question:hover { color: #0d1a0d; }
+body.tools-light .faq-question iconify-icon { color: rgba(0,155,59,0.6); }
+body.tools-light .faq-answer p { color: #445544; }
+
+/* Related tool cards */
+body.tools-light .related-tool-card {
+  background: #fff;
+  border-color: #e5ede5;
 }
-body.tools-light .btn-secondary:not([style*="color"]) {
-  border-color: rgba(0,155,59,0.3);
+body.tools-light .related-tool-card:hover {
+  border-color: rgba(0,155,59,0.25);
+  background: rgba(0,155,59,0.03);
+}
+body.tools-light .related-tool-card iconify-icon { color: rgba(0,155,59,0.6); }
+body.tools-light .related-tool-card .rtc-title { color: #1a2a1a; }
+body.tools-light .related-tool-card .rtc-desc { color: #778877; }
+
+/* Leaflet popups — light theme */
+body.tools-light .leaflet-popup-content-wrapper {
+  background: #fff;
+  border-color: rgba(0,155,59,0.2);
+  color: #1a2a1a;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+body.tools-light .leaflet-popup-tip { background: #fff; }
+
+/* Calcular-RL specific: result metrics, progress, pills */
+body.tools-light .result-law-pill {
+  color: #556655;
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.10);
+}
+body.tools-light .result-biome-pill {
   color: var(--brand-green);
-  background: transparent;
+  background: rgba(0,155,59,0.08);
+  border-color: rgba(0,155,59,0.18);
 }
-body.tools-light .btn-secondary:hover {
-  background: rgba(0,155,59,0.06);
+body.tools-light .result-metric {
+  background: #f8fcf8;
+  border-color: #e2ede2;
 }
-/* Tool page inner elements */
-body.tools-light .tool-card-desc,
-body.tools-light .tool-card-label + p { color: #556655; }
-body.tools-light .breadcrumb a { color: #556655; }
-body.tools-light .breadcrumb-current { color: #0d1a0d; }
-body.tools-light .breadcrumb-sep { color: #aabcaa; }
-body.tools-light .input-label { color: #445544 !important; }
-body.tools-light .input-field {
-  background: #f8fcf8 !important;
-  border-color: #d5e8d5 !important;
-  color: #1a2a1a !important;
+body.tools-light .result-metric-label { color: #778877; }
+body.tools-light .result-metric-value { color: #0d1a0d; }
+body.tools-light .result-metric-unit { color: #778877; }
+body.tools-light .rl-progress-wrap { background: #e2ede2; }
+body.tools-light .rl-progress-bar {
+  background: linear-gradient(90deg, var(--brand-green), #1a9a40);
 }
+body.tools-light .rl-progress-labels { color: #778877; }
+
+/* RL Table */
+body.tools-light .rl-table th {
+  background: rgba(0,155,59,0.07);
+  border-color: rgba(0,155,59,0.12);
+  color: var(--brand-green);
+}
+body.tools-light .rl-table td {
+  border-color: rgba(0,0,0,0.06);
+}
+body.tools-light .rl-table tr:hover td {
+  background: rgba(0,0,0,0.02);
+  color: #1a2a1a;
+}
+body.tools-light .rl-table td:last-child { color: var(--brand-green); }
+
+/* RL FAQ (flat accordion style) */
+body.tools-light .faq-item { border-bottom-color: #e5ede5; }
+body.tools-light .faq-question { color: #1a2a1a; }
+body.tools-light .faq-question:hover { color: var(--brand-green); }
+body.tools-light .faq-question iconify-icon { color: rgba(0,155,59,0.4); }
+body.tools-light .faq-item.open .faq-question iconify-icon { color: var(--brand-green); }
+body.tools-light .faq-answer-inner { color: #445544; }
+
+/* Example cards (RL) */
+body.tools-light .example-card {
+  background: #f8fcf8;
+  border-color: #e2ede2;
+}
+
+/* Related tools sections */
+body.tools-light .related-tools-section { border-top-color: #e5ede5; }
+body.tools-light .related-card {
+  background: #fff;
+  border-color: #e5ede5;
+}
+body.tools-light .related-card:hover {
+  background: rgba(0,155,59,0.04);
+  border-color: rgba(0,155,59,0.2);
+}
+body.tools-light .related-card iconify-icon { color: var(--brand-green); }
+body.tools-light .related-card span { color: #556655; }
 
 /* Responsive inner pages */
 @media (max-width: 768px) {

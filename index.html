@@ -436,12 +436,6 @@
     <!-- 7. MAPA DE PRESENÇA NACIONAL -->
     <section class="section-padding map-section" id="presenca-nacional">
       <div class="container">
-        <div class="section-header">
-          <span class="section-subtitle">Presença Nacional</span>
-          <h2 class="section-title">Onde Atuamos</h2>
-          <p class="section-desc">Projetos realizados em estados-chave do Brasil. Os demais territórios estão disponíveis — somos 100% remotos e atendemos empresas do setor em qualquer estado.</p>
-        </div>
-
         <div class="map-layout">
           <div class="map-wrapper">
             <div class="map-tooltip" id="map-tooltip"></div>
@@ -455,6 +449,13 @@
           </div>
 
           <div class="map-sidebar">
+            <!-- Título integrado na sidebar -->
+            <div class="map-header-inline">
+              <span class="section-subtitle" style="justify-content:flex-start;">Presença Nacional</span>
+              <h2 class="map-title-inline">Onde Atuamos</h2>
+              <p class="map-desc-inline">Projetos realizados em estados-chave do Brasil. Somos 100% remotos e atendemos empresas do setor em qualquer estado.</p>
+            </div>
+
             <div class="map-legend">
               <h4 class="map-legend-heading">Legenda</h4>
               <div class="map-legend-item">
@@ -641,7 +642,7 @@
                coordenadas geográficas do SVG retornado pelo IBGE */
             path.setAttribute('vector-effect', 'non-scaling-stroke');
             path.setAttribute('stroke', '#00ff66');
-            path.setAttribute('stroke-width', active ? '2.5' : '1.2');
+            path.setAttribute('stroke-width', active ? '1.5' : '0.65');
             path.setAttribute('stroke-opacity', active ? '1' : '0.55');
             path.setAttribute('fill', active ? '#00ff66' : 'none');
             path.setAttribute('fill-opacity', active ? '0.22' : '0');

@@ -511,7 +511,7 @@ a {
   justify-content: center;
   overflow: visible;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  z-index: 2;
+  z-index: 6; /* acima de #servicos-dobra-clara (z-index:5) */
 }
 
 /* Container do hero centralizado com compensação do header fixo */
@@ -544,13 +544,18 @@ a {
 }
 
 @keyframes heroScrollPeek {
-  from {
-    opacity: 0;
-    transform: translateY(100%);
-  }
-  to {
-    opacity: 0.92;
-    transform: translateY(56%);
+  from { opacity: 0; transform: translateY(100%); }
+  to   { opacity: 0.92; transform: translateY(56%); }
+}
+
+@keyframes heroScrollPeekMobile {
+  from { opacity: 0; transform: translateY(100%); }
+  to   { opacity: 0.92; transform: translateY(91%); }
+}
+
+@media (max-width: 768px) {
+  .hero-scroll-hint {
+    animation-name: heroScrollPeekMobile;
   }
 }
 
@@ -1727,6 +1732,14 @@ a {
   justify-content: center;
   color: var(--brand-green-accent);
   margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.app-card-v2 .acp-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 13px;
 }
 
 .app-card-v2 h3 {

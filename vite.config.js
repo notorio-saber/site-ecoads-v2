@@ -18,6 +18,8 @@ export default defineConfig({
         visualizadorGis: resolve(__dirname, 'ferramentas/visualizador-gis-online/index.html'),
         calcularAreaBasal: resolve(__dirname, 'ferramentas/calcular-area-basal/index.html'),
         calcularArvoresHa: resolve(__dirname, 'ferramentas/calcular-arvores-por-hectare/index.html'),
+        calcularVolumeLenha: resolve(__dirname, 'ferramentas/calcular-volume-lenha/index.html'),
+        calcularDeclividade: resolve(__dirname, 'ferramentas/conversor-declividade/index.html'),
       }
     }
   }

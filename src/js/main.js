@@ -337,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Estado do pulso radial (mobile)
     let pulseR     = 0;
     const PULSE_SPEED = 1.4;  // px por frame
-    const GLOW_W      = 40;   // largura do halo em px
+    const GLOW_W      = 90;   // largura do halo — banda larga para revelar ~18 anéis de uma vez
 
     // Loop de Animação e Renderização
     const render = () => {
@@ -357,14 +357,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const currentAge = Math.round(pulseR / ringSpacing);
 
-        // Desenhar cada anel com intensidade baseada na distância ao pulso
+        // Desenhar cada anel com cor e intensidade baseadas na distância ao pulso
+        // Paleta igual ao spotlight de desktop: verde neon → ciano → âmbar
         rings.forEach(ring => {
           const dist = Math.abs(ring.baseRadius - pulseR);
           if (dist < GLOW_W) {
-            const t         = 1 - dist / GLOW_W;
-            const intensity = t * t * t;           // cúbico: pico nítido, cauda suave
-            ctx.strokeStyle = `rgba(0, 255, 102, ${(intensity * 0.82).toFixed(3)})`;
-            ctx.lineWidth   = 0.4 + intensity * 1.8;
+            const t         = 1 - dist / GLOW_W;   // 1 no pico, 0 na borda
+            const intensity = t * t * t;             // cúbico: pico nítido, cauda suave
+
+            // Interpolação de cor em três zonas (igual ao gradiente do desktop)
+            let r, g, b;
+            if (t > 0.6) {
+              // verde neon → pico
+              const s = (t - 0.6) / 0.4;
+              r = 0;
+              g = Math.round(229 + 26 * s);   // 229→255
+              b = Math.round(255 - 153 * s);  // 255→102
+            } else if (t > 0.25) {
+              // ciano
+              const s = (t - 0.25) / 0.35;
+              r = Math.round(255 * (1 - s));
+              g = Math.round(211 + 18 * s);   // 211→229
+              b = 255;
+            } else {
+              // âmbar/ouro — bordas do halo
+              const s = t / 0.25;
+              r = 255;
+              g = Math.round(211 * s);
+              b = 0;
+            }
+
+            ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${(intensity * 0.88).toFixed(3)})`;
+            ctx.lineWidth   = 0.4 + intensity * 2.0;
           } else {
             ctx.strokeStyle = 'rgba(0, 156, 59, 0.025)';
             ctx.lineWidth   = 0.5;

@@ -2720,3 +2720,181 @@ body.tools-light .related-card span { color: #556655; }
   box-shadow: 0 0 8px var(--brand-green-accent);
   transition: width 0.1s ease;
 }
+
+/* ==========================================
+   DIAGNÓSTICO DE MATURIDADE DIGITAL
+   ========================================== */
+.diagnostico-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.diagnostico-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 10% 20%, rgba(0, 255, 102, 0.06), transparent 45%);
+  pointer-events: none;
+}
+
+.diagnostico-card {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.diag-progress-wrapper {
+  margin-bottom: 32px;
+}
+
+.diag-progress-info {
+  display: flex;
+  justify-content: space-between;
+  color: var(--dark-text-secondary);
+  font-size: 13px;
+  margin-bottom: 10px;
+  font-family: var(--font-body);
+}
+
+.diag-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.diag-progress-fill {
+  width: 10%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--brand-green), var(--brand-green-accent));
+  border-radius: 999px;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.diag-question h3 {
+  font-size: clamp(20px, 2.8vw, 28px);
+  color: var(--dark-text-primary);
+  margin: 0 0 24px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.diag-options {
+  display: grid;
+  gap: 12px;
+}
+
+.diag-option {
+  width: 100%;
+  text-align: left;
+  padding: 18px 22px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--dark-text-primary);
+  font-size: 15px;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.22s ease;
+  line-height: 1.5;
+}
+
+.diag-option:hover {
+  border-color: rgba(0, 255, 102, 0.4);
+  background: rgba(0, 255, 102, 0.06);
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+.diag-result {
+  animation: revealUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.diag-result-level {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  color: #030303;
+  background: var(--brand-green-accent);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+.diag-result h3 {
+  font-size: clamp(22px, 3.2vw, 32px);
+  margin: 0 0 14px;
+  color: var(--dark-text-primary);
+}
+
+.diag-result-text {
+  color: var(--dark-text-secondary);
+  line-height: 1.7;
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+.diag-result h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--brand-green-accent);
+  margin-bottom: 14px;
+  font-weight: 600;
+  font-family: var(--font-body);
+}
+
+.diag-opportunity-list {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 28px;
+  padding: 0;
+  list-style: none;
+}
+
+.diag-opportunity-list li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: var(--dark-text-secondary);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.diag-opportunity-list li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand-green-accent);
+  flex-shrink: 0;
+}
+
+.diag-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.diag-hidden {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  .diagnostico-card {
+    padding: 24px 18px;
+    border-radius: 20px;
+  }
+}

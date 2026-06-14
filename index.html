@@ -170,6 +170,32 @@
       </div>
     </section>
 
+    <!-- 3.5. DIAGNÓSTICO DE MATURIDADE DIGITAL -->
+    <section class="section-padding diagnostico-section" id="diagnostico-digital">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Diagnóstico gratuito</span>
+          <h2 class="section-title">Qual o nível de tecnologia da sua empresa?</h2>
+          <p class="section-desc">Responda 10 perguntas rápidas e descubra o estágio atual de maturidade digital da sua empresa ambiental ou florestal.</p>
+        </div>
+
+        <div class="diagnostico-card">
+          <div class="diag-progress-wrapper">
+            <div class="diag-progress-info">
+              <span id="diag-counter">Pergunta 1 de 10</span>
+              <span id="diag-percent">10%</span>
+            </div>
+            <div class="diag-progress-bar">
+              <div id="diag-fill" class="diag-progress-fill"></div>
+            </div>
+          </div>
+
+          <div id="diag-content"></div>
+          <div id="diag-result" class="diag-result diag-hidden"></div>
+        </div>
+      </div>
+    </section>
+
     <!-- 4. SEÇÃO APLICATIVOS PROPRIETÁRIOS (CASOS DE SUCESSO / PROVAS DE CAPACIDADE) -->
     <section class="section-padding" id="apps-dobra-escura">
       <div class="container">
@@ -613,6 +639,235 @@
 
   <!-- Scripts -->
   <script type="module" src="/src/js/main.js"></script>
+
+  <!-- Diagnóstico de Maturidade Digital -->
+  <script>
+  (function () {
+    var questions = [
+      {
+        q: "Sua empresa possui um site profissional e atualizado?",
+        opts: [
+          { text: "Sim, temos um site moderno e estratégico", score: 10 },
+          { text: "Temos site, mas está desatualizado", score: 5 },
+          { text: "Não temos site", score: 0 }
+        ]
+      },
+      {
+        q: "O site da sua empresa gera contatos comerciais com frequência?",
+        opts: [
+          { text: "Sim, recebemos contatos pelo site com regularidade", score: 10 },
+          { text: "Raramente", score: 4 },
+          { text: "Não, ou não sei medir", score: 0 }
+        ]
+      },
+      {
+        q: "Sua empresa utiliza formulários digitais em campo ou no atendimento?",
+        opts: [
+          { text: "Sim, de forma integrada aos nossos processos", score: 10 },
+          { text: "Usamos parcialmente", score: 5 },
+          { text: "Ainda usamos processos manuais", score: 0 }
+        ]
+      },
+      {
+        q: "Os dados dos projetos ficam centralizados em algum sistema?",
+        opts: [
+          { text: "Sim, temos dados organizados e acessíveis", score: 10 },
+          { text: "Parcialmente — ainda usamos muitas planilhas", score: 5 },
+          { text: "Não, os dados ficam dispersos", score: 0 }
+        ]
+      },
+      {
+        q: "Sua empresa utiliza GIS, mapas ou dados geoespaciais nos processos?",
+        opts: [
+          { text: "Sim, utilizamos de forma recorrente", score: 10 },
+          { text: "Usamos apenas em alguns projetos", score: 5 },
+          { text: "Não utilizamos", score: 0 }
+        ]
+      },
+      {
+        q: "Sua equipe utiliza aplicativos ou sistemas para coleta de campo?",
+        opts: [
+          { text: "Sim, usamos aplicativos ou sistemas próprios", score: 10 },
+          { text: "Usamos ferramentas simples ou adaptadas", score: 5 },
+          { text: "Não, fazemos tudo manualmente", score: 0 }
+        ]
+      },
+      {
+        q: "Sua empresa possui CRM ou processo comercial organizado?",
+        opts: [
+          { text: "Sim, temos CRM e acompanhamento dos leads", score: 10 },
+          { text: "Temos controle básico em planilhas", score: 5 },
+          { text: "Não temos controle estruturado", score: 0 }
+        ]
+      },
+      {
+        q: "Relatórios, propostas e documentos técnicos são automatizados?",
+        opts: [
+          { text: "Sim, temos automações relevantes", score: 10 },
+          { text: "Algumas etapas são semiautomatizadas", score: 5 },
+          { text: "Não, fazemos tudo manualmente", score: 0 }
+        ]
+      },
+      {
+        q: "Sua empresa acompanha indicadores de desempenho em dashboards?",
+        opts: [
+          { text: "Sim, usamos dashboards para tomada de decisão", score: 10 },
+          { text: "Temos alguns indicadores básicos", score: 5 },
+          { text: "Não acompanhamos indicadores formalmente", score: 0 }
+        ]
+      },
+      {
+        q: "Sua empresa já utiliza inteligência artificial em algum processo?",
+        opts: [
+          { text: "Sim, utilizamos IA de forma estratégica", score: 10 },
+          { text: "Usamos apenas ferramentas básicas pontualmente", score: 5 },
+          { text: "Ainda não utilizamos IA", score: 0 }
+        ]
+      }
+    ];
+
+    var levels = [
+      {
+        max: 20,
+        level: "Nível 1 — Operação Tradicional",
+        title: "Sua empresa ainda depende fortemente de processos manuais",
+        text: "A maturidade digital está em estágio inicial. Isso limita a geração de oportunidades, dificulta a organização dos dados e aumenta o tempo gasto em tarefas operacionais.",
+        opps: [
+          "Criar ou modernizar o site institucional",
+          "Organizar canais de captação de contatos",
+          "Digitalizar formulários e processos de campo",
+          "Centralizar dados comerciais e técnicos"
+        ]
+      },
+      {
+        max: 40,
+        level: "Nível 2 — Digitalização Inicial",
+        title: "Sua empresa começou a digitalizar processos, mas ainda há gargalos importantes",
+        text: "Existem iniciativas digitais em andamento, mas ainda não formam uma estrutura integrada. O próximo passo é conectar site, atendimento, dados internos e ferramentas técnicas.",
+        opps: [
+          "Transformar o site em uma ferramenta comercial ativa",
+          "Implantar CRM e automações de atendimento",
+          "Padronizar coleta de dados e documentos técnicos",
+          "Criar páginas estratégicas para serviços ambientais e florestais"
+        ]
+      },
+      {
+        max: 60,
+        level: "Nível 3 — Empresa Conectada",
+        title: "Sua empresa possui uma base digital relevante",
+        text: "A empresa já utiliza ferramentas digitais, mas ainda pode evoluir em integração, automação e inteligência de dados. Há grande potencial para transformar processos soltos em um ecossistema digital eficiente.",
+        opps: [
+          "Integrar site, CRM e canais comerciais",
+          "Criar sistemas personalizados para processos técnicos",
+          "Automatizar propostas, relatórios e fluxos internos",
+          "Implementar dashboards de gestão e monitoramento"
+        ]
+      },
+      {
+        max: 80,
+        level: "Nível 4 — Operação Inteligente",
+        title: "Sua empresa já utiliza tecnologia como vantagem competitiva",
+        text: "A operação apresenta boa maturidade digital. O próximo salto está em usar sistemas próprios, inteligência artificial e soluções específicas para o setor ambiental e florestal.",
+        opps: [
+          "Desenvolver plataformas internas sob medida",
+          "Aplicar IA em processos comerciais e técnicos",
+          "Criar sistemas integrados de campo e escritório",
+          "Estruturar dados para tomada de decisão estratégica"
+        ]
+      },
+      {
+        max: 100,
+        level: "Nível 5 — Referência Tecnológica",
+        title: "Sua empresa está pronta para liderar com tecnologia",
+        text: "Alto nível de maturidade digital. O foco agora deve ser inovação contínua, produtos digitais, inteligência de dados e diferenciação tecnológica no mercado.",
+        opps: [
+          "Criar soluções proprietárias e produtos SaaS",
+          "Automatizar decisões com dados e IA avançada",
+          "Expandir autoridade digital no setor ambiental",
+          "Desenvolver plataformas para escalar o negócio"
+        ]
+      }
+    ];
+
+    var current = 0;
+    var score = 0;
+
+    var elContent = document.getElementById('diag-content');
+    var elResult  = document.getElementById('diag-result');
+    var elCounter = document.getElementById('diag-counter');
+    var elPercent = document.getElementById('diag-percent');
+    var elFill    = document.getElementById('diag-fill');
+
+    if (!elContent) return;
+
+    function render() {
+      var q = questions[current];
+      var pct = Math.round(((current + 1) / questions.length) * 100);
+      elCounter.textContent = 'Pergunta ' + (current + 1) + ' de ' + questions.length;
+      elPercent.textContent = pct + '%';
+      elFill.style.width = pct + '%';
+
+      elContent.innerHTML =
+        '<div class="diag-question">' +
+          '<h3>' + q.q + '</h3>' +
+          '<div class="diag-options">' +
+            q.opts.map(function (o, i) {
+              return '<button class="diag-option" onclick="diagSelect(' + i + ')">' + o.text + '</button>';
+            }).join('') +
+          '</div>' +
+        '</div>';
+    }
+
+    window.diagSelect = function (i) {
+      score += questions[current].opts[i].score;
+      current++;
+      if (current < questions.length) {
+        render();
+      } else {
+        showResult();
+      }
+    };
+
+    function showResult() {
+      var res = levels.find(function (l) { return score <= l.max; });
+      var msg = encodeURIComponent(
+        'Olá! Fiz o Diagnóstico de Maturidade Digital da EcoAds e meu resultado foi: ' +
+        res.level + '. Quero conversar sobre tecnologia para minha empresa ambiental/florestal.'
+      );
+
+      elCounter.textContent = 'Diagnóstico concluído';
+      elPercent.textContent = '100%';
+      elFill.style.width = '100%';
+      elContent.classList.add('diag-hidden');
+      elResult.classList.remove('diag-hidden');
+
+      elResult.innerHTML =
+        '<span class="diag-result-level">' + res.level + '</span>' +
+        '<h3>' + res.title + '</h3>' +
+        '<p class="diag-result-text">' + res.text + '</p>' +
+        '<h4>Principais oportunidades identificadas</h4>' +
+        '<ul class="diag-opportunity-list">' +
+          res.opps.map(function (o) { return '<li>' + o + '</li>'; }).join('') +
+        '</ul>' +
+        '<div class="diag-cta">' +
+          '<a class="btn btn-primary" href="https://wa.me/5547920022746?text=' + msg + '" target="_blank" rel="noopener">' +
+            'Falar com a EcoAds' +
+          '</a>' +
+          '<button class="btn btn-secondary" onclick="diagRestart()">Refazer diagnóstico</button>' +
+        '</div>';
+    }
+
+    window.diagRestart = function () {
+      current = 0;
+      score = 0;
+      elContent.classList.remove('diag-hidden');
+      elResult.classList.add('diag-hidden');
+      render();
+    };
+
+    render();
+  })();
+  </script>
 
   <!-- Mapa interativo do Brasil via IBGE SVG -->
   <script>

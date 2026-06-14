@@ -308,108 +308,142 @@ document.addEventListener('DOMContentLoaded', () => {
         mouse.active = true;
       });
       heroSection.addEventListener('mouseleave', () => { mouse.active = false; });
-
-      // Touch: spotlight suave sem retícula técnica
-      const onTouch = (e) => {
-        const rect = canvas.getBoundingClientRect();
-        mouse.x = e.touches[0].clientX - rect.left;
-        mouse.y = e.touches[0].clientY - rect.top;
-        mouse.active = true;
-      };
-      heroSection.addEventListener('touchstart', onTouch, { passive: true });
-      heroSection.addEventListener('touchmove',  onTouch, { passive: true });
-      heroSection.addEventListener('touchend',   () => { mouse.active = false; });
     }
 
-    // Desenha todos os anéis com o estilo atual do ctx
-    const drawRingsPattern = () => {
-      rings.forEach(ring => {
-        ctx.beginPath();
-        const steps = 140;
-        for (let j = 0; j <= steps; j++) {
-          const theta = (j / steps) * Math.PI * 2;
-          const wave1 = Math.sin(theta * 4 + time * 0.2) * 3.5;
-          const wave2 = Math.cos(theta * 7 - time * 0.1) * 1.5;
-          const wave3 = Math.sin(theta * 2 + time * 0.05) * 2.0;
-          const wobble = (wave1 + wave2 + wave3) * ring.noiseScale;
-          const r  = ring.baseRadius + wobble;
-          const px = centerX + Math.cos(theta) * r;
-          const py = centerY + Math.sin(theta) * r;
-          if (j === 0) ctx.moveTo(px, py);
-          else         ctx.lineTo(px, py);
-        }
-        ctx.closePath();
-        ctx.stroke();
-      });
+    // Desenha um anel individualmente com o estilo atual do ctx
+    const drawRing = (ring) => {
+      ctx.beginPath();
+      const steps = 140;
+      for (let j = 0; j <= steps; j++) {
+        const theta = (j / steps) * Math.PI * 2;
+        const wave1 = Math.sin(theta * 4 + time * 0.2) * 3.5;
+        const wave2 = Math.cos(theta * 7 - time * 0.1) * 1.5;
+        const wave3 = Math.sin(theta * 2 + time * 0.05) * 2.0;
+        const wobble = (wave1 + wave2 + wave3) * ring.noiseScale;
+        const r  = ring.baseRadius + wobble;
+        const px = centerX + Math.cos(theta) * r;
+        const py = centerY + Math.sin(theta) * r;
+        if (j === 0) ctx.moveTo(px, py);
+        else         ctx.lineTo(px, py);
+      }
+      ctx.closePath();
+      ctx.stroke();
     };
 
+    const drawRingsPattern = () => { rings.forEach(drawRing); };
+
     const isMobile = () => width <= 768;
+
+    // Estado do pulso radial (mobile)
+    let pulseR     = 0;
+    const PULSE_SPEED = 1.4;  // px por frame
+    const GLOW_W      = 40;   // largura do halo em px
 
     // Loop de Animação e Renderização
     const render = () => {
       time += 0.003;
       ctx.clearRect(0, 0, width, height);
 
-      // Posição do spotlight
-      if (isMobile() && !mouse.active) {
-        // Mobile sem toque: orbita Lissajous orgânica — o spotlight percorre os anéis sozinho
-        const rx = width  * 0.30;
-        const ry = height * 0.22;
-        mouse.x = centerX + Math.cos(time * 0.53) * rx + Math.cos(time * 1.19) * rx * 0.3;
-        mouse.y = centerY + Math.sin(time * 0.79) * ry + Math.sin(time * 0.43) * ry * 0.3;
-      } else if (!isMobile() && !mouse.active) {
-        // Desktop sem mouse: retorna suavemente ao centro
-        mouse.x += (width  * 0.35 - mouse.x) * 0.06;
-        mouse.y += (height * 0.55 - mouse.y) * 0.06;
-      }
+      if (isMobile()) {
+        // ── MOBILE: pulso expansivo do centro às bordas ─────────────────
+        pulseR += PULSE_SPEED;
+        const maxR = Math.max(
+          Math.hypot(centerX, centerY),
+          Math.hypot(width - centerX, centerY),
+          Math.hypot(centerX, height - centerY),
+          Math.hypot(width - centerX, height - centerY)
+        );
+        if (pulseR > maxR + GLOW_W) pulseR = 0;
 
-      // 1. Anéis de fundo base (muito sutis)
-      ctx.lineWidth   = 0.5;
-      ctx.strokeStyle = 'rgba(0, 156, 59, 0.022)';
-      drawRingsPattern();
+        const currentAge = Math.round(pulseR / ringSpacing);
 
-      // 2. Spotlight radial — o mesmo efeito em ambas as plataformas,
-      //    só a origem muda (mouse no desktop, órbita autônoma no mobile)
-      const radiusGlow = 240;
-      const gradient   = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, radiusGlow);
-      gradient.addColorStop(0,    'rgba(0, 255, 102, 0.65)');
-      gradient.addColorStop(0.35, 'rgba(0, 229, 255, 0.4)');
-      gradient.addColorStop(0.7,  'rgba(255, 211, 0, 0.12)');
-      gradient.addColorStop(1,    'transparent');
-      ctx.strokeStyle = gradient;
-      ctx.lineWidth   = 1.0;
-      drawRingsPattern();
+        // Desenhar cada anel com intensidade baseada na distância ao pulso
+        rings.forEach(ring => {
+          const dist = Math.abs(ring.baseRadius - pulseR);
+          if (dist < GLOW_W) {
+            const t         = 1 - dist / GLOW_W;
+            const intensity = t * t * t;           // cúbico: pico nítido, cauda suave
+            ctx.strokeStyle = `rgba(0, 255, 102, ${(intensity * 0.82).toFixed(3)})`;
+            ctx.lineWidth   = 0.4 + intensity * 1.8;
+          } else {
+            ctx.strokeStyle = 'rgba(0, 156, 59, 0.025)';
+            ctx.lineWidth   = 0.5;
+          }
+          drawRing(ring);
+        });
 
-      // 3. Retícula técnica + dados de anel (somente desktop)
-      if (!isMobile() && (mouse.active || Math.abs(mouse.x - width * 0.35) > 1)) {
-        ctx.save();
-        ctx.strokeStyle = 'rgba(0, 255, 102, 0.15)';
+        // Label de idade avançando junto com o pulso
+        if (pulseR > ringSpacing * 2 && pulseR < maxR) {
+          const labelAngle = -Math.PI * 0.35;  // ~63° acima da horizontal
+          const lx = centerX + Math.cos(labelAngle) * pulseR;
+          const ly = centerY + Math.sin(labelAngle) * pulseR;
+
+          if (lx > 10 && lx < width - 80 && ly > 15 && ly < height - 15) {
+            ctx.save();
+            const label = `${currentAge} anos`;
+            ctx.font    = 'bold 9px monospace';
+            const tw    = ctx.measureText(label).width;
+            // Fundo mínimo para legibilidade
+            ctx.fillStyle = 'rgba(0, 8, 4, 0.65)';
+            ctx.fillRect(lx + 4, ly - 12, tw + 8, 15);
+            ctx.fillStyle = 'rgba(0, 255, 102, 0.88)';
+            ctx.fillText(label, lx + 8, ly - 1);
+            ctx.restore();
+          }
+        }
+
+      } else {
+        // ── DESKTOP: spotlight de mouse + retícula técnica ───────────────
+
+        if (!mouse.active) {
+          mouse.x += (width  * 0.35 - mouse.x) * 0.06;
+          mouse.y += (height * 0.55 - mouse.y) * 0.06;
+        }
+
         ctx.lineWidth   = 0.5;
+        ctx.strokeStyle = 'rgba(0, 156, 59, 0.022)';
+        drawRingsPattern();
 
-        ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, 60, 0, Math.PI * 2);
-        ctx.stroke();
+        const radiusGlow = 240;
+        const gradient   = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, radiusGlow);
+        gradient.addColorStop(0,    'rgba(0, 255, 102, 0.65)');
+        gradient.addColorStop(0.35, 'rgba(0, 229, 255, 0.4)');
+        gradient.addColorStop(0.7,  'rgba(255, 211, 0, 0.12)');
+        gradient.addColorStop(1,    'transparent');
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth   = 1.0;
+        drawRingsPattern();
 
-        ctx.beginPath();
-        ctx.moveTo(mouse.x - 70, mouse.y); ctx.lineTo(mouse.x + 70, mouse.y);
-        ctx.moveTo(mouse.x, mouse.y - 70); ctx.lineTo(mouse.x, mouse.y + 70);
-        ctx.stroke();
+        if (mouse.active || Math.abs(mouse.x - width * 0.35) > 1) {
+          ctx.save();
+          ctx.strokeStyle = 'rgba(0, 255, 102, 0.15)';
+          ctx.lineWidth   = 0.5;
 
-        ctx.beginPath();
-        ctx.setLineDash([2, 4]);
-        ctx.moveTo(centerX, centerY);
-        ctx.lineTo(mouse.x, mouse.y);
-        ctx.stroke();
-        ctx.setLineDash([]);
+          ctx.beginPath();
+          ctx.arc(mouse.x, mouse.y, 60, 0, Math.PI * 2);
+          ctx.stroke();
 
-        ctx.fillStyle = 'rgba(0, 255, 102, 0.7)';
-        ctx.font      = '9px monospace';
-        const distCenter = Math.round(Math.hypot(mouse.x - centerX, mouse.y - centerY));
-        const estAge     = Math.round(distCenter / ringSpacing);
-        ctx.fillText(`ANEL_DIST: ${distCenter}px`,       mouse.x + 15, mouse.y - 30);
-        ctx.fillText(`IDADE_ESTIMADA: ${estAge} anos`,   mouse.x + 15, mouse.y - 18);
-        ctx.fillText(`GEO_REF: 25.378° S`,               mouse.x + 15, mouse.y - 6);
-        ctx.restore();
+          ctx.beginPath();
+          ctx.moveTo(mouse.x - 70, mouse.y); ctx.lineTo(mouse.x + 70, mouse.y);
+          ctx.moveTo(mouse.x, mouse.y - 70); ctx.lineTo(mouse.x, mouse.y + 70);
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.setLineDash([2, 4]);
+          ctx.moveTo(centerX, centerY);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.stroke();
+          ctx.setLineDash([]);
+
+          ctx.fillStyle = 'rgba(0, 255, 102, 0.7)';
+          ctx.font      = '9px monospace';
+          const distCenter = Math.round(Math.hypot(mouse.x - centerX, mouse.y - centerY));
+          const estAge     = Math.round(distCenter / ringSpacing);
+          ctx.fillText(`ANEL_DIST: ${distCenter}px`,       mouse.x + 15, mouse.y - 30);
+          ctx.fillText(`IDADE_ESTIMADA: ${estAge} anos`,   mouse.x + 15, mouse.y - 18);
+          ctx.fillText(`GEO_REF: 25.378° S`,               mouse.x + 15, mouse.y - 6);
+          ctx.restore();
+        }
       }
 
       requestAnimationFrame(render);

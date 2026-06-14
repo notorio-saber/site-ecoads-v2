@@ -1975,6 +1975,50 @@ body.tools-light h1,
 body.tools-light h2,
 body.tools-light h3 { color: #0d1a0d; }
 
+/* Hub de ferramentas + tool pages — light cards */
+body.tools-light .service-card,
+body.tools-light .tool-card {
+  background: #fff;
+  border-color: #e5ede5;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+body.tools-light .service-card:hover,
+body.tools-light .tool-card:hover {
+  border-color: rgba(0,155,59,0.35);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+}
+body.tools-light .service-title { color: #0d1a0d; }
+body.tools-light .service-text { color: #556655; }
+body.tools-light .section-title { color: #0d1a0d; }
+body.tools-light .section-desc { color: #445544; }
+body.tools-light .section-subtitle { color: var(--brand-green); }
+body.tools-light .service-icon-wrapper {
+  background: rgba(0,155,59,0.06);
+  border-color: rgba(0,155,59,0.15);
+  color: var(--brand-green);
+}
+body.tools-light .btn-secondary {
+  border-color: rgba(0,155,59,0.3);
+  color: var(--brand-green);
+  background: transparent;
+}
+body.tools-light .btn-secondary:hover {
+  background: rgba(0,155,59,0.08);
+  border-color: var(--brand-green);
+}
+/* Tool page inner elements */
+body.tools-light .tool-card-desc,
+body.tools-light .tool-card-label + p { color: #556655; }
+body.tools-light .breadcrumb a { color: #556655; }
+body.tools-light .breadcrumb-current { color: #0d1a0d; }
+body.tools-light .breadcrumb-sep { color: #aabcaa; }
+body.tools-light .input-label { color: #445544 !important; }
+body.tools-light .input-field {
+  background: #f8fcf8 !important;
+  border-color: #d5e8d5 !important;
+  color: #1a2a1a !important;
+}
+
 /* Responsive inner pages */
 @media (max-width: 768px) {
   .page-hero-light .page-title { font-size: 2rem; }

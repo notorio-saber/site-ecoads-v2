@@ -1969,44 +1969,54 @@ body.tools-light h3 { color: #0d1a0d; }
   padding: 20px;
 }
 
-.br-map-svg {
+/* SVG gerado pelo D3.js */
+.br-map-d3 {
   width: 100%;
   height: auto;
   display: block;
 }
 
-/* Estados — default (disponível) */
-.br-map-svg path {
-  fill: rgba(255, 255, 255, 0.04);
+/* Carregando */
+.map-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 80px 20px;
+  color: var(--dark-text-muted);
+  font-size: 0.85rem;
+}
+
+/* Estados — disponível (default) */
+.br-state {
   stroke: rgba(255, 255, 255, 0.14);
-  stroke-width: 1;
+  stroke-width: 0.5;
   cursor: pointer;
   transition: fill 0.18s ease, stroke 0.18s ease;
 }
 
-.br-map-svg path:hover {
+.state-available {
+  fill: rgba(255, 255, 255, 0.04);
+}
+
+.state-available:hover {
   fill: rgba(0, 255, 102, 0.08);
   stroke: rgba(0, 255, 102, 0.4);
-  stroke-width: 1.2;
 }
 
 /* Estados ativos (projetos realizados) */
-.br-map-svg path[data-status="active"] {
+.state-active {
   fill: rgba(0, 255, 102, 0.18);
   stroke: #00ff66;
-  stroke-width: 1.5;
+  stroke-width: 1;
   filter: drop-shadow(0 0 4px rgba(0, 255, 102, 0.3));
 }
 
-.br-map-svg path[data-status="active"]:hover {
+.state-active:hover {
   fill: rgba(0, 255, 102, 0.32);
   stroke: #00ff66;
   filter: drop-shadow(0 0 8px rgba(0, 255, 102, 0.5));
-}
-
-/* DF: glow extra por ser muito pequeno */
-#br-DF {
-  filter: drop-shadow(0 0 6px rgba(0, 255, 102, 0.6));
 }
 
 /* Tooltip */

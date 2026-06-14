@@ -188,6 +188,9 @@
               <span class="app-status-dot"></span>
               SaaS Proprietário // Ativo
             </div>
+            <div style="width:48px;height:48px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);overflow:hidden;margin-bottom:14px;flex-shrink:0;">
+              <img src="/src/assets/apps/LeafBook.png" alt="LeafBook" style="width:100%;height:100%;object-fit:cover;border-radius:11px;">
+            </div>
             <h3 class="app-card-title">LeafBook</h3>
             <p class="app-card-desc">
               O aplicativo definitivo para dendrólogos organizarem seus registros botânicos de forma simples. Um case real de aplicativo offline-first escalável que simplifica o acervo taxonômico.
@@ -215,6 +218,9 @@
               <span class="app-status-dot" style="background-color: var(--brand-blue-accent); box-shadow: 0 0 6px var(--brand-blue-accent);"></span>
               SaaS Proprietário // Em Desenvolvimento
             </div>
+            <div style="width:48px;height:48px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);overflow:hidden;margin-bottom:14px;flex-shrink:0;">
+              <img src="/src/assets/apps/LeafTag.png" alt="LeafTag" style="width:100%;height:100%;object-fit:cover;border-radius:11px;">
+            </div>
             <h3 class="app-card-title">LeafTag</h3>
             <p class="app-card-desc">
               O primeiro aplicativo brasileiro que simplifica a coleta de inventário florestal de forma definitiva. Um projeto de alta engenharia que elimina digitações manuais e planilhas instáveis.
@@ -241,6 +247,9 @@
             <div class="app-status-badge">
               <span class="app-status-dot"></span>
               SaaS Proprietário // Ativo
+            </div>
+            <div style="width:48px;height:48px;border-radius:12px;border:1px solid rgba(255,255,255,0.08);overflow:hidden;margin-bottom:14px;flex-shrink:0;">
+              <img src="/src/assets/apps/SeedDesk.png" alt="SeedDesk" style="width:100%;height:100%;object-fit:cover;border-radius:11px;">
             </div>
             <h3 class="app-card-title">SeedDesk</h3>
             <p class="app-card-desc">
@@ -484,7 +493,7 @@
     <section class="final-cta-section" id="contato-home">
       <div class="container">
         <div class="final-cta-container">
-          <h2 class="final-cta-title">Pronto para acelerar os resultados da sua empresa?</h2>
+          <h2 class="final-cta-title">Pronto para desenvolver sua empresa com tecnologia?</h2>
           <p class="final-cta-desc">Fale com nossos especialistas. Analisamos sua presença digital e suas necessidades de sistemas, desenhando uma solução sob medida de alta performance para destacar sua marca no mercado.</p>
           <div class="hero-actions">
             <a href="https://wa.me/5547920022746?text=Olá!%20Quero%20agendar%20uma%20reunião%20de%20diagnóstico%20com%20a%20EcoAds%20para%20falar%20de%20tecnologia%20e%20posicionamento." class="btn btn-primary" target="_blank" id="btn-whatsapp-action">
@@ -624,16 +633,16 @@
             var code   = parseInt(path.id || '', 10);
             var active = ACTIVE.has(code);
 
-            /* Contorno: ativos em verde, disponíveis só outline */
-            path.style.fill        = active ? 'rgba(0,255,102,0.15)' : 'transparent';
-            path.style.stroke      = active ? '#00ff66'              : 'rgba(255,255,255,0.28)';
-            path.style.strokeWidth = active ? '1.5'                  : '0.8';
+            /* Contorno: ativos em verde, disponíveis em verde sutil */
+            path.style.fill        = active ? 'rgba(0,255,102,0.22)' : 'transparent';
+            path.style.stroke      = active ? '#00ff66'              : 'rgba(0,255,102,0.45)';
+            path.style.strokeWidth = active ? '2'                    : '1.2';
             path.style.cursor      = 'pointer';
             path.style.transition  = 'fill 0.15s ease, stroke 0.15s ease';
 
             path.addEventListener('mouseenter', function () {
-              path.style.fill   = active ? 'rgba(0,255,102,0.30)' : 'rgba(255,255,255,0.06)';
-              path.style.stroke = active ? '#00ff66' : 'rgba(255,255,255,0.55)';
+              path.style.fill   = active ? 'rgba(0,255,102,0.38)' : 'rgba(0,255,102,0.07)';
+              path.style.stroke = active ? '#00ff66' : 'rgba(0,255,102,0.75)';
               var name = STATE_NAMES[code] || 'Estado';
               tooltip.innerHTML =
                 '<div class="tt-name">' + name + '</div>' +
@@ -651,8 +660,8 @@
             });
 
             path.addEventListener('mouseleave', function () {
-              path.style.fill   = active ? 'rgba(0,255,102,0.15)' : 'transparent';
-              path.style.stroke = active ? '#00ff66' : 'rgba(255,255,255,0.28)';
+              path.style.fill   = active ? 'rgba(0,255,102,0.22)' : 'transparent';
+              path.style.stroke = active ? '#00ff66' : 'rgba(0,255,102,0.45)';
               tooltip.classList.remove('visible');
             });
           });

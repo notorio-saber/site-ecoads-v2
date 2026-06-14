@@ -22,49 +22,53 @@ document.addEventListener('DOMContentLoaded', () => {
     let pAnimationId;
 
     const pRender = () => {
-      pTime += 0.02; // Velocidade da expansão e oscilação
+      pTime += 0.003; // Mesma velocidade do hero canvas
       pCtx.clearRect(0, 0, pWidth, pHeight);
-      
+
       const pCenterX = pWidth / 2;
       const pCenterY = pHeight / 2;
-      
+
       const maxRadius = Math.hypot(pCenterX, pCenterY);
-      const ringDist = 22; // Espaçamento entre os anéis de intro
+      const ringDist = 10; // Mesmo espaçamento denso do hero
       const numRings = Math.ceil(maxRadius / ringDist);
-      
-      // Animação contínua dos anéis crescendo para fora a partir do centro
-      const offset = (pTime * 48) % ringDist;
-      
+
+      // Expansão suave dos anéis para fora
+      const offset = (pTime * 200) % ringDist;
+
       // Gradiente radial centrado no logo para apagar suavemente as bordas
       const radGrad = pCtx.createRadialGradient(pCenterX, pCenterY, 50, pCenterX, pCenterY, Math.min(pWidth, pHeight) * 0.45);
-      radGrad.addColorStop(0, 'rgba(0, 255, 102, 0.45)'); // Verde neon em volta do logo
-      radGrad.addColorStop(0.35, 'rgba(0, 229, 255, 0.15)'); // Azul técnico secundário
-      radGrad.addColorStop(1, 'transparent'); // Sumindo na escuridão periférica
-      
+      radGrad.addColorStop(0, 'rgba(0, 255, 102, 0.45)');
+      radGrad.addColorStop(0.35, 'rgba(0, 229, 255, 0.15)');
+      radGrad.addColorStop(1, 'transparent');
+
       pCtx.strokeStyle = radGrad;
       pCtx.lineWidth = 0.8;
 
       for (let i = 0; i < numRings; i++) {
         const r = i * ringDist + offset;
         if (r > maxRadius) continue;
-        
+
         pCtx.beginPath();
-        const steps = 90;
+        const steps = 140; // Curvas mais suaves
         for (let j = 0; j <= steps; j++) {
           const theta = (j / steps) * Math.PI * 2;
-          
-          // Ruído orgânico sutil idêntico ao efeito principal de tronco
-          const wobble = Math.sin(theta * 6 + pTime * 2) * 2.5 + Math.cos(theta * 3 - pTime * 1) * 1.5;
+
+          // Mesmo padrão de onda coerente e paralelo do hero
+          const wave1 = Math.sin(theta * 4 + pTime * 0.2) * 3.5;
+          const wave2 = Math.cos(theta * 7 - pTime * 0.1) * 1.5;
+          const wave3 = Math.sin(theta * 2 + pTime * 0.05) * 2.0;
+          const wobble = wave1 + wave2 + wave3;
+
           const px = pCenterX + Math.cos(theta) * (r + wobble);
           const py = pCenterY + Math.sin(theta) * (r + wobble);
-          
+
           if (j === 0) pCtx.moveTo(px, py);
           else pCtx.lineTo(px, py);
         }
         pCtx.closePath();
         pCtx.stroke();
       }
-      
+
       pAnimationId = requestAnimationFrame(pRender);
     };
     

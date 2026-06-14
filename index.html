@@ -594,8 +594,7 @@
   <!-- Scripts -->
   <script type="module" src="/src/js/main.js"></script>
 
-  <!-- D3.js para mapa real do Brasil -->
-  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <!-- Mapa interativo do Brasil via IBGE SVG -->
   <script>
     (function () {
       var STATE_NAMES = {
@@ -611,79 +610,43 @@
 
       var ACTIVE = new Set([13, 53, 41, 42]); /* AM, DF, PR, SC */
 
-      var FILL_AVAILABLE  = 'rgba(255,255,255,0.05)';
-      var FILL_ACTIVE     = 'rgba(0,255,102,0.18)';
-      var FILL_HOVER_AVA  = 'rgba(0,255,102,0.07)';
-      var FILL_HOVER_ACT  = 'rgba(0,255,102,0.35)';
-      var STROKE_AVAILABLE = 'rgba(255,255,255,0.18)';
-      var STROKE_ACTIVE    = '#00ff66';
-
       var container  = document.getElementById('br-map-container');
       var loadingEl  = document.getElementById('map-loading');
       var tooltip    = document.getElementById('map-tooltip');
       var mapWrapper = document.querySelector('.map-wrapper');
       if (!container || !tooltip || !mapWrapper) return;
 
-      var W = Math.max(container.clientWidth, 320) || 520;
-      var H = Math.round(W * 1.08);
+      /* IBGE retorna SVG nativo quando não se especifica formato JSON */
+      var url = 'https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR'
+              + '?intrarregiao=UF&resolucao=2';
 
-      var svg = d3.select(container)
-        .append('svg')
-        .attr('width', '100%')
-        .attr('height', H)
-        .attr('viewBox', '0 0 ' + W + ' ' + H)
-        .style('display', 'block')
-        .style('background', 'transparent');
+      fetch(url)
+        .then(function (r) { return r.text(); })
+        .then(function (svgText) {
+          var parser = new DOMParser();
+          var doc    = parser.parseFromString(svgText, 'image/svg+xml');
+          var svgEl  = doc.querySelector('svg');
+          if (!svgEl) throw new Error('sem SVG');
 
-      /* Fundo escuro explícito dentro do SVG */
-      svg.append('rect')
-        .attr('width', W)
-        .attr('height', H)
-        .attr('fill', 'rgba(3,3,3,0)');
+          /* Adapta dimensões para preencher o container responsivamente */
+          svgEl.setAttribute('width', '100%');
+          svgEl.removeAttribute('height');
+          svgEl.style.cssText = 'display:block;background:transparent;overflow:visible;';
 
-      var pathGen = d3.geoPath();
+          /* Estiliza cada estado */
+          svgEl.querySelectorAll('path').forEach(function (path) {
+            /* IBGE usa id numérico (código IBGE) nos paths */
+            var code   = parseInt(path.id || '', 10);
+            var active = ACTIVE.has(code);
 
-      var IBGE_URL = 'https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR'
-        + '?intrarregiao=UF&resolucao=2&formato=application/vnd.geo+json';
+            path.style.fill        = active ? 'rgba(0,255,102,0.18)' : 'rgba(255,255,255,0.04)';
+            path.style.stroke      = active ? '#00ff66'              : 'rgba(255,255,255,0.18)';
+            path.style.strokeWidth = active ? '1.2'                  : '0.7';
+            path.style.cursor      = 'pointer';
+            path.style.transition  = 'fill 0.15s ease';
 
-      fetch(IBGE_URL)
-        .then(function (r) { return r.json(); })
-        .then(function (geo) {
-          if (loadingEl) loadingEl.remove();
-
-          /* Suporte a FeatureCollection e GeometryCollection */
-          var features = geo.features;
-          if (!features && geo.geometries) {
-            features = geo.geometries.map(function (g, i) {
-              return { type: 'Feature', geometry: g, properties: {} };
-            });
-          }
-          if (!features || !features.length) throw new Error('no features');
-
-          var fc = { type: 'FeatureCollection', features: features };
-          var projection = d3.geoMercator().fitExtent([[4, 4], [W - 4, H - 4]], fc);
-          pathGen.projection(projection);
-
-          svg.selectAll('path.br-state')
-            .data(features)
-            .enter()
-            .append('path')
-            .attr('class', 'br-state')
-            .attr('d', pathGen)
-            .style('fill', function (d) {
-              var code = parseInt(d.properties && d.properties.codarea, 10);
-              return ACTIVE.has(code) ? FILL_ACTIVE : FILL_AVAILABLE;
-            })
-            .style('stroke', function (d) {
-              var code = parseInt(d.properties && d.properties.codarea, 10);
-              return ACTIVE.has(code) ? STROKE_ACTIVE : STROKE_AVAILABLE;
-            })
-            .style('stroke-width', '0.7')
-            .style('cursor', 'pointer')
-            .on('mouseenter', function (event, d) {
-              var code = parseInt(d.properties && d.properties.codarea, 10);
-              var active = ACTIVE.has(code);
-              d3.select(this).style('fill', active ? FILL_HOVER_ACT : FILL_HOVER_AVA);
+            path.addEventListener('mouseenter', function () {
+              path.style.fill = active ? 'rgba(0,255,102,0.35)' : 'rgba(0,255,102,0.08)';
               var name = STATE_NAMES[code] || 'Estado';
               tooltip.innerHTML =
                 '<div class="tt-name">' + name + '</div>' +
@@ -692,20 +655,28 @@
                 (active ? 'Projeto realizado' : 'Disponível para iniciar') +
                 '</div>';
               tooltip.classList.add('visible');
-            })
-            .on('mousemove', function (event) {
-              var rect = mapWrapper.getBoundingClientRect();
-              tooltip.style.left = (event.clientX - rect.left + 14) + 'px';
-              tooltip.style.top  = (event.clientY - rect.top  - 54) + 'px';
-            })
-            .on('mouseleave', function (event, d) {
-              var code = parseInt(d.properties && d.properties.codarea, 10);
-              d3.select(this).style('fill', ACTIVE.has(code) ? FILL_ACTIVE : FILL_AVAILABLE);
+            });
+
+            path.addEventListener('mousemove', function (e) {
+              var r = mapWrapper.getBoundingClientRect();
+              tooltip.style.left = (e.clientX - r.left + 14) + 'px';
+              tooltip.style.top  = (e.clientY - r.top  - 54) + 'px';
+            });
+
+            path.addEventListener('mouseleave', function () {
+              path.style.fill = active ? 'rgba(0,255,102,0.18)' : 'rgba(255,255,255,0.04)';
               tooltip.classList.remove('visible');
             });
+          });
+
+          if (loadingEl) loadingEl.remove();
+          container.appendChild(svgEl);
         })
-        .catch(function (e) {
-          if (loadingEl) loadingEl.textContent = 'Mapa temporariamente indisponível.';
+        .catch(function () {
+          if (loadingEl) {
+            loadingEl.innerHTML =
+              '<span style="font-size:0.82rem;color:var(--dark-text-muted)">Mapa indisponível no momento.</span>';
+          }
         });
     })();
   </script>

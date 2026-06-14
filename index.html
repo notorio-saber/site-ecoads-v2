@@ -6,9 +6,12 @@
   <title>EcoAds — Tecnologia e Posicionamento para o Setor Ambiental e Florestal</title>
   <meta name="description" content="Desenvolvemos sites, plataformas, aplicativos e estratégias de posicionamento de alta performance para o setor florestal, ambiental e geotecnologias.">
   
+  <!-- Favicon -->
+  <link rel="icon" href="/src/assets/logo.png" type="image/png">
+
   <!-- Estilos Globais -->
   <link rel="stylesheet" href="/src/css/main.css">
-  
+
   <!-- Iconify Icon CDN -->
   <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 </head>
@@ -177,7 +180,7 @@
           <!-- Sistemas e Apps -->
           <div class="service-card" id="card-apps-dev">
             <div class="service-icon-wrapper">
-              <iconify-icon icon="solar:smartphone-device-linear" width="20"></iconify-icon>
+              <iconify-icon icon="solar:smartphone-linear" width="20"></iconify-icon>
             </div>
             <h3 class="service-title">Sistemas & Aplicativos Móveis</h3>
             <p class="service-text">Desenvolvimento de softwares sob medida para cálculos de campo, inventários florestais, gestão ambiental e automação de planilhas e relatórios.</p>
@@ -436,6 +439,144 @@
 
 
 
+    <!-- 7. MAPA DE PRESENÇA NACIONAL -->
+    <section class="section-padding map-section" id="presenca-nacional">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Presença Nacional</span>
+          <h2 class="section-title">Onde Atuamos</h2>
+          <p class="section-desc">Projetos realizados em estados-chave do Brasil. Os demais territórios estão disponíveis — somos 100% remotos e atendemos empresas do setor em qualquer estado.</p>
+        </div>
+
+        <div class="map-layout">
+          <div class="map-wrapper">
+            <div class="map-tooltip" id="map-tooltip"></div>
+            <svg class="br-map-svg" viewBox="0 0 870 970" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+
+              <!-- Norte -->
+              <path id="br-RR" data-name="Roraima" data-status="available"
+                d="M 200,18 L 310,18 L 322,62 L 308,110 L 270,152 L 200,164 L 155,130 L 148,72 Z"/>
+
+              <path id="br-AP" data-name="Amapá" data-status="available"
+                d="M 448,18 L 514,18 L 532,70 L 514,126 L 462,150 L 436,95 Z"/>
+
+              <path id="br-AM" data-name="Amazonas" data-status="active"
+                d="M 50,180 L 155,130 L 200,164 L 270,152 L 308,110 L 360,120 L 400,140 L 448,110 L 482,174 L 464,244 L 474,304 L 446,344 L 430,392 L 388,414 L 326,424 L 286,414 L 246,430 L 206,420 L 162,442 L 120,414 L 90,360 L 70,286 L 78,210 Z"/>
+
+              <path id="br-PA" data-name="Pará" data-status="available"
+                d="M 482,174 L 448,110 L 436,95 L 462,150 L 514,126 L 532,70 L 550,62 L 592,54 L 634,80 L 682,90 L 724,110 L 750,152 L 730,220 L 710,270 L 690,328 L 658,360 L 626,390 L 596,414 L 556,432 L 516,434 L 496,400 L 476,360 L 474,304 L 464,244 L 482,174 Z"/>
+
+              <path id="br-AC" data-name="Acre" data-status="available"
+                d="M 40,414 L 120,414 L 162,442 L 182,500 L 162,544 L 108,558 L 56,524 L 36,474 Z"/>
+
+              <path id="br-RO" data-name="Rondônia" data-status="available"
+                d="M 162,442 L 246,430 L 286,414 L 326,424 L 344,464 L 320,522 L 286,558 L 246,568 L 206,550 L 182,500 Z"/>
+
+              <path id="br-TO" data-name="Tocantins" data-status="available"
+                d="M 516,434 L 556,432 L 596,414 L 626,390 L 650,412 L 648,462 L 630,512 L 620,552 L 590,570 L 560,578 L 530,568 L 510,538 L 510,488 Z"/>
+
+              <!-- Nordeste -->
+              <path id="br-MA" data-name="Maranhão" data-status="available"
+                d="M 596,414 L 626,390 L 658,360 L 690,328 L 710,270 L 730,220 L 750,194 L 768,228 L 764,278 L 748,328 L 730,370 L 708,414 L 682,434 L 646,452 L 618,452 L 592,440 L 578,414 Z"/>
+
+              <path id="br-PI" data-name="Piauí" data-status="available"
+                d="M 750,194 L 780,190 L 810,176 L 840,194 L 860,234 L 854,288 L 834,338 L 810,380 L 784,410 L 758,428 L 730,438 L 708,438 L 682,434 L 708,414 L 730,370 L 748,328 L 764,278 L 768,228 Z"/>
+
+              <path id="br-CE" data-name="Ceará" data-status="available"
+                d="M 810,176 L 846,162 L 866,178 L 868,234 L 854,288 L 834,314 L 812,338 L 790,354 L 770,350 L 758,328 L 764,298 L 784,270 L 854,288 L 860,234 L 840,194 Z"/>
+
+              <path id="br-RN" data-name="Rio G. do Norte" data-status="available"
+                d="M 846,162 L 868,162 L 868,234 L 866,178 Z"/>
+
+              <path id="br-PB" data-name="Paraíba" data-status="available"
+                d="M 812,338 L 846,330 L 868,344 L 868,370 L 842,378 L 820,364 Z"/>
+
+              <path id="br-PE" data-name="Pernambuco" data-status="available"
+                d="M 758,328 L 790,354 L 812,338 L 820,364 L 842,378 L 832,400 L 806,412 L 784,422 L 750,418 L 730,412 L 727,392 L 744,370 L 754,350 Z"/>
+
+              <path id="br-AL" data-name="Alagoas" data-status="available"
+                d="M 784,422 L 806,412 L 832,400 L 844,420 L 830,440 L 804,444 L 782,434 Z"/>
+
+              <path id="br-SE" data-name="Sergipe" data-status="available"
+                d="M 764,434 L 782,422 L 782,434 L 804,444 L 800,464 L 776,470 L 760,454 Z"/>
+
+              <path id="br-BA" data-name="Bahia" data-status="available"
+                d="M 618,452 L 646,452 L 682,434 L 708,438 L 730,438 L 758,428 L 784,410 L 810,380 L 834,338 L 812,338 L 790,354 L 770,350 L 758,328 L 754,350 L 744,370 L 727,392 L 730,412 L 750,418 L 760,454 L 776,470 L 800,464 L 814,468 L 810,504 L 796,550 L 774,600 L 750,642 L 720,676 L 690,700 L 660,714 L 630,716 L 600,702 L 576,680 L 560,652 L 550,614 L 554,570 L 570,534 L 580,494 L 574,460 L 590,450 Z"/>
+
+              <!-- Centro-Oeste -->
+              <path id="br-MT" data-name="Mato Grosso" data-status="available"
+                d="M 246,430 L 326,424 L 388,414 L 430,392 L 446,344 L 474,304 L 476,360 L 496,400 L 516,434 L 510,488 L 530,468 L 524,538 L 510,578 L 490,624 L 460,654 L 420,664 L 380,654 L 340,664 L 300,642 L 270,592 L 250,542 L 244,500 Z"/>
+
+              <path id="br-GO" data-name="Goiás" data-status="available"
+                d="M 510,578 L 530,568 L 560,578 L 590,570 L 620,552 L 640,574 L 640,624 L 624,664 L 600,702 L 580,732 L 550,742 L 520,734 L 494,714 L 474,684 L 464,652 L 470,624 L 490,624 L 510,578 Z"/>
+
+              <path id="br-DF" data-name="Distrito Federal" data-status="active"
+                d="M 556,654 L 578,654 L 586,672 L 572,684 L 552,676 Z"/>
+
+              <path id="br-MS" data-name="Mato Grosso do Sul" data-status="available"
+                d="M 300,642 L 340,664 L 380,654 L 420,664 L 460,654 L 464,652 L 474,684 L 494,714 L 490,744 L 470,772 L 444,800 L 414,818 L 384,824 L 350,814 L 320,790 L 296,764 L 278,724 L 272,684 L 284,652 Z"/>
+
+              <!-- Sudeste -->
+              <path id="br-MG" data-name="Minas Gerais" data-status="available"
+                d="M 520,734 L 550,742 L 580,732 L 600,702 L 624,664 L 640,624 L 640,574 L 620,552 L 630,518 L 650,490 L 670,464 L 700,450 L 730,464 L 750,494 L 764,530 L 778,570 L 780,614 L 770,654 L 750,690 L 720,716 L 690,732 L 660,746 L 630,752 L 600,748 L 570,742 L 546,734 Z"/>
+
+              <path id="br-ES" data-name="Espírito Santo" data-status="available"
+                d="M 750,494 L 782,472 L 802,500 L 810,540 L 804,574 L 786,600 L 764,600 L 750,574 L 764,530 Z"/>
+
+              <path id="br-RJ" data-name="Rio de Janeiro" data-status="available"
+                d="M 720,716 L 750,690 L 770,654 L 780,614 L 786,600 L 764,600 L 750,574 L 730,602 L 714,634 L 700,660 L 690,684 L 697,704 L 714,722 Z"/>
+
+              <path id="br-SP" data-name="São Paulo" data-status="available"
+                d="M 444,800 L 470,772 L 490,744 L 494,714 L 520,734 L 546,734 L 570,742 L 600,748 L 630,752 L 660,746 L 690,732 L 700,752 L 690,782 L 670,810 L 640,828 L 610,840 L 574,844 L 540,838 L 510,824 L 480,802 L 460,780 L 450,760 Z"/>
+
+              <!-- Sul -->
+              <path id="br-PR" data-name="Paraná" data-status="active"
+                d="M 414,818 L 444,800 L 450,760 L 460,780 L 480,802 L 510,824 L 540,838 L 542,868 L 520,894 L 494,914 L 464,924 L 434,920 L 404,910 L 376,890 L 358,864 L 358,834 L 376,814 L 396,814 Z"/>
+
+              <path id="br-SC" data-name="Santa Catarina" data-status="active"
+                d="M 358,864 L 376,890 L 404,910 L 434,920 L 464,924 L 494,914 L 520,894 L 536,920 L 530,948 L 510,964 L 480,970 L 446,967 L 414,957 L 384,940 L 358,916 Z"/>
+
+              <path id="br-RS" data-name="Rio G. do Sul" data-status="available"
+                d="M 358,916 L 384,940 L 414,957 L 446,967 L 480,970 L 510,964 L 530,948 L 544,962 L 526,970 L 488,970 L 444,970 L 398,968 L 362,958 L 338,940 L 334,918 Z"/>
+
+            </svg>
+          </div>
+
+          <div class="map-sidebar">
+            <div class="map-legend">
+              <h4 class="map-legend-heading">Legenda</h4>
+              <div class="map-legend-item">
+                <span class="map-legend-dot active"></span>
+                <div>
+                  <div class="map-legend-title">Projetos realizados</div>
+                  <div class="map-legend-states">AM &middot; DF &middot; PR &middot; SC</div>
+                </div>
+              </div>
+              <div class="map-legend-item">
+                <span class="map-legend-dot available"></span>
+                <div>
+                  <div class="map-legend-title">Disponível para iniciar</div>
+                  <div class="map-legend-desc">Prontos para atender em qualquer estado</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="map-cta-card">
+              <div class="map-cta-icon">
+                <iconify-icon icon="solar:map-point-wave-linear" width="24"></iconify-icon>
+              </div>
+              <h3 class="map-cta-title">Seu estado está disponível!</h3>
+              <p class="map-cta-desc">Somos 100% remotos e atendemos consultores ambientais, engenheiros florestais e empresas do setor em qualquer estado do Brasil.</p>
+              <a href="https://wa.me/5547920022746?text=Olá!%20Quero%20iniciar%20um%20projeto%20com%20a%20EcoAds." class="btn btn-primary" target="_blank">
+                <iconify-icon icon="ic:baseline-whatsapp" width="16"></iconify-icon>
+                Iniciar Projeto
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 8. CONTATO / CTA FINAL (CONVERSÃO CONSULTIVA B2B) -->
     <section class="final-cta-section" id="contato-home">
       <div class="container">
@@ -534,5 +675,41 @@
 
   <!-- Scripts -->
   <script type="module" src="/src/js/main.js"></script>
+
+  <!-- Mapa interativo do Brasil -->
+  <script>
+    (function () {
+      var paths = document.querySelectorAll('.br-map-svg path');
+      var tooltip = document.getElementById('map-tooltip');
+      var mapWrapper = document.querySelector('.map-wrapper');
+      if (!paths.length || !tooltip || !mapWrapper) return;
+
+      paths.forEach(function (path) {
+        path.addEventListener('mouseenter', function () {
+          var name = this.dataset.name || '';
+          var active = this.dataset.status === 'active';
+          tooltip.innerHTML =
+            '<div class="tt-name">' + name + '</div>' +
+            '<div class="tt-status ' + (active ? 'active' : 'available') + '">' +
+            '<span class="tt-dot"></span>' +
+            (active ? 'Projeto realizado' : 'Disponível para iniciar') +
+            '</div>';
+          tooltip.classList.add('visible');
+        });
+
+        path.addEventListener('mousemove', function (e) {
+          var rect = mapWrapper.getBoundingClientRect();
+          var x = e.clientX - rect.left + 14;
+          var y = e.clientY - rect.top - 54;
+          tooltip.style.left = x + 'px';
+          tooltip.style.top = y + 'px';
+        });
+
+        path.addEventListener('mouseleave', function () {
+          tooltip.classList.remove('visible');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

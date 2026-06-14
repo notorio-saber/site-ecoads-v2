@@ -376,10 +376,10 @@ document.addEventListener('DOMContentLoaded', () => {
               r = 255; g = Math.round(211 * s); b = 0;
             }
 
-            ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${(intensity * 0.55).toFixed(3)})`;
-            ctx.lineWidth   = 0.4 + intensity * 1.1;
+            ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${(intensity * 0.38).toFixed(3)})`;
+            ctx.lineWidth   = 0.5 + intensity * 0.55;
           } else {
-            ctx.strokeStyle = 'rgba(0, 180, 70, 0.08)';
+            ctx.strokeStyle = 'rgba(0, 156, 59, 0.022)';
             ctx.lineWidth   = 0.5;
           }
           drawRing(ring);

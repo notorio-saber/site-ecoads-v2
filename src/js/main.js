@@ -116,22 +116,44 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // 1. EFEITO HEADER AO SCROLL
-  // ==========================================
+  // 1. EFEITO HEADER AO SCROLL + MOBILE LOGO-ONLY
   // ==========================================
   const header = document.querySelector('.main-header');
-  
+  let _lastScrollY = window.scrollY;
+
   const handleScroll = () => {
-    if (header) {
-      if (window.scrollY > 20) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
+    if (!header) return;
+    const cur = window.scrollY;
+    const goingDown = cur > _lastScrollY;
+
+    // Scrolled compacto (desktop + mobile)
+    header.classList.toggle('scrolled', cur > 20);
+
+    // Mobile: logo-only quando rola para baixo
+    if (window.innerWidth <= 768) {
+      if (cur > 90 && goingDown) {
+        if (!header.classList.contains('nav-logo-only')) {
+          header.classList.add('nav-logo-only');
+          // Fecha o drawer se estiver aberto
+          const mNav = document.getElementById('navigation-menu-links');
+          const mBtn = document.getElementById('menu-toggle-btn');
+          if (mNav && mNav.classList.contains('active')) {
+            mNav.classList.remove('active');
+            mBtn && mBtn.classList.remove('active');
+            document.body.classList.remove('overflow-hidden');
+          }
+        }
+      } else if (!goingDown || cur < 50) {
+        header.classList.remove('nav-logo-only');
       }
+    } else {
+      header.classList.remove('nav-logo-only');
     }
+
+    _lastScrollY = cur;
   };
 
-  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('scroll', handleScroll, { passive: true });
   handleScroll();
 
   // ==========================================

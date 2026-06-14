@@ -262,417 +262,260 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
-    
+
     let mouse = { x: width * 0.5, y: height * 0.45, active: false };
     let time = 0;
-    
-    // Centro do tronco (ligeiramente deslocado para assimetria natural)
+
     let centerX = width * 0.35;
     let centerY = height * 0.55;
-    
-    const ringSpacing = 10; // Espaçamento menor para anéis mais densos (estilo digital/fibra)
+
+    const ringSpacing = 10;
     let rings = [];
 
-    // Perfil cônico e realista de copa de Pinus (usado na geração e desenho)
-    const getCrownWidthAt = (ry) => {
-      if (ry < 0.6) {
-        return ry / 0.6; // cresce de 0 a 1
-      } else {
-        return 1 - (ry - 0.6) / 0.4 * 0.35; // estreita suavemente até 0.65 na base
-      }
-    };
-
-    // Silhuetas de Pinus interativas (lado direito)
-    const pineTrees = [
-      { xPercent: 0.74, heightPercent: 0.42, species: 'Pinus taeda', dbh: '28.4 cm', height: '24.5 m', heightNum: 24.5, vol: '0.68 m³', sort: 'Serraria' },
-      { xPercent: 0.81, heightPercent: 0.36, species: 'Pinus taeda', dbh: '22.1 cm', height: '21.2 m', heightNum: 21.2, vol: '0.42 m³', sort: 'Processo' },
-      { xPercent: 0.88, heightPercent: 0.46, species: 'Pinus taeda', dbh: '31.8 cm', height: '26.8 m', heightNum: 26.8, vol: '0.89 m³', sort: 'Laminadora' }
-    ];
-
-    // Gerar pontos estáticos da nuvem (LiDAR point cloud) para cada árvore
-    pineTrees.forEach(tree => {
-      tree.cloudPoints = [];
-      const numPoints = 85;
-      for (let i = 0; i < numPoints; i++) {
-        const ry = Math.random(); // 0 a 1 ao longo da copa
-        const maxW = getCrownWidthAt(ry);
-        const rx = (Math.random() - 0.5) * 2 * maxW; // -maxW a +maxW
-        tree.cloudPoints.push({ rx, ry });
-      }
-    });
-
-    // Função para gerar os anéis concêntricos que cobrem a tela
     const generateRings = () => {
       centerX = width * 0.35;
       centerY = height * 0.55;
-      
-      // Encontrar a distância máxima até os cantos para cobrir 100% da dobra
-      const distToTopLeft = Math.hypot(centerX, centerY);
-      const distToTopRight = Math.hypot(width - centerX, centerY);
+      const distToTopLeft    = Math.hypot(centerX, centerY);
+      const distToTopRight   = Math.hypot(width - centerX, centerY);
       const distToBottomLeft = Math.hypot(centerX, height - centerY);
-      const distToBottomRight = Math.hypot(width - centerX, height - centerY);
+      const distToBottomRight= Math.hypot(width - centerX, height - centerY);
       const maxRadius = Math.max(distToTopLeft, distToTopRight, distToBottomLeft, distToBottomRight) * 1.1;
-      
       const numRings = Math.ceil(maxRadius / ringSpacing);
-      rings.length = 0; // Limpar array
-      
+      rings.length = 0;
       for (let i = 1; i <= numRings; i++) {
         rings.push({
           baseRadius: i * ringSpacing,
-          // Propriedades individuais sutis de ruído para dar variação orgânica
-          noiseScale: 0.15 + (i / numRings) * 0.85, // anéis externos têm variações ligeiramente maiores
+          noiseScale: 0.15 + (i / numRings) * 0.85,
           speedMultiplier: 0.8 + Math.sin(i * 0.15) * 0.2
         });
       }
     };
 
-    // Adaptar tamanho da tela e recalcular anéis
     const handleResize = () => {
-      width = canvas.width = window.innerWidth;
+      width  = canvas.width  = window.innerWidth;
       height = canvas.height = window.innerHeight;
       generateRings();
     };
     window.addEventListener('resize', handleResize);
-    
-    // Inicializar os anéis
     generateRings();
 
-    // Trackear coordenadas do mouse na hero
     const heroSection = document.getElementById('hero-dobra-escura');
-    const trackMouse = (e) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-      mouse.active = true;
-    };
-    
     if (heroSection) {
-      heroSection.addEventListener('mousemove', trackMouse);
-      heroSection.addEventListener('mouseleave', () => {
-        mouse.active = false;
+      heroSection.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+        mouse.active = true;
       });
+      heroSection.addEventListener('mouseleave', () => { mouse.active = false; });
+
+      // Touch: spotlight suave sem retícula técnica
+      const onTouch = (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.touches[0].clientX - rect.left;
+        mouse.y = e.touches[0].clientY - rect.top;
+        mouse.active = true;
+      };
+      heroSection.addEventListener('touchstart', onTouch, { passive: true });
+      heroSection.addEventListener('touchmove',  onTouch, { passive: true });
+      heroSection.addEventListener('touchend',   () => { mouse.active = false; });
     }
 
-    // Função auxiliar para desenhar uma silhueta de Pinus técnica
-    const drawPineTree = (tx, ty, tHeight, strokeStyle, isHovered, isGlow, tree) => {
-      ctx.save();
-      ctx.strokeStyle = strokeStyle;
-      ctx.lineWidth = isHovered ? 1.2 : 0.6;
-      
-      const crownBaseY = ty - tHeight * 0.4;
-      const crownTopY = ty - tHeight;
-      const crownHeight = tHeight * 0.6;
-      
-      // Desenhar tronco
-      ctx.beginPath();
-      ctx.moveTo(tx, ty);
-      ctx.lineTo(tx, ty - tHeight);
-      ctx.stroke();
+    // ---- SISTEMA DE PULSOS ORGÂNICOS (animação autônoma mobile) ----
+    const pulses = [];
+    const MAX_PULSES = 12;
 
-      // Desenhar galhos (curva quadrática, estilo Pinus)
-      const numBranches = 14;
-      ctx.beginPath();
-      for (let i = 0; i < numBranches; i++) {
-        const ratio = i / (numBranches - 1);
-        const bY = crownTopY + crownHeight * ratio;
-        const maxW = getCrownWidthAt(ratio);
-        const bWidth = (tHeight * 0.16) * maxW;
-        
-        const endXLeft = tx - bWidth;
-        const endXRight = tx + bWidth;
-        const endY = bY - 8 * (1 - ratio);
-        
-        ctx.moveTo(tx, bY);
-        ctx.quadraticCurveTo(tx - bWidth * 0.5, bY + 3, endXLeft, endY);
-        ctx.moveTo(tx, bY);
-        ctx.quadraticCurveTo(tx + bWidth * 0.5, bY + 3, endXRight, endY);
-      }
-      ctx.stroke();
-
-      // Desenhar Point Cloud (LiDAR returns) se estiver acesa (spotlight ou hover)
-      if ((isGlow || isHovered) && tree && tree.cloudPoints) {
-        ctx.fillStyle = isHovered ? 'rgba(0, 255, 102, 0.7)' : 'rgba(0, 229, 255, 0.25)';
-        tree.cloudPoints.forEach(p => {
-          const px = tx + p.rx * (tHeight * 0.16);
-          const py = crownTopY + p.ry * crownHeight;
-          ctx.beginPath();
-          if (isHovered && Math.random() > 0.98) {
-            // Alguns pontos piscam em verde neon puro
-            ctx.fillStyle = '#00ff66';
-            ctx.arc(px, py, 1.2, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.fillStyle = 'rgba(0, 255, 102, 0.7)';
-          } else {
-            ctx.arc(px, py, 0.7, 0, Math.PI * 2);
-            ctx.fill();
-          }
-        });
-      }
-
-      // Linhas de varredura LiDAR (anéis horizontais de diâmetro) no fuste
-      if (isHovered || isGlow) {
-        ctx.strokeStyle = isHovered ? 'rgba(0, 255, 102, 0.5)' : 'rgba(0, 229, 255, 0.15)';
-        const scanRings = 5;
-        for (let i = 1; i <= scanRings; i++) {
-          const ringY = ty - (tHeight * 0.4 / scanRings) * i;
-          const rRadius = 3.5 * (1 - (i / scanRings) * 0.4);
-          ctx.beginPath();
-          ctx.ellipse(tx, ringY, rRadius, rRadius * 0.3, 0, 0, Math.PI * 2);
-          ctx.stroke();
-        }
-      }
-      ctx.restore();
+    const spawnPulse = () => {
+      if (rings.length < 8) return;
+      const minIdx = Math.floor(rings.length * 0.04);
+      const maxIdx = Math.floor(rings.length * 0.72);
+      const ringIdx = minIdx + Math.floor(Math.random() * (maxIdx - minIdx));
+      pulses.push({
+        ringIdx,
+        angle:      Math.random() * Math.PI * 2,
+        speed:      (0.006 + Math.random() * 0.018) * (Math.random() > 0.5 ? 1 : -1),
+        opacity:    0,
+        maxOpacity: 0.42 + Math.random() * 0.48,
+        arcLength:  0.28 + Math.random() * 0.9,
+        life:       0,
+        maxLife:    200 + Math.floor(Math.random() * 300),
+        colorType:  Math.random() > 0.6 ? 'cyan' : 'green'
+      });
     };
+
+    // Pré-popular para o canvas já estar vivo ao carregar
+    for (let s = 0; s < 7; s++) spawnPulse();
+
+    // Função utilitária: ponto no anel a dado ângulo theta
+    const ringPoint = (ring, theta) => {
+      const w1 = Math.sin(theta * 4 + time * 0.2) * 3.5;
+      const w2 = Math.cos(theta * 7 - time * 0.1) * 1.5;
+      const w3 = Math.sin(theta * 2 + time * 0.05) * 2.0;
+      const r  = ring.baseRadius + (w1 + w2 + w3) * ring.noiseScale;
+      return { x: centerX + Math.cos(theta) * r, y: centerY + Math.sin(theta) * r };
+    };
+
+    // Função base: desenha todos os anéis com o estilo atual do ctx
+    const drawRingsPattern = () => {
+      rings.forEach(ring => {
+        ctx.beginPath();
+        const steps = 140;
+        for (let j = 0; j <= steps; j++) {
+          const theta = (j / steps) * Math.PI * 2;
+          const pt = ringPoint(ring, theta);
+          if (j === 0) ctx.moveTo(pt.x, pt.y);
+          else         ctx.lineTo(pt.x, pt.y);
+        }
+        ctx.closePath();
+        ctx.stroke();
+      });
+    };
+
+    const isMobile = () => width <= 768;
 
     // Loop de Animação e Renderização
     const render = () => {
-      time += 0.003; // Movimento suave lento
+      time += 0.003;
       ctx.clearRect(0, 0, width, height);
 
-      // Suavizar o retorno do cursor ao centro do layout quando inativo
+      // Suavizar retorno do cursor ao centro quando inativo
       if (!mouse.active) {
-        const targetX = width * 0.35;
-        const targetY = height * 0.55;
-        mouse.x += (targetX - mouse.x) * 0.06;
-        mouse.y += (targetY - mouse.y) * 0.06;
+        mouse.x += (width  * 0.35 - mouse.x) * 0.06;
+        mouse.y += (height * 0.55 - mouse.y) * 0.06;
       }
 
-      // Função para renderizar um conjunto de anéis com determinado estilo
-      const drawRingsPattern = () => {
-        rings.forEach(ring => {
+      // 1. Anéis de fundo base (muito sutis)
+      ctx.lineWidth   = 0.5;
+      ctx.strokeStyle = 'rgba(0, 156, 59, 0.022)';
+      drawRingsPattern();
+
+      if (isMobile()) {
+        // ── MOBILE: animação autônoma orgânica ──────────────────────────
+
+        // Glow ambiente permanente irradiando do centro
+        const ambientR = Math.min(width, height) * 0.58;
+        const ambient  = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, ambientR);
+        ambient.addColorStop(0,   'rgba(0, 255, 102, 0.055)');
+        ambient.addColorStop(0.45,'rgba(0, 229, 255, 0.022)');
+        ambient.addColorStop(1,   'transparent');
+        ctx.strokeStyle = ambient;
+        ctx.lineWidth   = 0.8;
+        drawRingsPattern();
+
+        // Spawn orgânico de novos pulsos
+        if (pulses.length < MAX_PULSES && Math.random() < 0.055) spawnPulse();
+
+        // Atualizar e desenhar cada pulso
+        for (let i = pulses.length - 1; i >= 0; i--) {
+          const p = pulses[i];
+          p.angle += p.speed;
+          p.life++;
+
+          // Fade in 15% / estável / fade out 20%
+          const fadeIn  = p.maxLife * 0.15;
+          const fadeOut = p.maxLife * 0.20;
+          if      (p.life < fadeIn)                 p.opacity = (p.life / fadeIn) * p.maxOpacity;
+          else if (p.life > p.maxLife - fadeOut)    p.opacity = ((p.maxLife - p.life) / fadeOut) * p.maxOpacity;
+          else                                       p.opacity = p.maxOpacity;
+
+          if (p.life >= p.maxLife) { pulses.splice(i, 1); continue; }
+
+          const ring = rings[p.ringIdx];
+          if (!ring) { pulses.splice(i, 1); continue; }
+
+          const isGreen = p.colorType === 'green';
+          const dir     = Math.sign(p.speed);
+          const SEGS    = 18;
+
+          ctx.save();
+
+          // Corpo do arco: segmentos com opacidade crescente da cauda ao head
+          for (let s = 0; s < SEGS; s++) {
+            const t0 = p.angle - dir * p.arcLength + dir * (s / SEGS) * p.arcLength;
+            const t1 = p.angle - dir * p.arcLength + dir * ((s + 1) / SEGS) * p.arcLength;
+            const segOp = ((s + 1) / SEGS) * p.opacity;
+            const pt0   = ringPoint(ring, t0);
+            const pt1   = ringPoint(ring, t1);
+            ctx.beginPath();
+            ctx.moveTo(pt0.x, pt0.y);
+            ctx.lineTo(pt1.x, pt1.y);
+            ctx.strokeStyle = isGreen
+              ? `rgba(0, 255, 102, ${segOp})`
+              : `rgba(0, 229, 255, ${segOp})`;
+            ctx.lineWidth = 1.4 + (s / SEGS) * 0.7;
+            ctx.stroke();
+          }
+
+          // Ponto luminoso na cabeça do pulso
+          const head = ringPoint(ring, p.angle);
+          ctx.shadowColor = isGreen ? '#00ff66' : '#00e5ff';
+          ctx.shadowBlur  = 8;
           ctx.beginPath();
-          const steps = 140; // Passos suficientes para curvas lisas
-          for (let j = 0; j <= steps; j++) {
-            const theta = (j / steps) * Math.PI * 2;
-            
-            // RUÍDO COERENTE PARALELO: Os anéis compartilham as fases de onda
-            // Isso faz as deformações ficarem perfeitamente alinhadas, imitando madeira ou digitais
-            const wave1 = Math.sin(theta * 4 + time * 0.2) * 3.5;
-            const wave2 = Math.cos(theta * 7 - time * 0.1) * 1.5;
-            const wave3 = Math.sin(theta * 2 + time * 0.05) * 2.0;
-            
-            // Somar as ondas e multiplicar pelo fator individual do anel
-            const wobble = (wave1 + wave2 + wave3) * ring.noiseScale;
-            
-            const r = ring.baseRadius + wobble;
-            const px = centerX + Math.cos(theta) * r;
-            const py = centerY + Math.sin(theta) * r;
-            
-            if (j === 0) ctx.moveTo(px, py);
-            else ctx.lineTo(px, py);
-          }
-          ctx.closePath();
+          ctx.arc(head.x, head.y, 2, 0, Math.PI * 2);
+          ctx.fillStyle = isGreen
+            ? `rgba(0, 255, 102, ${p.opacity})`
+            : `rgba(0, 229, 255, ${p.opacity})`;
+          ctx.fill();
+
+          ctx.restore();
+        }
+
+        // Spotlight suave ao toque (sem crosshair, sem texto)
+        if (mouse.active) {
+          const tGrad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 200);
+          tGrad.addColorStop(0,   'rgba(0, 255, 102, 0.42)');
+          tGrad.addColorStop(0.45,'rgba(0, 229, 255, 0.18)');
+          tGrad.addColorStop(1,   'transparent');
+          ctx.strokeStyle = tGrad;
+          ctx.lineWidth   = 1.0;
+          drawRingsPattern();
+        }
+
+      } else {
+        // ── DESKTOP: spotlight de mouse + retícula técnica ───────────────
+
+        const radiusGlow = 240;
+        const gradient   = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, radiusGlow);
+        gradient.addColorStop(0,    'rgba(0, 255, 102, 0.65)');
+        gradient.addColorStop(0.35, 'rgba(0, 229, 255, 0.4)');
+        gradient.addColorStop(0.7,  'rgba(255, 211, 0, 0.12)');
+        gradient.addColorStop(1,    'transparent');
+
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth   = 1.0;
+        drawRingsPattern();
+
+        // Retícula técnica e dados do anel
+        if (mouse.active || Math.abs(mouse.x - width * 0.35) > 1) {
+          ctx.save();
+          ctx.strokeStyle = 'rgba(0, 255, 102, 0.15)';
+          ctx.lineWidth   = 0.5;
+
+          ctx.beginPath();
+          ctx.arc(mouse.x, mouse.y, 60, 0, Math.PI * 2);
           ctx.stroke();
-        });
-      };
 
-      // 1. Desenhar anéis de fundo em tom de verde florestal sutil e muito escuro
-      ctx.lineWidth = 0.5;
-      ctx.strokeStyle = 'rgba(0, 156, 59, 0.022)'; // Linhas finas de fundo sutil
-      drawRingsPattern();
+          ctx.beginPath();
+          ctx.moveTo(mouse.x - 70, mouse.y); ctx.lineTo(mouse.x + 70, mouse.y);
+          ctx.moveTo(mouse.x, mouse.y - 70); ctx.lineTo(mouse.x, mouse.y + 70);
+          ctx.stroke();
 
-      // 2. Desenhar as silhuetas das árvores no fundo (muito sutil)
-      if (width > 1024) {
-        pineTrees.forEach(tree => {
-          const tx = tree.xPercent * width;
-          const ty = height * 0.85;
-          const tHeight = tree.heightPercent * height;
-          const mouseDistX = Math.abs(mouse.x - tx);
-          const isHovered = mouse.active && mouseDistX < 45 && mouse.y > (ty - tHeight - 40) && mouse.y < ty + 20;
-          
-          drawPineTree(tx, ty, tHeight, 'rgba(0, 156, 59, 0.08)', isHovered, false, tree);
-        });
-      }
+          ctx.beginPath();
+          ctx.setLineDash([2, 4]);
+          ctx.moveTo(centerX, centerY);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.stroke();
+          ctx.setLineDash([]);
 
-      // 3. Criar máscara de iluminação (Spotlight) baseada em gradiente radial no cursor
-      const radiusGlow = 240; // Raio ampliado para melhor alcance visual
-      const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, radiusGlow);
-      gradient.addColorStop(0, 'rgba(0, 255, 102, 0.65)'); // Verde neon
-      gradient.addColorStop(0.35, 'rgba(0, 229, 255, 0.4)'); // Azul royal tecnológico
-      gradient.addColorStop(0.7, 'rgba(255, 211, 0, 0.12)'); // Amarelo ouro
-      gradient.addColorStop(1, 'transparent');
-
-      // 4. Desenhar os mesmos anéis com a cor do spotlight acesa
-      ctx.strokeStyle = gradient;
-      ctx.lineWidth = 1.0;
-      drawRingsPattern();
-
-      // 5. Desenhar as silhuetas das árvores acesas pelo spotlight do cursor
-      if (width > 1024) {
-        pineTrees.forEach(tree => {
-          const tx = tree.xPercent * width;
-          const ty = height * 0.85;
-          const tHeight = tree.heightPercent * height;
-          const mouseDistX = Math.abs(mouse.x - tx);
-          const isHovered = mouse.active && mouseDistX < 45 && mouse.y > (ty - tHeight - 40) && mouse.y < ty + 20;
-
-          drawPineTree(tx, ty, tHeight, gradient, isHovered, true, tree);
-          
-          // Se houver hover direto no fuste/silhueta, desenha callout técnico neon e efeitos de scan
-          if (isHovered) {
-            ctx.save();
-            const crownBaseY = ty - tHeight * 0.4;
-            const crownTopY = ty - tHeight;
-            const crownHeight = tHeight * 0.6;
-
-            // 5a. Desenhar Bounding Box de detecção inteligente
-            const pad = 8;
-            const bLeft = tx - (tHeight * 0.16) - pad;
-            const bRight = tx + (tHeight * 0.16) + pad;
-            const bTop = crownTopY - pad;
-            const bBottom = crownBaseY + pad;
-
-            ctx.strokeStyle = 'rgba(0, 255, 102, 0.3)';
-            ctx.lineWidth = 0.8;
-            ctx.setLineDash([2, 4]);
-            ctx.strokeRect(bLeft, bTop, bRight - bLeft, bBottom - bTop);
-            ctx.setLineDash([]); // reset
-
-            // Cantoneiras da Bounding Box (estilo visor)
-            const bLen = 8;
-            ctx.strokeStyle = 'rgba(0, 255, 102, 0.85)';
-            ctx.beginPath();
-            // Top Left
-            ctx.moveTo(bLeft + bLen, bTop); ctx.lineTo(bLeft, bTop); ctx.lineTo(bLeft, bTop + bLen);
-            // Top Right
-            ctx.moveTo(bRight - bLen, bTop); ctx.lineTo(bRight, bTop); ctx.lineTo(bRight, bTop + bLen);
-            // Bottom Left
-            ctx.moveTo(bLeft + bLen, bBottom); ctx.lineTo(bLeft, bBottom); ctx.lineTo(bLeft, bBottom - bLen);
-            // Bottom Right
-            ctx.moveTo(bRight - bLen, bBottom); ctx.lineTo(bRight, bBottom); ctx.lineTo(bRight, bBottom - bLen);
-            ctx.stroke();
-
-            // 5b. Desenhar régua de altura (fita hpsométrica)
-            ctx.strokeStyle = 'rgba(0, 229, 255, 0.3)';
-            ctx.fillStyle = 'rgba(0, 229, 255, 0.65)';
-            ctx.font = '8px monospace';
-            ctx.beginPath();
-            ctx.moveTo(bRight + 12, bBottom);
-            ctx.lineTo(bRight + 12, bTop);
-            ctx.stroke();
-
-            for (let hTick = 0; hTick <= 1; hTick += 0.25) {
-              const tickY = bBottom - (bBottom - bTop) * hTick;
-              const tickVal = Math.round(tree.heightNum * hTick * 10) / 10;
-              ctx.beginPath();
-              ctx.moveTo(bRight + 12, tickY);
-              ctx.lineTo(bRight + 17, tickY);
-              ctx.stroke();
-              ctx.fillText(`${tickVal}m`, bRight + 20, tickY + 3);
-            }
-
-            // 5c. Linha laser de varredura ativa (LiDAR scan sweep)
-            const scanTimeVal = (Date.now() / 1200) % (Math.PI * 2);
-            const scanProgress = 0.5 + 0.5 * Math.sin(scanTimeVal); // 0 a 1
-            const scanY = crownTopY + crownHeight * scanProgress;
-            const relativeScanY = (scanY - crownTopY) / crownHeight;
-            const currentW = (tHeight * 0.16) * getCrownWidthAt(relativeScanY);
-
-            // Desenhar elipse de corte do laser
-            ctx.strokeStyle = 'rgba(0, 255, 102, 0.8)';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.ellipse(tx, scanY, currentW + 3, (currentW + 3) * 0.25, 0, 0, Math.PI * 2);
-            ctx.stroke();
-
-            // Feixe horizontal estendido
-            ctx.strokeStyle = 'rgba(0, 255, 102, 0.3)';
-            ctx.beginPath();
-            ctx.moveTo(tx - currentW - 12, scanY);
-            ctx.lineTo(tx + currentW + 12, scanY);
-            ctx.stroke();
-
-            // 5d. Desenhar HUD Callout Glassmorphic para dados técnicos
-            const boxW = 154;
-            const boxH = 92;
-            const boxX = tx - boxW - 32;
-            const boxY = ty - tHeight * 0.55 - boxH / 2;
-
-            // Fundo escuro glass
-            ctx.fillStyle = 'rgba(4, 12, 8, 0.9)';
-            ctx.fillRect(boxX, boxY, boxW, boxH);
-
-            // Borda fina neon
-            ctx.strokeStyle = 'rgba(0, 255, 102, 0.4)';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(boxX, boxY, boxW, boxH);
-
-            // Sub-cabeçalho decorativo
-            ctx.fillStyle = 'rgba(0, 255, 102, 0.1)';
-            ctx.fillRect(boxX, boxY, boxW, 16);
-            ctx.strokeStyle = 'rgba(0, 255, 102, 0.25)';
-            ctx.beginPath();
-            ctx.moveTo(boxX, boxY + 16);
-            ctx.lineTo(boxX + boxW, boxY + 16);
-            ctx.stroke();
-
-            // Texto do cabeçalho HUD
-            ctx.fillStyle = '#00ff66';
-            ctx.font = 'bold 8px monospace';
-            ctx.fillText('LIDAR SCANNER [ID: PINUS-03]', boxX + 6, boxY + 11);
-
-            // Linha conectora pontilhada
-            ctx.strokeStyle = 'rgba(0, 255, 102, 0.5)';
-            ctx.beginPath();
-            ctx.setLineDash([2, 2]);
-            ctx.moveTo(tx, ty - tHeight * 0.55);
-            ctx.lineTo(boxX + boxW, ty - tHeight * 0.55);
-            ctx.stroke();
-            ctx.setLineDash([]); // reset
-
-            // Conteúdo textual
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
-            ctx.font = '9px monospace';
-            const startY = boxY + 29;
-            const rowH = 11;
-            ctx.fillText(`ESPÉCIE : ${tree.species}`, boxX + 8, startY);
-            ctx.fillText(`DAP     : ${tree.dbh}`, boxX + 8, startY + rowH);
-            ctx.fillText(`ALTURA  : ${tree.height}`, boxX + 8, startY + rowH * 2);
-            ctx.fillText(`VOL_EST : ${tree.vol}`, boxX + 8, startY + rowH * 3);
-            ctx.fillText(`SORT    : ${tree.sort}`, boxX + 8, startY + rowH * 4);
-
-            ctx.restore();
-          }
-        });
-      }
-
-      // 6. Desenhar elementos de interface técnica (linhas de retícula e dados do anel)
-      if (mouse.active || Math.abs(mouse.x - width * 0.35) > 1) {
-        ctx.save();
-        ctx.strokeStyle = 'rgba(0, 255, 102, 0.15)';
-        ctx.lineWidth = 0.5;
-        
-        // Círculo de rastreamento do mouse
-        ctx.beginPath();
-        ctx.arc(mouse.x, mouse.y, 60, 0, Math.PI * 2);
-        ctx.stroke();
-        
-        // Cruz de mira técnica
-        ctx.beginPath();
-        ctx.moveTo(mouse.x - 70, mouse.y);
-        ctx.lineTo(mouse.x + 70, mouse.y);
-        ctx.moveTo(mouse.x, mouse.y - 70);
-        ctx.lineTo(mouse.x, mouse.y + 70);
-        ctx.stroke();
-        
-        // Linha conectando o centro ao cursor
-        ctx.beginPath();
-        ctx.setLineDash([2, 4]);
-        ctx.moveTo(centerX, centerY);
-        ctx.lineTo(mouse.x, mouse.y);
-        ctx.stroke();
-
-        // Parâmetros do anel concêntrico sob o cursor
-        ctx.fillStyle = 'rgba(0, 255, 102, 0.7)';
-        ctx.font = '9px monospace';
-        
-        const distCenter = Math.round(Math.hypot(mouse.x - centerX, mouse.y - centerY));
-        const estAge = Math.round(distCenter / ringSpacing);
-        
-        ctx.fillText(`ANEL_DIST: ${distCenter}px`, mouse.x + 15, mouse.y - 30);
-        ctx.fillText(`IDADE_ESTIMADA: ${estAge} anos`, mouse.x + 15, mouse.y - 18);
-        ctx.fillText(`GEO_REF: 25.378° S`, mouse.x + 15, mouse.y - 6);
-        ctx.restore();
+          ctx.fillStyle = 'rgba(0, 255, 102, 0.7)';
+          ctx.font      = '9px monospace';
+          const distCenter = Math.round(Math.hypot(mouse.x - centerX, mouse.y - centerY));
+          const estAge     = Math.round(distCenter / ringSpacing);
+          ctx.fillText(`ANEL_DIST: ${distCenter}px`,       mouse.x + 15, mouse.y - 30);
+          ctx.fillText(`IDADE_ESTIMADA: ${estAge} anos`,   mouse.x + 15, mouse.y - 18);
+          ctx.fillText(`GEO_REF: 25.378° S`,               mouse.x + 15, mouse.y - 6);
+          ctx.restore();
+        }
       }
 
       requestAnimationFrame(render);

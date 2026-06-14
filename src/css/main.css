@@ -276,9 +276,9 @@ a {
   font-size: 0.68rem;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: #b0c0b0;
+  color: #7a9a7a;
   margin-bottom: 28px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .clients-track-wrapper {
@@ -308,35 +308,31 @@ a {
 .clients-track {
   display: flex;
   align-items: center;
-  gap: 80px;
+  gap: 72px;
   width: max-content;
-  animation: clients-marquee 32s linear infinite;
+  animation: clients-marquee 36s linear infinite;
   padding: 0 40px;
-}
-
-.clients-track:hover {
-  animation-play-state: paused;
+  /* sem pausa no hover — carrossel nunca para */
 }
 
 @keyframes clients-marquee {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to   { transform: translateX(-33.333%); }
 }
 
 .client-logo {
-  height: 46px;
+  height: 60px;
   width: auto;
-  max-width: 140px;
+  max-width: 160px;
   object-fit: contain;
-  opacity: 0.6;
-  filter: grayscale(20%);
-  transition: opacity 0.25s, filter 0.25s;
+  opacity: 0.82;
+  filter: grayscale(0%);
+  transition: opacity 0.25s;
   flex-shrink: 0;
 }
 
 .client-logo:hover {
   opacity: 1;
-  filter: grayscale(0%);
 }
 
 /* ==========================================

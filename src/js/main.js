@@ -358,37 +358,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentAge = Math.round(pulseR / ringSpacing);
 
         // Desenhar cada anel com cor e intensidade baseadas na distância ao pulso
-        // Paleta igual ao spotlight de desktop: verde neon → ciano → âmbar
         rings.forEach(ring => {
           const dist = Math.abs(ring.baseRadius - pulseR);
           if (dist < GLOW_W) {
-            const t         = 1 - dist / GLOW_W;   // 1 no pico, 0 na borda
-            const intensity = t * t * t;             // cúbico: pico nítido, cauda suave
+            const t         = 1 - dist / GLOW_W;
+            const intensity = t * t;              // quadrático: onda suave, sem pico abrupto
 
-            // Interpolação de cor em três zonas (igual ao gradiente do desktop)
             let r, g, b;
             if (t > 0.6) {
-              // verde neon → pico
               const s = (t - 0.6) / 0.4;
-              r = 0;
-              g = Math.round(229 + 26 * s);   // 229→255
-              b = Math.round(255 - 153 * s);  // 255→102
+              r = 0; g = Math.round(229 + 26 * s); b = Math.round(255 - 153 * s);
             } else if (t > 0.25) {
-              // ciano
               const s = (t - 0.25) / 0.35;
-              r = Math.round(255 * (1 - s));
-              g = Math.round(211 + 18 * s);   // 211→229
-              b = 255;
+              r = Math.round(255 * (1 - s)); g = Math.round(211 + 18 * s); b = 255;
             } else {
-              // âmbar/ouro — bordas do halo
               const s = t / 0.25;
-              r = 255;
-              g = Math.round(211 * s);
-              b = 0;
+              r = 255; g = Math.round(211 * s); b = 0;
             }
 
-            ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${(intensity * 0.88).toFixed(3)})`;
-            ctx.lineWidth   = 0.4 + intensity * 2.0;
+            ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${(intensity * 0.55).toFixed(3)})`;
+            ctx.lineWidth   = 0.4 + intensity * 1.1;
           } else {
             ctx.strokeStyle = 'rgba(0, 180, 70, 0.08)';
             ctx.lineWidth   = 0.5;
@@ -396,22 +385,39 @@ document.addEventListener('DOMContentLoaded', () => {
           drawRing(ring);
         });
 
-        // Label de idade avançando junto com o pulso
-        if (pulseR > ringSpacing * 2 && pulseR < maxR) {
-          const labelAngle = -Math.PI * 0.35;  // ~63° acima da horizontal
+        // HUD com informações do anel, avançando junto com o pulso
+        if (pulseR > ringSpacing * 3 && pulseR < maxR) {
+          const labelAngle = -Math.PI * 0.35;
           const lx = centerX + Math.cos(labelAngle) * pulseR;
           const ly = centerY + Math.sin(labelAngle) * pulseR;
 
-          if (lx > 10 && lx < width - 80 && ly > 15 && ly < height - 15) {
+          if (lx > 10 && lx < width - 100 && ly > 40 && ly < height - 15) {
             ctx.save();
-            const label = `${currentAge} anos`;
-            ctx.font    = 'bold 9px monospace';
-            const tw    = ctx.measureText(label).width;
-            // Fundo mínimo para legibilidade
-            ctx.fillStyle = 'rgba(0, 8, 4, 0.65)';
-            ctx.fillRect(lx + 4, ly - 12, tw + 8, 15);
-            ctx.fillStyle = 'rgba(0, 255, 102, 0.88)';
-            ctx.fillText(label, lx + 8, ly - 1);
+            ctx.font = '9px monospace';
+
+            const lines = [
+              `ANEL_DIST : ${Math.round(pulseR)}px`,
+              `IDADE     : ${currentAge} anos`,
+              `GEO_REF   : 25.378° S`,
+            ];
+
+            const lineH = 12;
+            const pad   = 6;
+            const boxW  = 148;
+            const boxH  = lines.length * lineH + pad * 2;
+            const bx    = lx + 8;
+            const by    = ly - boxH / 2;
+
+            ctx.fillStyle = 'rgba(0, 8, 4, 0.72)';
+            ctx.fillRect(bx, by, boxW, boxH);
+            ctx.strokeStyle = 'rgba(0, 255, 102, 0.2)';
+            ctx.lineWidth = 0.5;
+            ctx.strokeRect(bx, by, boxW, boxH);
+
+            ctx.fillStyle = 'rgba(0, 255, 102, 0.82)';
+            lines.forEach((line, i) => {
+              ctx.fillText(line, bx + pad, by + pad + lineH * i + 9);
+            });
             ctx.restore();
           }
         }

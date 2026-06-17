@@ -1027,6 +1027,11 @@ a {
 /* ==========================================
    APLICATIVOS E VALOR (STATS)
    ========================================== */
+#apps-dobra-escura .container,
+#apps-sistemas-hero .container {
+  max-width: 1400px;
+}
+
 .apps-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
